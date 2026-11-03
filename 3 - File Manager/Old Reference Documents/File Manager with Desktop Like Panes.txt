@@ -1,0 +1,8 @@
+File Manager with Desktop Like Panes
+====================================
+4/1/07
+
+
+
+I need a File Manager with panes where I can group and separate files into convenient groupings.
+

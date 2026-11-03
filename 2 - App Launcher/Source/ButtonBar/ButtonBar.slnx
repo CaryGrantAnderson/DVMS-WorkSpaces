@@ -1,0 +1,4 @@
+<Solution>
+  <Project Path="ButtonBar\ButtonBar.csproj" />
+  <Project Path="HexButtonBar\HexButtonBar.csproj" />
+</Solution>

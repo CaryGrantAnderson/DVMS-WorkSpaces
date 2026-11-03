@@ -1,0 +1,54 @@
+File Manager Improvements I Want To See
+=======================================
+Grant Anderson
+9/18/2012
+
+
+
+   - Pick ONE combined file Tree List code set!
+
+   - Get drag and drop working.
+
+
+   - Directory sizes displayed automatically!!!!
+
+   - Ability to Filter, Group, Sub-Tree a file list or directory 
+     display.
+
+   - Attach NOTES to files and directories.
+
+
+   - Color and use custom fonts in file and directory names.
+
+   - Descriptions for files.
+
+   - Seeing Creation Date as an automatic default.
+
+   - Connection/Integration with Desktop Workplace so I can partition
+     files and directoris and notes and such into physical groupings.
+
+   - Ability make and use Zip Buckets of groups of files.
+
+   - Ability for file and directory links so can have physical 
+     storage elsewhere.
+
+   - Handle new file types including:
+
+	- Web Link Files.
+
+	- Etc......
+
+
+
+
+
+Reference Info:
+
+	http://www.dotnetperls.com/fileinfo
+
+
+
+
+
+
+			=== END ===

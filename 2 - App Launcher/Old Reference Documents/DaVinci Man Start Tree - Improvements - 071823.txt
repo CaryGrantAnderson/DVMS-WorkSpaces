@@ -1,0 +1,63 @@
+DaVinci Man Start Tree - Improvement Tasks
+==========================================
+7/18/2023
+
+
+
+-----------------------------------------------------------------------------
+-- Initial Improvement Tasks:
+-----------------------------------------------------------------------------
+
+1. Bring it over into a more permanent DVMS directory location.
+
+2. Rename it DVMS Start Tree.
+
+3. Figure out how to do DVMS logo and motto.
+	- Where to put it?
+	- To the left side of the ribbon menu?
+
+4. Combine My Start Menu tree and All Users Menu into a new additional tree.
+
+5. Get these Trees working:
+	- Test Directory
+	- Custom Start 1
+	- Custom Start 2
+
+
+-----------------------------------------------------------------------------
+-- Code Improvement Tasks:
+-----------------------------------------------------------------------------
+
+1. Need a Search function for the Trees.
+
+2. Determine how I'm storing the Custom Trees...And update/improve as needed.
+
+3. Update this project to the highest level.
+
+4. Determine how I'm doing the Settings...And update/improve as needed.
+
+5. Function to collapse to just the Start Tree...And to expand to the full size.
+
+
+-----------------------------------------------------------------------------
+-- Commerical Version Improvement Tasks:
+-----------------------------------------------------------------------------
+
+1. Determine what's needed to finish this into a commercial product.
+	- Ability/Function to easily define custom Start Trees.
+	- Remove ".lnk" from the entries.
+	- Option to bold and increase font size for directories.
+		- To more easily differentiate them from the link entries.
+	- Search function for the link entries.
+	- Ability to add own Start/link items.
+	- Ability to add descriptions and other meta data.
+
+	- Ability to use it as a simple Menu Tree product.
+
+	- ???
+
+2. Abstract the Start Tree into a reusable control.
+	- Then see how to reuse it as a Nav Tree in other DVMS products.
+
+
+			=== END ===

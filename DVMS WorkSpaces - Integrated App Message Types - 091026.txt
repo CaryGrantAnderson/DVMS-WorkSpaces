@@ -1,0 +1,15 @@
+DVMS WorkPlace - Integrated App Message Types
+=============================================
+9/10/2026
+
+
+   - Alert
+   - Notification
+   - Reminder
+   - Task
+   - App Log
+   - App Error
+   - Messages (General)
+
+
+			=== END ===

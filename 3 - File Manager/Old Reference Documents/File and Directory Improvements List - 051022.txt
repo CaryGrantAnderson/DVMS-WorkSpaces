@@ -1,0 +1,39 @@
+File and Directory Improvements List
+====================================
+C. Grant Anderson
+DaVinci Minds Software, Inc.
+5/10/2022
+
+
+-----------------------------------------------------------------------------
+-- Directory and File Meta Data Improvements:
+-----------------------------------------------------------------------------
+
+1. 
+
+
+
+
+
+-----------------------------------------------------------------------------
+-- Directory and File Display Improvements:
+-----------------------------------------------------------------------------
+
+1. Latest/Last File Carousel.
+      - Pinned files/directories.
+2. Directory Descriptions.
+3. Directory Comments.
+4. Directory Notes.
+5. Virtual Directories!!!
+6. Directory custom icons and colors!
+7. Grouped Directories.
+8. Directory tags.
+
+
+
+
+
+
+
+
+                           === END ===

@@ -1,0 +1,35 @@
+Where I Am At - App Info - 102722
+=================================
+C. Grant Anderson
+10/27/2022
+
+
+Author/User:   Grant Anderson
+
+Date:          Thursday 10/27/2022
+
+Day Number:
+Week Number:
+
+
+Client:    AMN Healthcare
+Project:   Database Optimization
+
+Description of What I'm doing Today.
+
+Work Log Notes....
+
+
+Lists Of:
+
+1. Target Documents and Code.
+2. Working Directories.
+3. Working DB Server, DBs, and Tables.
+4. Relevant Emails.
+5. GitHub Repositoris.
+6. Browser Links.
+7. Apps I'm using.
+
+
+
+

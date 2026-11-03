@@ -1,0 +1,53 @@
+DVMSFileManager - Future Possible Improvements List - 083026
+============================================================
+8/30/2026
+
+
+Possible Future Improvements:
+-----------------------------------------------------------------
+
+1. As Nex for suggestions.
+
+PARTIALLY COMPLETE! - 2. Review Directory Opus and a few other 
+                         file managers for useful functions to 
+                         include.
+
+3. Space Used/Space Remaining?
+
+4. Refine Search.
+	- Use Everything API instead of command line.
+
+5. Versioning?
+
+6. Auto backups?
+
+7. Zip/7z File Containers and support for them.
+
+8. Handle new file types in Preview and showing new default icons.
+	- Such as Web Link Files.
+
+9. File Watching for changes?
+	- Is this how File Explorer works for this?
+	- Or does the Windows Shell thing handle this?
+		- FileExplorerAssistent
+
+10. Dual/Multiple File Grids.
+
+11. Duplicate Files detection.
+
+12. Directory Opus Type Features:
+	- Dual/Multiple Panes.
+	- File Copy/Move Queuing.
+	- Batch Renaming.
+	- Built in Zip and 7Zip support.
+	- Archiving.
+	- Status column.
+	- Attribute column.
+	- Synchronize folders.
+	- Convert images (bulk).
+	- Script Support.
+	- Others...
+	- But a very cumbersome and non-intuitive non-flowing UI.
+
+
+			=== END ===

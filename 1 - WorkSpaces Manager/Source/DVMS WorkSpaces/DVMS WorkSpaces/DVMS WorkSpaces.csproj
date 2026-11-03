@@ -1,0 +1,148 @@
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{8EF8EAAD-4251-4A23-A233-E3B30C67C060}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>DVMS_WorkSpaces</RootNamespace>
+    <AssemblyName>DVMS WorkSpaces</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>x64</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject>DVMS_WorkSpaces.Program</StartupObject>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>Gear_256x256.ico</ApplicationIcon>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="AppSystems\Ping\PingComponent.cs" />
+    <Compile Include="AppSystems\Ping\PingMiniAppForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AppSystems\Ping\PingWidgetControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ComBus\ComBusMessage.cs" />
+    <Compile Include="ComBus\IComBus.cs" />
+    <Compile Include="ComBus\LocalComBus.cs" />
+    <Compile Include="Controls\WidgetContainerControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\WorkspaceButtonControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Core\AppSystemContracts.cs" />
+    <Compile Include="Core\EnvironmentContext.cs" />
+    <Reference Include="DevExpress.BonusSkins.v25.1" />
+    <Reference Include="DevExpress.Data.Desktop.v25.1" />
+    <Reference Include="DevExpress.Data.v25.1" />
+    <Reference Include="DevExpress.Printing.v25.1.Core" />
+    <Reference Include="DevExpress.Utils.v25.1" />
+    <Reference Include="DevExpress.XtraBars.v25.1" />
+    <Reference Include="DevExpress.Sparkline.v25.1.Core" />
+    <Reference Include="DevExpress.XtraEditors.v25.1" />
+    <Reference Include="DevExpress.Drawing.v25.1" />
+    <Reference Include="DevExpress.XtraLayout.v25.1, Version=25.1.13.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraTreeList.v25.1, Version=25.1.13.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Forms\GridSettingsXtraForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\GridSettingsXtraForm.Designer.cs">
+      <DependentUpon>GridSettingsXtraForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\WorkSpace_XtraForm1cs.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\WorkSpace_XtraForm1cs.Designer.cs">
+      <DependentUpon>WorkSpace_XtraForm1cs.cs</DependentUpon>
+    </Compile>
+    <Compile Include="WorkSpaces_MainForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="WorkSpaces_MainForm.Designer.cs">
+      <DependentUpon>WorkSpaces_MainForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Models\WorkspaceDocument.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Forms\GridSettingsXtraForm.resx">
+      <DependentUpon>GridSettingsXtraForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\WorkSpace_XtraForm1cs.resx">
+      <DependentUpon>WorkSpace_XtraForm1cs.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WorkSpaces_MainForm.resx">
+      <DependentUpon>WorkSpaces_MainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <None Include="App.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Gear_256x256.ico" />
+    <Content Include="Icons\Gear_256x256.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Images\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

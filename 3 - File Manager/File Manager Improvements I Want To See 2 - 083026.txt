@@ -1,0 +1,66 @@
+File Manager Improvements I Want To See 2 - 083026
+==================================================
+Grant Anderson
+9/18/2012
+
+
+* How to do a WinExplorer type view???
+
+	- AND change between them????????
+
+
+
+I need a File Manager with panes where I can group and separate files into convenient groupings.
+
+
+A Simple Directory/Folder File Tree Viewer which allows one to create and organize Virtual Views of One's folders and files!!!
+
+- This is a REALLY REALLY Good Idea!!!!!!!!!!
+
+
+1. Latest/Last File Carousel.
+      - Pinned files/directories.
+2. Directory Descriptions.
+3. Directory Comments.
+4. Directory Notes.
+5. Virtual Directories!!!
+6. Directory custom icons and colors!
+7. Grouped Directories.
+8. Directory tags.
+
+
+
+   - Pick ONE combined file Tree List code set!
+
+   - Get drag and drop working.
+
+
+   - Directory sizes displayed automatically!!!!
+
+   - Ability to Filter, Group, Sub-Tree a file list or directory 
+     display.
+
+   - Attach NOTES to files and directories.
+
+
+   - Color and use custom fonts in file and directory names.
+
+   - Descriptions for files.
+
+   - Seeing Creation Date as an automatic default.
+
+   - Connection/Integration with Desktop Workplace so I can partition
+     files and directoris and notes and such into physical groupings.
+
+   - Ability make and use Zip Buckets of groups of files.
+
+   - Ability for file and directory links so can have physical 
+     storage elsewhere.
+
+   - Handle new file types including:
+
+	- Web Link Files.
+
+	- Etc......
+
+			=== END ===

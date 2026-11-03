@@ -1,0 +1,35 @@
+NikDVM Notes Tree - To DVM WorkSpaces!!!
+=====================================
+11/28/2016
+
+
+1. Where to take Notes Tree next?
+
+	--> Document Tree?
+
+	--> Menu Tree?
+
+	--> ?
+
+	--> Create one integrated tool/product with modules for the 
+	    various sub-products:
+
+		- DVM Notes Tree
+		- DVM Documents Tree
+		- DVM Menu Tree
+
+		- DVM Reports Tree
+		- DVM Desktop Dashboard
+		- ???
+
+	===> All this builds up to...DVM WorkSpaces!!!
+
+		- Finally!
+
+		- Notes for files and directories!!!
+		- Integrated Tasks!
+		- A better File Explorer finally!!!
+		- And a Desktop Dashboard finally!!!
+
+		- Replace the file system with a database system!
+		- True Cloud portability!!!

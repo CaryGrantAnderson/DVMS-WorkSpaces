@@ -1,0 +1,41 @@
+WhereIWasAt Tool Notes - 110825
+===============================
+11/08/2025
+
+
+Use Cases:
+
+1. Save where I was at prior to a restart (often after Windows Update
+   and/or the PC becoming unstable after a couple of days uptime).
+   
+2. Save where I was at when an unscheduled restart occurs.
+      - Thanks a lot Windows Update!
+      
+3. Save Where I Was At prior to shutting down for the day.
+      - And having it automatically figure out where I was.
+
+
+Note:  Need a way to log comments about WhereIWasAt and what I 
+       was doing.
+
+
+Monitor:
+        
+Processes...With Files...With File Locks...
+
+Browser Sessions:
+   - URL
+
+Display Screen Shots
+
+
+Snapshots:
+   - Manual
+   - Periodic
+
+
+Ability to RESTART/RESUME those processes?
+
+Ability to see what I was doing on any particular day/date.
+
+

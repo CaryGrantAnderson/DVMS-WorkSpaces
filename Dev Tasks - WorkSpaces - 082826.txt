@@ -1,0 +1,25 @@
+Dev Tasks - WorkSpaces - 082826
+===============================
+8/28/2026
+
+
+PARTIALLY DONE! - 1. WorkSpaces
+
+DONE! - 2. App Launcher
+
+	- StartTree
+	- ButtonBar
+	- HexButtonBar
+
+Working...3. File Manager
+
+	- Virtual Folders...and Workspaces...
+
+TBD...4. Work Tracker
+
+TBD...5. Work Log
+
+TBD...6. Where I Was At
+
+
+			=== END ===

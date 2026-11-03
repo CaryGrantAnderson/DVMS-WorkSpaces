@@ -1,0 +1,116 @@
+DVMS Super File Explorer - Tasks - 102123
+=========================================
+10/21/2023
+
+
+1. Add filtering via that filter control.
+
+2. Confirm that I can see files.
+	- And they show up in the Selected textbox.
+	- And I can run them.
+
+3. Confirm that all original DevExpress features and functions work!!!
+
+ N. Open/Run:
+	- Move button down a bit.
+	- Add support for runing unfiltered files.
+
+N. Nav buttons not working!!!
+
+
+4. Set working folder?
+	- Start on specific path/folder?
+
+
+    assistant.Attach(tree, x => {
+        x.RootNodes.Add(new PathNode(@"c:\"));
+    });
+
+
+    assistant.Attach(tree, x => {
+        x.RootNodes.Add(new EnvironmentSpecialFolderNode(Environment.SpecialFolder.MyComputer));
+    });
+
+
+    assistant.Attach(grid, x => {
+        x.CurrentPath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+    });
+
+
+
+5. Default Sorting?
+
+    assistant.Attach(grid, x => {
+        x.CurrentPath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+        // Name, DateModified, TypeName, Size
+        x.DefaultSorting = "DateModified ASC; Name";
+    });
+
+
+
+N. Do basic ribbon menu items.
+	- Set Working Drives/Folders
+	- Add Theme Support
+		- With Saving
+
+	- Review File Explorer(s) to see what I can do now and in future!
+
+
+N. Go over list of File Explorer functions and see where I'm at...
+   and should go!
+
+
+
+-----------------------------------------------------------------------------
+-- Next Steps:
+-----------------------------------------------------------------------------
+
+N. Nav Tree:
+	- Set working drive(s).
+	- Set working folder(s).
+	- Filter Folders.
+	- Search Folders.
+
+N. Colorization:
+	- Nav Tree:
+		- Drives
+		- Folders
+	- Files Display:
+		- By File Name
+		- By Folders
+
+N. Special Icons:
+	- Nav Tree:
+		- Drives
+		- Folders
+	- Files Display:
+		- By File Name
+		- By Folders
+
+1. Preview Pane:
+	- Text
+	- Rich Text
+	- Docx
+	- PDF
+	- What else?
+
+2. Settings:
+	- Select programs to open files with various extensions:
+		- Txt
+		- Text
+		- MD
+		- Docx
+		- Etc...
+
+3. Where I Was At Tracking!!!
+	- File open/close.
+	- Directories traversed/paused at...With elapsed times.
+	- What else?
+
+4. Customization of the file item popup menu.
+
+
+N. Virtual Folders!!!
+
+
+			=== END ===

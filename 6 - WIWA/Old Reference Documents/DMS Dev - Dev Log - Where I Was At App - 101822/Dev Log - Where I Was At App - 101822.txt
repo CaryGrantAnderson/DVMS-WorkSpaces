@@ -1,0 +1,57 @@
+Dev Log - Where I Was At App - 101822
+=====================================
+10/18/2022
+
+
+Ok, what I need here is:
+
+
+1. List of all browser windows.
+
+      - Own Browser App with DVMS Project Bookmarks and Integration with DVMS Projects!!!
+      - Chrome addin for this too!!!
+      
+
+2. List of all apps I have open with the files they are accessing.
+
+
+
+3. Outlook mail message category, flag, and or copy available in the Projects area!!!
+
+
+
+4. Directories where I was working!
+
+
+5. Files I was working with!!!
+
+
+6. Notes like "Where I Was At..." so I can log this information.
+
+
+
+7. DevLog so I can record some notes on each area...VS solution....
+
+
+
+
+8. I REALLY REALLY REALLY need the ability to setup and customize and track PROJECT SPECIFIC
+   GROUPs of folders, apps, documents, notes, DevLog and such!!!!!!!!!!!
+   
+   
+      - [ ] What is the best way to do this?????????????????????????
+
+
+   - See my "WHERE I WAS AT..." documents for additional ideas!!!
+   
+         - [ ] And I need to do this automatically and transparently!!!!!
+         
+
+9. Is there a C# desktops manager that I can use to manage and switch between the desktop
+   sessions/views?
+   
+      - The Goddamn MS icon clicking doesn't work most of the time!!!!
+
+
+
+                           === END ===

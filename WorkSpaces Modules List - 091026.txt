@@ -1,0 +1,16 @@
+WorkSpaces Modules List - 091026
+================================
+9/10/2026
+
+
+   - Dashboard
+   - Finances/Budget
+   - Duties
+   - Calendar with Bills, Events, Duties, Tasks & Reminders
+   - Projects
+   - Personal Radar
+   - Work Log with Analysis
+   - WiWa
+
+
+			=== END ===

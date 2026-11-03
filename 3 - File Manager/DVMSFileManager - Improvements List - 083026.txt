@@ -1,0 +1,103 @@
+DVMSFileManager - Improvements List - 083026
+============================================
+8/30/2026
+
+
+Implemented:
+-----------------------------------------------------------------
+
+DONE! - 1. Grid Views.
+	DONE! - Including WinExplorer views.
+
+
+DONE! - 2. File Properties Dock Panel and Grid.
+
+DONE! - 3. Add Date Created to Files details view and put the columns into
+   this order:
+	DONE! - Icon, Name, Size, Type, Data Modified, Date Created
+
+DONE! - 4. Ability to Filter, Group, Sub-Tree a file list or directory 
+           display.
+	DONE! - As per the built in DevExpress grid functions by right
+ 	        clicking the column headers.
+
+DONE! - 5. MetaData.
+		- Descriptions, icons, color, bolding, etc!!!
+
+DONE! - 6. Notes.
+
+DONE! - 7. Drag and Drop Support.
+		DONE! - Part of the DevExpress FileExplorerAssistent.
+
+DONE! - 8. Descriptions shown in Preview row in the Files grid.
+
+FIXED! - 9. When I moved a file with meta data to a subdirectory it moved 
+            and retained the meta data but it did not display it or the 
+            preview column...
+
+DONE! - 10. Directory navigation buttons.
+
+DONE! - 11. Some navigation improvements:
+		DONE! - A dropdown on Back showing recent navigation history
+		DONE! - A Home button returning to the configured default 
+                        location
+		DONE! - Recently visited folders in a dropdown
+
+DONE! - 12. Folder/Directory sizes displayed automatically.
+		DONE! - And System Volume information at the This PC level.
+
+DONE! - 13. Ribbon pages and buttons with icons.
+
+
+Working:
+-----------------------------------------------------------------
+
+
+N. The Cancelation Token bug.
+
+3. Settings:
+	- Turn off automatic folder sizes.
+	- Etc.
+
+4. Colorize the Folder and File Sizes based upon the size number.
+
+5. Indexed Searching like Everything but built in.
+	- With advanced search capabilities.
+		- Including 
+
+
+15. Virtual Folders of Files and Folders.
+	- How to implement????
+
+16. WorkSpaces.
+
+
+And...Need more testing of course...
+
+-----------------------------------------------------------------
+
+Future:
+
+1. As Nex for suggestions.
+
+2. Review Directory Opus and a few other file managers for useful
+   functions to include.
+
+3. Space Used/Space Remaining?
+
+4. Versioning?
+
+5. Auto backups?
+
+6. Zip/7z File Containers and support for them.
+
+7. Handle new file types in Preview and showing new default icons.
+	- Such as Web Link Files.
+
+8. File Watching for changes?
+	- Is this how File Explorer works for this?
+	- Or does the Windows Shell thing handle this?
+		- FileExplorerAssistent
+
+
+			=== END ===

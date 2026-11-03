@@ -1,0 +1,36 @@
+Win Plus Forms Extensions
+=========================
+1/30/2013
+
+
+   - Message Bar (Top or Bottom or both).
+	
+	- Replaces Status Bar.
+
+	- Can grow and compress in height.
+
+   - No menu "bars" (as in DevExpress).
+
+	- Menus compress to a single universal Icon
+	  which can be expanded moved and docked 
+	  and displayed in different forms including
+	  toolbar, ribbon, Button Bar, TREE!
+
+		- And depending upon type at the 
+		  same time!
+
+		- Users can create their own Menu
+		  Views!
+
+
+
+
+
+
+
+
+
+
+
+
+			=== 2013 ===

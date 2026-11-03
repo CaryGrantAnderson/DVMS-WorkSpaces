@@ -1,0 +1,87 @@
+DaVinci Man Start Tree - Improvement Tasks
+==========================================
+1/27/2023
+
+
+
+--------------------------------------------------------------------------------
+-- Things to Fix:
+--------------------------------------------------------------------------------
+
+
+
+--------------------------------------------------------------------------------
+-- Things to Change:
+--------------------------------------------------------------------------------
+
+1. Rename it to DVMS Start Tree.
+
+
+
+--------------------------------------------------------------------------------
+-- Things to Add:
+--------------------------------------------------------------------------------
+
+1. Am I using a DataTable or List<> internally?
+      - List<> is MUCH MUCH faster!!!
+
+2. Start Menu replacement:
+      - I need this usable as a Start Menu replacement since Windows 11 has so
+        many and too often problems with the Start Menu freezing up.
+            - Determine what I need for this - Minimally and Fully.
+                  - Make lists for this.
+
+3. File Contents Viewing Pane:
+      - Text file.
+      - Docx file.
+      - PDF file.
+      - HTML file.
+      - CS file.
+      - .lnk file - The definition.
+      - Zip and 7z files - Contents?
+      - Etc.
+      
+      - And these viewing panes must be able to be moved out of the app to an
+        independent window...and back again (Dock Panels).
+        
+        
+3. Tracking - I need to track the directories I spent time in and what I 
+   launched/ran.
+      - Add SQLite Tracking DB for this!
+      - Then I need a generic viewer for this.
+      
+4. Custom Menu Trees:
+      - I need to be able to make custom Menu Trees.
+      - From the existing trees with point and click and also drag and drop.
+      
+5. I need to make Project/Virtual Folders where I can add files and other 
+   folders.
+      - And I need to be able to save these to a file.
+      - Use SQLite DB for this.
+      - Also consider using a DataTable XML file as well or instead of.
+      
+6. I need to be able to add Notes and other Meta Data to folders and files.
+      - A SQLite Notes DB for this.
+      - See my old DVMS Notes Tree for ideas and such.
+
+7. Can I display the file meta data in a side pane/panel?
+
+8. I need to be able to change these display elements for customizating and
+   also based on basic rules (Naming, size, etc.)
+      - Icon - Deselected and selected.
+      - Font
+      - Font Settings - Bold, Italic, etc.
+      
+   Some Rules:
+      - Used yesterday.
+      - Used this last week.
+      - Bookmarked.
+      - ???
+
+
+
+
+
+
+
+                           === END ===

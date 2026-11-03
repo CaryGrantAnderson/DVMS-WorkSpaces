@@ -1,0 +1,38 @@
+DVM WorkSpaces - Tasks
+======================
+6/19/2014
+
+
+   - Add Design Mode checkbox and functionality from my
+     previous move and resize class code so can move and
+     resize all the objects on the WorkSpace.
+
+
+   - add Saving/Loading all object positions, sizes, and
+     info.
+
+	- Including the background image.
+
+		- I may want to use a simple approach where
+		  the background image is stored in the local
+		  directory in a _DVM_Meta directory and the
+		  background image is read automatically from
+		  there.
+
+   - Add a File Explorer/Manager dock panel.
+
+
+   - Write up exactly just what I need to make this immediately
+     useful to me RIGHT NOW!
+
+	- WorkSpace title and description (what I use it for).
+	- Where I was at last.
+	- ////
+
+
+   - Then connect it to the DVM CMS for use in landing pages 
+     and such.
+
+
+
+			=== END ===

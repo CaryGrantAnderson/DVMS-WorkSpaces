@@ -1,0 +1,9 @@
+Virtual Folders and Files Manager - 082623
+==========================================
+8/26/2023
+
+
+A Simple Directory/Folder File Tree Viewer which allows one to create and organize Virtual Views of One's folders and files!!!
+
+- This is a REALLY REALLY Good Idea!!!!!!!!!!
+

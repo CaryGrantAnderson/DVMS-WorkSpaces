@@ -1,0 +1,165 @@
+DVM Super File Manager - Tasks
+==============================
+Grant Anderson
+7/23/2013
+
+
+Main Objectives:
+----------------
+
+   1. Color specific directories.
+
+	- And BOLD Font.
+
+
+   2. Add Descriptions to directories.
+
+	- In TreeList column and/or in Preview Row.
+
+
+   3. Add Notes to directories.
+
+
+   4. Settings file in the local directory for Color, Fonts,
+      and Notes.
+
+	- When traverse to that directory then parent settings are
+	  automatically inherited and local settings over-ride them
+	  and are applied.
+
+	- These are really Display Rules!!!
+
+
+   5. Show which directories I last did some updates in.
+
+	- Check directory attributes for something like last updated time.
+
+
+   * This way I can:
+
+	A. Find my way around faster.
+	B. Mark directories for Color and Font so I can see what
+	   I've been working on lately.
+	C. See where I've last worked.
+
+
+Current Phase 1 Tasks:
+----------------------
+
+   - Get rules working with XML data set *.Directory_Display_Rules 
+     and *.File_Display_Rules in the current directories.
+
+
+   - Review directory and file properties that I can use:
+
+	http://www.dotnetperls.com/fileinfo
+
+
+   - Context Menu (and settings panel support) for changing attribute/properties
+     and adding a Note to a specific directory.
+
+	- And Save/Load/Update *.Display* XML files.
+
+
+   - Review CodeProject articles:
+
+	http://www.codeproject.com/Articles/14570/A-Windows-Explorer-in-a-user-control
+
+	http://www.codeproject.com/Articles/18419/Touch-Screen-Explorer-with-Pen-Flicks
+
+	http://www.codeproject.com/Articles/15059/C-File-Browser
+
+	http://www.codeproject.com/Articles/14707/Dual-Pane-File-Manager
+
+
+   - Icon support!
+
+	- Default ones for directories, files, focused row,
+	  selected rows, etc.
+
+	- Add ability to set the icons for specific directories
+	  with Display Rules.
+
+	- Add icon(s) for presence and number of Notes.
+
+
+   - Review TreeList vs Grid.
+
+	- Is the only thing that the Grid has over the TreeList in
+	  this situation/context the Grouping ability?
+
+		- Is there any real reason to use the Grid here?
+
+	- Determine how to best add Grouping to TreeList.
+
+		- My old approach worked but was much too slow!!!
+
+
+   - Figure out how best to implement a TreeList control/Nav Tree
+     control that handles this.
+
+	- Review my old code (including the DnF Tool code).
+
+
+
+Phase 2 Tasks:
+--------------
+
+   - Convert from XML data set files to DVM Script files in a Zip/7z container.
+
+
+   - Get the Display Rules working for files.
+
+
+   - Determine what other Display Settings and Display Rules I can
+     use for:
+
+	- Directories.
+	- Files.
+	- Shortcuts.
+
+	- My Own Directory Extensions:
+		- Bookmarks.
+		- Web Link Files/Lists.
+		- Virtual Directory Links.
+		- What else?
+
+	Reference Info:
+
+		http://www.dotnetperls.com/fileinfo
+
+
+   - Do I want to use multiple dock panel displays for:
+
+	- Directories only.
+	- Files only.
+	- Links only.
+	- Mixed.
+
+	- I could have some sort of "View" setting for this.
+
+
+   - Add ability to save to/load from a settings file so I can make
+     specific displays of my Work Groupings and Work Areas!!!
+
+
+   - Put in Super Component Control so can re-use elsewhere!!!
+
+
+   - CheckBox and multi-select support.
+
+
+   - Drag and drop support.
+
+
+
+Phase 3 Tasks:
+--------------
+
+   - Show directory sizes.
+
+   - Integrate into DVM WorkGroup, etc.
+
+
+
+			=== END ===

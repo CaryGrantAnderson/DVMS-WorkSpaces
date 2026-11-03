@@ -1,0 +1,79 @@
+DVMS WorkSpaces Dev Notes - 083026
+==================================
+8/30/2026
+
+
+1. Nav Tree.
+
+2. File Manager Functions/Functionality.
+
+3. Review the DevExpress controls for this use...
+
+
+
+I need:
+
+1. User Controls:
+	- Nav Tree
+	- File Grid
+	- ?
+
+2. File Descriptions and Notes.
+
+	- Custom Icons and Colors!
+
+
+3. File Meta Data with SQLite Repository.
+
+
+
+4. Directory Groups
+
+5. Virtual Folders
+
+
+Apps list...
+
+1. Need various Files Grid controls & actions for 
+   the various Folders View such as:
+	- Recycle Bin, etc.
+
+2. Do I want an option to show both TreeView and TreeList
+   Files Tree views?
+	- TreeList then would show what's in the Files
+	  Grid.
+
+
+The current implementation keeps curated entries in memory. The natural next step is to store them in SQLite with fields such as:
+Id
+ParentId
+DisplayName
+LaunchPath
+Arguments
+WorkingDirectory
+IconPath
+SortOrder
+IsFolder
+Using ParentId would allow My Apps to become a fully user-designed hierarchical application tree rather than merely a flat favorites list.
+
+Home
+├── Desktop
+├── Documents
+├── Downloads
+├── Pictures
+├── Music
+├── Videos
+├── OneDrive
+├── This PC
+│   └── Drives
+├── Network
+└── Recycle Bin
+
+
+WorkSpaces
+Favorites
+Recent Locations
+Virtual Folders
+Pinned Projects
+
+			=== END ===

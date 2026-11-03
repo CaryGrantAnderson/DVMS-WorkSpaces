@@ -1,0 +1,22 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net9.0-windows</TargetFramework>
+    <UseWindowsForms>true</UseWindowsForms>
+    <ApplicationHighDpiMode>PerMonitorV2</ApplicationHighDpiMode>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
+    <AssemblyName>DVMS.FileManager</AssemblyName>
+    <RootNamespace>DVMS.FileManager</RootNamespace>
+    <!-- Forces MSBuild to only copy the specified language(s) -->
+    <SatelliteResourceLanguages>en</SatelliteResourceLanguages>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="DevExpress.Images" Version="25.1.13" />
+    <PackageReference Include="DevExpress.Win" Version="25.1.13" />
+    <PackageReference Include="DevExpress.Win.Grid" Version="25.1.13" />
+    <PackageReference Include="DevExpress.Win.TreeList" Version="25.1.13" />
+    <PackageReference Include="Microsoft.Data.Sqlite" Version="9.0.19" />
+  </ItemGroup>
+</Project>

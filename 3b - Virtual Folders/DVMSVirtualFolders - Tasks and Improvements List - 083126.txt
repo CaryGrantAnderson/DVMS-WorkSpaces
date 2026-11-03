@@ -1,0 +1,23 @@
+DVMSVirtualFolders - Tasks and Improvements List - 083126
+=========================================================
+8/31/2026
+
+
+To Be Implemented:
+-----------------------------------------------------------------
+
+
+
+
+Implemented:
+-----------------------------------------------------------------
+
+DONE! - 22. Virtual Folders of Files and Folders.
+		- Convert List of Virtual Folders to TreeView.
+		-  the Virtual Folders.
+		- Allow drag and drop reordering.
+		- Allow Virtual Folders.
+		- Show number of folders and files.
+
+
+			=== END ===

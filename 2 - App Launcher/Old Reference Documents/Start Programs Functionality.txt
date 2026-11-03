@@ -1,0 +1,62 @@
+Start Programs Functionality
+============================
+11/6/2012
+
+
+   - See:  
+
+	http://windows.microsoft.com/en-US/windows7/Customize-the-Start-menu
+
+	http://windows.microsoft.com/is-IS/windows7/Whats-new-with-the-Start-menu
+
+
+   - Show all program links in 2 directories:
+
+ 	C:\Users\Grant_000\AppData\Roaming\Microsoft\Windows\Start Menu
+
+		%appdata%\Microsoft\Windows\Start Menu
+
+	C:\ProgramData\Microsoft\Windows\Start Menu\Programs
+
+   - Only shows Icon and Title.
+
+   - And auto merge these two directory entries.
+
+   - Double click to run link.
+
+   - Run Command Dialog.
+
+   - List of Common Programs at top.
+
+	- With arrow button to MRU list for that program.
+
+   - List of Common Programs and Areas at right.
+
+   - All Programs list.
+
+   - Search Box.
+
+   - Buttons and Drop Down Buttons for:
+
+	- Shutdown
+	- Restart
+	- Logoff
+	- Lock
+	- Switch User
+	- Standby
+	- Hibernate
+
+	- Options
+	- Exit
+
+   - Ability to set 2 Default Programs:
+
+	- Internet Browser
+	- E-Mail Client
+
+
+   - Shortcut keys?
+
+
+
+			=== END ===

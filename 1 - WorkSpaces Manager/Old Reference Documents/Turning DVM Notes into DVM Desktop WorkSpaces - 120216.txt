@@ -1,0 +1,23 @@
+Turning DVM Notes into DVM Desktop WorkSpaces
+=============================================
+12/2/2016
+
+
+1. Finish DVM Notes Tree.
+
+	- Get it working for both Tina and I.
+
+2. DVM Chat.
+
+	- A database backed chat system that gets around the
+	  freezing problems with Skype for the PC.
+
+3. DVM Dashboard.
+
+	- With panel for DVM Chat.
+		- DVM Chat integration.
+	- DVM Notes Tree Integration.
+
+This is a good start!!!
+
+			=== END ===

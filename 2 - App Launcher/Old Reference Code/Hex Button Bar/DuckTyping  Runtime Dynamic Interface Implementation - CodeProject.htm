@@ -1,0 +1,2002 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
+
+<html>
+<head>
+	<title>DuckTyping: Runtime Dynamic Interface Implementation - CodeProject</title> 
+	<link type="text/css" rel="stylesheet" href="http://s.codeproject.com/App_Themes/Std/Css/CodeProject.min.css?dt=2.5.120620.1">
+
+	
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" /> 
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="Description" content="Dynamic typing (DuckTyping) implementation for .NET.; Author: Guenter Prossliner; Updated: 23 Oct 2006; Section: C#; Chapter: Languages; Updated: 23 Oct 2006" />
+<meta name="Keywords" content=".NET2.0, VS2005, C#2.0, Windows, Dev, Intermediate,C#,Languages,Free source code, tutorials" />
+<meta name="Author" content="Guenter Prossliner" />
+<meta name="Rating" content="General" />
+<meta name="Robots" content="index, follow, NOODP" />
+<meta name="Revisit-After" content="1 days" />
+<meta name="application-name" content="The Code Project" />
+
+<meta name="msapplication-navbutton-color" content="#FF9900" />
+<meta name="msapplication-tooltip" content="Your Development Resource." />
+<meta name="msapplication-starturl" content="http://www.codeproject.com/?pinned=true" />
+<meta name="msapplication-task" content="name=Homepage;action-uri=http://www.codeproject.com/;icon-uri=http://www.codeproject.com/favico.ico" />
+<meta name="msapplication-task" content="name=Latest Articles;action-uri=http://www.codeproject.com/script/articles/Latest.aspx;icon-uri=http://www.codeproject.com/favico.ico" />
+<meta name="msapplication-task" content="name=Questions and Answers;action-uri=http://www.codeproject.com/script/Answers/;icon-uri=http://www.codeproject.com/favico.ico" />
+<meta name="msapplication-task" content="name=The Lounge;action-uri=http://www.codeproject.com/Lounge.aspx;icon-uri=http://www.codeproject.com/favico.ico" />
+
+<link rel="dns-prefetch" href="//ajax.googleapis.com" /> 
+<link rel="canonical" href="/Articles/16074/DuckTyping-Runtime-Dynamic-Interface-Implementatio" />
+
+
+<link rel="alternate" type="application/rss+xml" title="CodeProject Latest articles - All Topics" href="http://www.codeproject.com/WebServices/ArticleRSS.aspx?cat=1" />
+<link rel="alternate" type="application/rss+xml" title="CodeProject Latest articles - MFC/C++" href="http://www.codeproject.com/WebServices/ArticleRSS.aspx?cat=2" />
+<link rel="alternate" type="application/rss+xml" title="CodeProject Latest articles - C#" href="http://www.codeproject.com/WebServices/ArticleRSS.aspx?cat=3" />
+<link rel="alternate" type="application/rss+xml" title="CodeProject Latest articles - VB.NET" href="http://www.codeproject.com/WebServices/ArticleRSS.aspx?cat=6" />
+<link rel="alternate" type="application/rss+xml" title="CodeProject Latest articles - Mobile" href="http://www.codeproject.com/WebServices/ArticleRSS.aspx?cat=18" />
+<link rel="alternate" type="application/rss+xml" title="CodeProject Latest articles - ASP.NET" href="http://www.codeproject.com/WebServices/ArticleRSS.aspx?cat=4" />
+<link rel="alternate" type="application/rss+xml" title="CodeProject Lounge Postings" href="http://www.codeproject.com/webservices/LoungeRSS.aspx" />
+<link rel="search" type="application/opensearchdescription+xml" title="CodeProject" href="http://www.codeproject.com/info/OpenSearch.xml" />
+
+	<base target="_top" />
+	<link rel="icon" href="/favicon.ico" type="image/ico" >
+<link rel="shortcut icon" href="/favicon.ico"  type="image/ico" >
+<link rel="apple-touch-icon" href="/images/FavIcon-Apple.png" type="image/png" >
+<script type="text/javascript" language="Javascript">//<![CDATA[
+if(top!=self && !/https?:\/\/([a-zA-Z]+\.)?facebook.com\//gi.test(top.location.href))top.location.href=location.href; if(typeof(DemoUrl)!='undefined')document.write(unescape('%3Cme')+'ta http'+'-equiv="re'+'fresh" con'+'tent="1;url='+DemoUrl+unescape('"%3CE'));
+forumDir = '/script/Forums/';
+staticServer = 'http://s.codeproject.com';
+allowModeration = false;
+allowRating = true;
+var smoothScroll = true;
+Selected        = -1;
+oldTitle        = document.title;
+minMessageScore = 1;
+minMessageScore = 5;
+abuseScore      = -2;
+spamScore       = -1;
+
+
+//]]>
+</script>
+
+	
+<script type="text/javascript">
+  var _comscore = _comscore || [];
+  _comscore.push({ c1: "2", c2: "13507173" });
+  (function() {
+	var s = document.createElement("script"), el = document.getElementsByTagName("script")[0]; s.async = true;
+	s.src = (document.location.protocol == "https:" ? "https://sb" : "http://b") + ".scorecardresearch.com/beacon.js";
+	el.parentNode.insertBefore(s, el);
+  })();
+</script>
+<noscript>
+  <img src="http://b.scorecardresearch.com/p?c1=2&c2=13507173&cv=2.0&cj=1" id="ctl00_Auditing_ComScore" />
+</noscript>
+
+
+
+<script type="text/javascript">
+	var _gaq = _gaq || [];
+	_gaq.push(['_setAccount', 'UA-1735123-1']);
+	_gaq.push(['_trackPageview']);
+	_gaq.push(['_setDomainName', 'www.codeproject.com']);
+	_gaq.push(['_setSessionTimeout', '1200']); 
+
+	(function () {
+		var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+		ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+		(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(ga);
+	})(); 
+</script>
+
+
+</head>	
+
+<body class="chrome chrome19">
+
+
+
+
+<a href="#Main"><img alt="Click here to Skip to main content" class="access-link" src="/Images/t.gif" /></a>
+
+
+<div class="page-background">
+	<div id="A" class="container-content">
+
+		
+		
+
+		
+
+		
+		
+
+<div class="container nav-memberbar clearfix">
+	<div class="member-stats float-left">8,986,560 members and growing! (24,494 online)</div>
+	<div class="float-left"></div>
+
+	<div class="float-right">
+		&nbsp;&nbsp;
+	</div>
+
+	<div class="float-right">
+		<span id="ctl00_MemberMenu_CurRat" class="tooltip">
+				<a id="ctl00_MemberMenu_MyProfile" href="/script/Membership/View.aspx?mid=6613208">GrantAnderson</a><img src="/Images/arrow-down-16.png" 
+					style="width:16px;height:16px;vertical-align:bottom" />
+				<div class="tooltip-flyout" style="width:110px !important">
+					<div><a id="ctl00_MemberMenu_MySettingsNonSSL" href="http://www.codeproject.com/script/Membership/Modify.aspx">My Settings</a></div>
+					<div><a id="ctl00_MemberMenu_MySettings" href="https://www.codeproject.com/script/Membership/Modify.aspx"><img src="/images/secure.png" width="13px" height="14px"  style="vertical-align:middle;border:0">My Settings (SSL)</a></div>
+					<div><a id="ctl00_MemberMenu_MyContacts" href="/script/Membership/ListContacts.aspx">My Contact info</a></div>
+					<div><a id="ctl00_MemberMenu_MyBookmarks" href="/script/Bookmarks/List.aspx?obtid=2">My Bookmarks</a></div>
+					
+					<div><a id="ctl00_MemberMenu_MyCodeProject" href="/script/Membership/MyWatchedItems.aspx">My Watched Items</a></div>
+					<div><a id="ctl00_MemberMenu_MyArticles" href="/script/Articles/MemberArticles.aspx?amid=6613208">My Articles</a></div>
+					<div><a id="ctl00_MemberMenu_MyMessages" href="/script/Forums/Messages.aspx?fmid=6613208">My Messages</a></div>
+					<div><a id="ctl00_MemberMenu_MyQuestions" href="/script/Answers/MemberPosts.aspx?tab=questions&amp;mid=6613208&amp;showall=True">My Questions</a></div>
+					<div><a id="ctl00_MemberMenu_MyAnswers" href="/script/Answers/MemberPosts.aspx?tab=answers&amp;mid=6613208&amp;showall=True">My Answers</a></div>
+					<div><a id="ctl00_MemberMenu_MyComments" href="/script/comments/MemberComments.aspx?mid=6613208">My Comments</a></div>
+					
+				</div>
+			</span><span id="ctl00_MemberMenu_TotalPoints" title="Total reputation points 793" class="member-rep-box silver" style="margin-left:0"><a href="/script/Reputation/List.aspx?mid=6613208">793</a></span>
+			&nbsp;
+			<a id="ctl00_MemberMenu_Signout" href="/script/Membership/LogOff.aspx?rp=%2fArticles%2f16074%2fDuckTyping-Runtime-Dynamic-Interface-Implementatio">Sign out</a>
+
+		
+	</div>
+</div>
+		
+
+		
+		<table width="100%" cellspacing="0" cellpadding="0" border="0">
+		<tr>
+			<td class="page-header"><a href="/"><img id="ctl00_Logo" title="The Code Project" src="http://s.codeproject.com/App_Themes/Std/Img/logo225x90.gif" alt="Home" style="border-width:0px;" /></a></td>
+			<td class="page-header" align="right">
+				<div class="lqm_ad" lqm_publisher="lqm.codeproject.site"  lqm_zone="ros" lqm_format="728x90" lqm_country='US' lqm_tags='.NET2.0, VS2005, C#2.0, Windows, Dev, Intermediate,rating4.5'></div>
+			</td>
+		</tr></table>
+
+		<table cellpadding="0" cellspacing="0" class="contrast1-background extended"><tr><td nowrap="nowrap">
+			
+
+<div class="navbar clearfix">
+<ul id="nav" class="openable">
+
+<li><a id="ctl00_TopNavBar_Home" class="down" href="http://www.codeproject.com">Home</a>
+
+
+<li class="openable"><a id="ctl00_TopNavBar_Art" class="down selected" href="/script/Articles/Latest.aspx">Articles</a>
+
+	<ul>
+		<li class="openable"><a id="ctl00_TopNavBar_ArtTopicList" class="fly last" onmouseover="navBarMenu.ShowMap(this, &#39;siteMap&#39;);" href="/script/Content/SiteMap.aspx">Chapters and Sections<span class="fly-menu">&gt;</span></a><ul id="ctl00_TopNavBar_MapFlyout"><li>
+				<div id="siteMap" class="tooltip-flyout">
+					<img src="/images/animated.gif" alt="loading" style="margin:150px;width:100px;height:100px;" />
+				</div>
+			</li></ul>
+		</li>
+		<li><a id="ctl00_TopNavBar_ArtSearch" class="fly break" href="/search.aspx">Search</a></li>
+		<li><a id="ctl00_TopNavBar_ArtLatestArts" class="fly" href="/script/Articles/Latest.aspx?at=1,3,7">Latest Articles</a></li>
+		<li><a id="ctl00_TopNavBar_ArtLatestTips" class="fly" href="/script/Articles/Latest.aspx?at=6">Latest Tips/Tricks</a></li>
+		<li><a id="ctl00_TopNavBar_ArtTop" class="fly" href="/script/Articles/TopArticles.aspx?ta_so=5">Top Articles</a></li>
+		<li><a id="ctl00_TopNavBar_ArtBeginner" class="fly" href="/search.aspx?aidlst=152&amp;sa_us=True">Beginner Articles</a></li>
+		
+		<li><a id="ctl00_TopNavBar_ArtBlogArticles" class="fly break" href="/script/Articles/BlogArticleList.aspx">Technical Blogs</a></li>
+		<li><a id="ctl00_TopNavBar_ArtPostArticle" class="fly" href="/script/Articles/Submit.aspx">Submit an Article or Tip</a></li>
+		<li><a id="ctl00_TopNavBar_ArtPostBlog" class="fly break" href="/script/Articles/BlogFeed.aspx">Post your Blog</a></li>
+		<li><a id="ctl00_TopNavBar_ArtGuide" class="fly" href="/info/Submit.aspx">Posting/Update Guidelines</a></li>
+		<li><a id="ctl00_TopNavBar_ArtCompetition" class="fly last" href="/script/Awards/CurrentCompetitions.aspx?cmpTpId=1">Article Competition</a></li>
+	</ul>
+
+</li>
+
+
+
+<li class="openable"><a id="ctl00_TopNavBar_Answers" href="/script/Answers/List.aspx?tab=active">Quick Answers</a>
+	<ul>
+		<li id="ctl00_TopNavBar_AQL"><a id="ctl00_TopNavBar_ArticleQuestion" class="fly highlight" href="#_comments">Ask a Question about this article</a></li>
+
+		<li><a id="ctl00_TopNavBar_QAAsk" class="fly" href="/Questions/ask.aspx">Ask a Question</a></li>
+
+		
+		<li><a id="ctl00_TopNavBar_QAUnanswered" class="fly" href="/script/Answers/List.aspx?tab=unanswered">View Unanswered Questions</a></li>
+		<li><a id="ctl00_TopNavBar_QALatest" class="fly" href="/script/Answers/List.aspx?tab=active">View All Questions...</a></li>
+		
+				<li><a id="ctl00_TopNavBar_QATR_ctl00_Tag" class="fly" href="/script/Answers/List.aspx?tab=active&amp;alltags=true&amp;tags=81" style="padding-left:30px">C# questions</a></li>
+			
+				<li><a id="ctl00_TopNavBar_QATR_ctl01_Tag" class="fly" href="/script/Answers/List.aspx?tab=active&amp;alltags=true&amp;tags=85" style="padding-left:30px">ASP.NET questions</a></li>
+			
+				<li><a id="ctl00_TopNavBar_QATR_ctl02_Tag" class="fly" href="/script/Answers/List.aspx?tab=active&amp;alltags=true&amp;tags=842" style="padding-left:30px">VB.NET questions</a></li>
+			
+				<li><a id="ctl00_TopNavBar_QATR_ctl03_Tag" class="fly" href="/script/Answers/List.aspx?tab=active&amp;alltags=true&amp;tags=78" style="padding-left:30px">C++ questions</a></li>
+			
+				<li><a id="ctl00_TopNavBar_QATR_ctl04_Tag" class="fly" href="/script/Answers/List.aspx?tab=active&amp;alltags=true&amp;tags=308" style="padding-left:30px">C#4.0 questions</a></li>
+			
+	</ul>
+
+</li>
+
+
+
+<li class="openable"><a id="ctl00_TopNavBar_Forums" href="/script/Forums/List.aspx">Discussions</a>
+
+	<ul>
+		<li><a id="ctl00_TopNavBar_MessageBoardsAll" class="fly" href="/script/Forums/List.aspx">All Message Boards...</a></li>
+		<li class="openable"><a class="fly" style="padding-left:30px" href="/Forums/1580997/Application-Lifecycle.aspx">Application Lifecycle<span class="fly-menu">&gt;</span></a>
+<ul class="openable"><li><a class="fly" href="/Forums/1533717/Running-a-Business.aspx">Running a Business</a></li>
+<li><a class="fly" href="/Forums/1533716/Sales-Marketing.aspx">Sales / Marketing</a></li>
+<li><a class="fly" href="/Forums/1651/Collaboration-Beta-Testing.aspx">Collaboration / Beta Testing</a></li>
+<li><a class="fly" href="/Forums/3304/Work-Training-Issues.aspx">Work &amp; Training Issues</a></li>
+</ul></li>
+<li><a class="fly" style="padding-left:30px" href="/Forums/369270/Design-and-Architecture.aspx">Design and Architecture</a>
+</li>
+<li><a class="fly" style="padding-left:30px" href="/Forums/12076/ASP-NET.aspx">ASP.NET</a>
+</li>
+<li><a class="fly" style="padding-left:30px" href="/Forums/1580226/JavaScript.aspx">JavaScript</a>
+</li>
+<li class="openable"><a class="fly" style="padding-left:30px" href="/Forums/1647/C-Cplusplus-MFC.aspx">C / C++ / MFC<span class="fly-menu">&gt;</span></a>
+<ul class="openable"><li><a class="fly" href="/Forums/4486/ATL-WTL-STL.aspx">ATL /  WTL / STL</a></li>
+<li><a class="fly" href="/Forums/3785/Managed-Cplusplus-CLI.aspx">Managed C++/CLI</a></li>
+</ul></li>
+<li><a class="fly" style="padding-left:30px" href="/Forums/1649/Csharp.aspx">C#</a>
+</li>
+<li><a class="fly" style="padding-left:30px" href="/Forums/1627782/Free-Tools.aspx">Free Tools</a>
+</li>
+<li><a class="fly" style="padding-left:30px" href="/Forums/1725/Database.aspx">Database</a>
+</li>
+<li class="openable"><a class="fly" style="padding-left:30px" href="/Forums/186301/Hardware-Devices.aspx">Hardware &amp; Devices<span class="fly-menu">&gt;</span></a>
+<ul class="openable"><li><a class="fly" href="/Forums/1644/System-Admin.aspx">System Admin</a></li>
+</ul></li>
+<li><a class="fly" style="padding-left:30px" href="/Forums/1606152/Hosting-and-Servers.aspx">Hosting and Servers</a>
+</li>
+<li><a class="fly" style="padding-left:30px" href="/Forums/1643/Java.aspx">Java</a>
+</li>
+<li><a class="fly" style="padding-left:30px" href="/Forums/1650/NET-Framework.aspx">.NET Framework</a>
+</li>
+<li><a class="fly" style="padding-left:30px" href="/Forums/13695/Mobile.aspx">Mobile</a>
+</li>
+<li><a class="fly" style="padding-left:30px" href="/Forums/1653293/VS-11-NET-4-5.aspx">VS 11 &amp; .NET 4.5</a>
+</li>
+<li><a class="fly" style="padding-left:30px" href="/Forums/1540733/Sharepoint.aspx">Sharepoint</a>
+</li>
+<li><a class="fly" style="padding-left:30px" href="/Forums/1004257/Silverlight-WPF.aspx">Silverlight / WPF</a>
+</li>
+<li><a class="fly" style="padding-left:30px" href="/Forums/1646/Visual-Basic.aspx">Visual Basic</a>
+</li>
+<li><a class="fly" style="padding-left:30px" href="/Forums/1640/Web-Development.aspx">Web Development</a>
+</li>
+<li><a class="fly" style="padding-left:30px" href="/Forums/1645/Site-Bugs-Suggestions.aspx">Site Bugs / Suggestions</a>
+</li>
+
+		<li class="heading openable">Other Languages<span class="fly-menu">&gt;</span>
+		<ul>
+		<li><a class="fly" href="/Forums/1580229/Hindi.aspx">General Indian Topics</a></li>
+		<li><a class="fly" href="/Forums/1580230/Chinese.aspx">General Chinese Topics</a></li>
+		</ul>
+		</li>
+		
+	</ul>
+
+</li>
+
+<li class="openable"><a id="ctl00_TopNavBar_Zones" href="/Zones/index.aspx">Zones</a>
+
+	<ul>
+		<!--<li class="heading">Zones</li>-->
+		<li><a href="/Zones/Commerce/" class="fly">The Commerce Zone</a></li><li><a href="/Zones/Mobile/" class="fly">The Mobile & App Zone</a></li><li><a href="/Zones/Cloud/" class="fly">The Cloud Zone</a></li><li><a href="/Zones/Hardware/" class="fly">The Hardware Zone</a></li><li><a href="/Zones/Parallelism/" class="fly">The Parallelism Zone</a></li><li><a href="/Zones/WPF-Silverlight/" class="fly">The WPF / Silverlight Zone</a></li><li><a href="/Zones/Flex-Flash/" class="fly">The Flex / Flash Zone</a></li><li><a href="/Zones/HTML-CSS/" class="fly">The HTML5 / CSS3 Zone</a></li><li><a href="/Zones/SharePoint/" class="fly">SharePoint Zone</a></li><li><a href="/Zones/SqlServer/" class="fly">The SQL Zone</a></li><li><a href="/Zones/WhitePapers/" class="fly break">WhitePapers / Webcasts</a></li>
+		<li><a id="ctl00_TopNavBar_Solutions" class="fly last" href="/KB/solution-center/">Solutions Center</a></li>
+	</ul>
+
+</li>
+
+
+
+
+
+
+
+
+
+
+<li class="openable"><a id="ctl00_TopNavBar_Features" href="/Feature/">Features</a>
+
+	<ul>
+		<li><a id="ctl00_TopNavBar_WhosWho" class="fly" href="/script/Membership/Profiles.aspx">Who's Who</a></li>
+		<li><a id="ctl00_TopNavBar_MVPs" class="fly" href="/script/Awards/MVPWinners.aspx">Most Valuable Professionals</a></li>
+		<li><a id="ctl00_TopNavBar_Companies" class="fly break" href="/script/Membership/Profiles.aspx?mgtid=1&amp;mgm=True">Company Listings</a></li>
+		<li><a id="ctl00_TopNavBar_Catalog" class="fly" href="/script/Catalog/List.aspx">Component & Service Catalog</a></li>
+		<li><a id="ctl00_TopNavBar_Comps" class="fly" href="/script/Awards/CurrentCompetitions.aspx?cmpTpId=1&amp;awsac=true">Competitions</a></li>
+		<li><a id="ctl00_TopNavBar_News" class="fly" href="/script/News/List.aspx">News</a></li>
+		<li></li>
+		<li><a id="ctl00_TopNavBar_Insider" class="fly" href="/Feature/Insider/">The Insider Newsletter</a></li>
+		<li><a id="ctl00_TopNavBar_Newsletters" class="fly" href="/script/Mailouts/Archive.aspx?mtpid=1">Newsletter archive</a></li>
+		<li><a id="ctl00_TopNavBar_PressRelease" class="fly" href="/script/PressReleases/Preview.aspx">Press Releases</a></li>
+		<li><a id="ctl00_TopNavBar_Surveys" class="fly" href="/script/Surveys/List.aspx">Surveys</a></li>
+		<li><a id="ctl00_TopNavBar_Stuff" class="fly last" href="/Info/Stuff.aspx">CodeProject Stuff</a></li>
+		<li></li>
+	</ul>
+
+</li>
+
+
+<li class="openable"><a id="ctl00_TopNavBar_Help" href="/KB/FAQs/">Help!</a>
+
+	<ul>
+		<li><a id="ctl00_TopNavBar_HelpWhatIs" class="fly" href="/info/guide.aspx">What is 'The Code Project'?</a></li>
+		<li><a id="ctl00_TopNavBar_HelpGeneral" class="fly" href="/KB/FAQs/">General FAQ</a></li>
+		<li><a id="ctl00_TopNavBar_HelpPostQuestion" class="fly" href="/Questions/ask.aspx">Post a Question</a></li>
+		<li><a id="ctl00_TopNavBar_HelpBugs" class="fly" href="/Forums/1645/Site-Bugs-Suggestions.aspx">Bugs and Suggestions</a></li>
+		<li><a id="ctl00_TopNavBar_HelpSiteMap" class="fly" href="/script/Content/SiteMap.aspx">Site Map</a></li>
+		<li><a id="ctl00_TopNavBar_HelpAdvertise" class="fly" href="http://lakequincy.com/">Advertise with us</a></li>
+		<li><a id="ctl00_TopNavBar_HelpAboutUs" class="fly last" href="/info/about.aspx">About Us</a></li>
+	</ul>
+
+</li>
+
+
+<li  class="openable" style="margin-left:10px">
+<a id="ctl00_TopNavBar_Lounge" class="simple" href="/Lounge.aspx">The Lounge</a>
+
+	<ul>
+		<li><a id="ctl00_TopNavBar_InsiderLnk" class="fly" href="/insider.aspx/988106/GeneralObject]">The Insider News</a></li>
+		<li><a id="ctl00_TopNavBar_LoungeLnk" class="fly" href="/Lounge.aspx">The Lounge  </a></li>
+		<li><a id="ctl00_TopNavBar_CleverLnk" class="fly" href="/Feature/clevercode.aspx">Clever Code</a></li>
+		<li><a id="ctl00_TopNavBar_ShameLnk" class="fly" href="/feature/HallOfSHame.aspx">Hall of Shame</a></li>
+		<li><a id="ctl00_TopNavBar_SoapBoxLnk" class="fly" href="/Forums/1536756/The-Soapbox.aspx">The Soapbox</a></li>
+	</ul>
+
+</li>
+
+</ul>
+
+</div>
+		</td><td align="right">
+			
+
+<div class="search-bar">
+
+<form method="get" action="/search.aspx" name="Search" class="tight">
+
+
+<table border="0" cellspacing="0" cellpadding="0" class="search"><tr><td><input TabIndex="2" class="search " id="sb_tb" value="" name="q" /></td><td><input type="image" src="/images/search.gif" /></td></tr></table>
+
+<div class="hover-container">
+	<div id="SearchFilter" class="search-advanced popup small-text align-left">
+	<b>Search within:<br /></b>
+		
+		<input type="radio" id="sb_kw" name="sbo" value="kw" checked="true"><label for="sb_kw">Articles</label><br>
+<input type="radio" id="sb_qa" name="sbo" value="qa"><label for="sb_qa">Quick Answers</label><br>
+<input type="radio" id="sb_fm" name="sbo" value="fm"><label for="sb_fm">Messages</label><br>
+<input type="radio" id="sb_ctlk" name="sbo" value="ctlk"><label for="sb_ctlk">Product Catalog</label><br>
+
+
+		
+		
+	</div>
+</div>
+</form>
+
+</div>
+		</td></tr></table>
+		
+
+		
+		<div class="container-article hreview-aggregate"> 
+		
+			
+			<div class="container-header">
+				<div id="ctl00_Header" class="header">
+
+					<a name="Main"></a>
+
+					
+					<a name="_articleTop" id="_articleTop"></a>
+					
+
+<div class="clearfix hover-container">
+
+	
+	<div class="float-right action-links"> 
+		<span id="SBI"><img src="http://s.codeproject.com/images/share_drop24.png" id="ctl00_TitleArea_ActionLinks_AddTo_Img" width="37" height="24" alt="add" style="vertical-align:middle" />
+</span>
+<div id="ATD" class="list-socialbookmark"></div> 
+ 
+
+<span class="tooltip">
+	<a id="ctl00_TitleArea_ActionLinks_ArticleBmk_ImgBt" title="Bookmark" AlternateText="Bookmark" name="bm_16074_2" onclick="return bookmarkMe(16074,2,&#39;/script/Bookmarks/Ajax/Add.aspx?obid=16074&amp;obtid=2&amp;action=AddBookmark&amp;bio=true&#39;,true);" href="/script/Bookmarks/Add.aspx?obid=16074&amp;obtid=2&amp;action=AddBookmark&amp;bio=true" style="display:inline-block;height:24px;width:24px;vertical-align:middle;"><img title="Bookmark" src="http://s.codeproject.com/script/Bookmarks/Images/bookmark.png" alt="" style="border-width:0px;" /></a>
+
+
+<span id="ctl00_TitleArea_ActionLinks_ArticleBmk_StatusMsg" class="tiny-text" style="display:none" name="bm_16074_2"></span>
+ 
+	<div class="speech-bubble-container-up">
+		<div class="speech-bubble-up">Add to your CodeProject bookmarks</div>
+		<div class="speech-bubble-pointer-up">
+			<div class="speech-bubble-pointer-up-inner"></div>
+		</div>
+	</div>
+</span>
+
+
+<a id="ctl00_TitleArea_ActionLinks_PrintLnk" class="tooltip" href="/Articles/16074/DuckTyping-Runtime-Dynamic-Interface-Implementatio?display=Print">
+	<img src="http://s.codeproject.com/script/Content/Images/print.gif" 
+		width="24px" height="24px" style="vertical-align:middle;border:0">
+	<div class="speech-bubble-container-up">
+		<div class="speech-bubble-up">Print Article</div>
+		<div class="speech-bubble-pointer-up">
+			<div class="speech-bubble-pointer-up-inner"></div>
+		</div>
+	</div>
+</a>
+	</div>
+
+	<div class="container">
+		
+		<div class="breadcrumb float-left"><a href="/script/Content/SiteMap.aspx"><span class="sitemap-anchor" onmouseover="navBarMenu.ShowMap(this,'map');"><img width="16px" height="16px" src="/images/sitemap16.png" border="0" alt="Site map" style="vertical-align:middle" /><div id="map" class="tooltip-flyout"><img src="/images/animated.gif" style="margin:150px;width:100px;height:100px;border:0;" /></div></span></a> &#187; <a href="/Chapters/5/Languages.aspx">Languages</a> &#187; <a href="/KB/cs/">C#</a> &#187; <a href="/KB/cs/#General">General</a></div>
+	</div>
+
+	
+	<div id="ctl00_TitleArea_InfoArea" class="float-right pad-top">
+		
+
+<div class="infobox">
+	<table class="tight small-text" cellpadding="0" cellspacing="1">
+	<tr><td>Licence&nbsp;</td><td></td></tr>
+	
+	<tr><td>First Posted&nbsp;</td><td nowrap="nowrap"><b>23 Oct 2006</b></td></tr>
+	<tr><td>Views&nbsp;</td><td><b>108,221</b></td></tr>
+		
+	
+	<tr><td>Bookmarked&nbsp;</td><td><b>129 times</b></td></tr>
+	
+	
+
+	
+	
+	</table>
+</div>	
+	</div>
+
+	
+	<div class="item">
+	<h1 id="ctl00_TitleArea_ArticleTitle" class="fn">DuckTyping: Runtime Dynamic Interface Implementation</h1> 
+	</div>
+
+	
+	<div class="author">
+		By <b><a rel="author" href="/script/Membership/View.aspx?mid=206501">Guenter Prossliner</a></b> | 
+		23 Oct 2006 
+		
+		| <a id="ctl00_TitleArea_ArticleInfoLink" href="/script/Articles/Types.aspx?#Article">Article</a>
+
+		
+		
+	</div>
+	
+	<div class="tags">
+	<span id="ctl00_TitleArea_TagsList_TagWrp" class="tags">
+	
+	
+	
+	<span id="ctl00_TitleArea_TagsList_VisibleTags"><span class="t"><a rel="tag" href="/Tags/.NET2.0">.NET2.0</a></span><span class="t"><a rel="tag" href="/Tags/VS2005">VS2005</a></span><span class="t"><a rel="tag" href="/Tags/C%232.0">C#2.0</a></span><span class="t"><a rel="tag" href="/Tags/Windows">Windows</a></span><span class="t"><a rel="tag" href="/Tags/Dev">Dev</a></span><span class="t"><a rel="tag" href="/Tags/Intermediate">Intermediate</a></span></span> 
+
+	
+	
+</span>
+
+	</div>
+
+	
+	<div class="abstract summary"><span id="ctl00_TitleArea_ArticleDescr">Dynamic typing (DuckTyping) implementation for .NET.</span></div>
+</div>
+
+
+
+					
+
+				</div>
+
+				<div id="ctl00_HeadSide" class="header-sidebar">
+					<div class="align-left" style="height:24px">
+						
+
+
+&nbsp;
+
+
+
+
+
+
+
+
+
+
+					</div>
+
+					
+
+<div class="bold pad-top">See Also</div>
+<ul class="outdent small-text" style="margin-left:5px">
+	<li><a id="ctl00_SeeAlso_LikeThis" href="/search.aspx?q=DuckTyping+Runtime+Dynamic+Interface+Implementation">More like this</a></li>
+	<li><a id="ctl00_SeeAlso_ByAuthor" href="/script/Articles/MemberArticles.aspx?amid=206501">More by this author</a></li>
+</ul>
+
+				</div>
+
+			</div>
+			
+
+			
+			<div id="ctl00_Nav" class="container-nav">
+				<div id="ctl00_TabContainer" class="tabs-container clearfix">
+
+					<div class="float-left">
+						
+						
+
+<div class="tabs float-left"><table cellpadding="0" cellspacing="0"><tr>
+	<td class="tab-selected">Article</td><td class="tab-unselected"><a href="/script/Articles/ViewDownloads.aspx?aid=16074">Browse Code</a></td><td class="tab-unselected"><a href="/script/Articles/Statistics.aspx?aid=16074">Stats</a></td><td class="tab-unselected"><a href="/script/Articles/ListVersions.aspx?aid=16074">Revisions</a></td><td class="tab-unselected"><a href="/script/Articles/ListAlternatives.aspx?aid=16074">Alternatives</a></td>
+</tr></table></div>	
+
+
+						
+						<div class="float-left" style="margin-left:15px">
+							<div id="ctl00_CurRat" class="tooltip anchorLink" style="cursor:pointer" onclick="scrollToAnchor(&#39;#_rating&#39;);" name="CurRat_16074">
+								
+
+<table cellpadding="0" cellspacing="0" class="small-text">
+<tr>
+	
+	<td class="nowrap">
+
+		<span id="ctl00_ArticleRating_VI">
+		<div class="nowrap rating-stars" style="height:24px;width:120px;position:relative;">
+	<div class="clipped align-left float-left" style="height:24px;width:119px;">
+		<img src="http://s.codeproject.com/script/Ratings/Images/stars-fill.png" style="border-width:0px;" />
+	</div><div class="clipped" style="height:24px;width:1px;position:relative;">
+		<img src="http://s.codeproject.com/script/Ratings/Images/stars-empty.png" style="border-width:0px;position:absolute;top:0;right:0;" />
+	</div>
+</div>
+		</span>
+
+		
+	</td>
+	
+	<td id="ctl00_ArticleRating_VR" class="nowrap">
+		&nbsp;
+		<span id="ctl00_ArticleRating_VotesR">&nbsp;<span class="rating">4.98</span> (<span class="count">100 votes</span>)</span>
+		
+	</td>
+
+</tr>
+
+</table>
+
+								<div id="ctl00_RB" class="speech-bubble-container-up">
+									<div class="speech-bubble-up" style="width:150px !important">
+										            
+<div>
+<table class="feature" width="100%" height="50px" title="Voting Distribution. Recent data only" cellpadding="0" cellspacing="0"><tr><td class="chart-column rating-ignore-vote" title="Outside deviation limits - not included in score."><img src="/script/Ratings/Images/pollcol.gif" width="20pxpx" height="1px" border="0px" alt="3 votes, 3.0%" title="3 votes, 3.0%" /><br /><span title="3 votes">1</span></td>
+<td class="chart-column rating-ignore-vote" title="Outside deviation limits - not included in score."><img src="/script/Ratings/Images/pollcol.gif" width="20pxpx" height="1px" border="0px" alt="2 votes, 2.0%" title="2 votes, 2.0%" /><br /><span title="2 votes">2</span></td>
+<td class="chart-column rating-ignore-vote" title="Outside deviation limits - not included in score."><img src="/script/Ratings/Images/pollcol.gif" width="20pxpx" height="1px" border="0px" alt="1 vote, 1.0%" title="1 vote, 1.0%" /><br /><span title="1 vote">3</span></td>
+<td class="chart-column"><img src="/script/Ratings/Images/pollcol.gif" width="20pxpx" height="1px" border="0px" alt="2 votes, 2.0%" title="2 votes, 2.0%" /><br /><span title="2 votes">4</span></td>
+<td class="chart-column"><img src="/script/Ratings/Images/pollcol.gif" width="20pxpx" height="50px" border="0px" alt="92 votes, 92.0%" title="92 votes, 92.0%" /><br /><span title="92 votes">5</span></td>
+</tr></table><div class="small-text align-center">4.98/5 - 100 votes</div><div class="small-text align-center subdue">6 removed</div><div class="small-text align-center subdue">μ 4.84, σ<sub>a</sub> 1.45 [<a href="/KB/FAQs/RatingReputationFAQ.aspx#noisefilter">?</a>]</div>
+</div>
+									</div>
+									<div class="speech-bubble-pointer-up">
+										<div class="speech-bubble-pointer-up-inner"></div>
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<div class="float-left">
+							&nbsp; 
+							<a id="discussAnch" href="#_comments" class="tooltip anchorLink">
+							<img src="http://s.codeproject.com/script/Content/Images/discuss.gif" 
+								width="24px" height="24px" alt="Discuss" style="vertical-align:middle;border:0" />
+								<div class="speech-bubble-container-up">
+									<div class="speech-bubble-up">Discuss this article</div>
+									<div class="speech-bubble-pointer-up">
+										<div class="speech-bubble-pointer-up-inner"></div>
+									</div>
+								</div>
+							</a>
+							<span id="ctl00_CmtCnt" class="subdue small-text align-middle" style="margin-left:-4px">39</span>
+
+							&nbsp; 
+
+							   
+						</div>
+
+					</div>
+
+				</div>
+
+				
+			</div>
+			
+
+			
+			<div class="container-text">
+
+				<div id="AT" class="text">
+					
+					
+					
+					
+
+						
+							
+			
+					<form name="aspnetForm" method="post" action="/Articles/16074/DuckTyping-Runtime-Dynamic-Interface-Implementatio" id="aspnetForm" style="margin:0;padding:0">
+<div>
+<input type="hidden" name="__VIEWSTATE" id="__VIEWSTATE" value="/wEPDwUKMjExOTQzNjk4Mw9kFgJmD2QWAgIHD2QWCAIRD2QWAgIBD2QWBmYPDxYCHgtOYXZpZ2F0ZVVybAUyL3NjcmlwdC9BcnRpY2xlcy9BZG1pbi9FZGl0b3JDaG9pY2UuYXNweD9haWQ9MTYwNzRkZAICDw8WAh8ABTgvc2NyaXB0L0F3YXJkcy9BZG1pbi9Bd2FyZE9iamVjdC5hc3B4P29iaWQ9MTYwNzQmb2J0aWQ9MmRkAgoPDxYCHwAFLy9zY3JpcHQvQXJ0aWNsZXMvQWRtaW4vUXVldWVFZGl0LmFzcHg/YWlkPTE2MDc0ZGQCEw9kFgICAQ9kFgICAg8WAh4JaW5uZXJodG1sBQIzOWQCFQ9kFgICCw9kFgYCAg8WAh4GYWN0aW9uBUIvQXJ0aWNsZXMvMTYwNzQvRHVja1R5cGluZy1SdW50aW1lLUR5bmFtaWMtSW50ZXJmYWNlLUltcGxlbWVudGF0aW8WCgIBDw8WBB8ABTYvc2NyaXB0L0FydGljbGVzL1N1Ym1pc3Npb25XaXphcmQuYXNweD9hdD0xJmFwaWQ9MTYwNzQeB1Zpc2libGVnZGQCAw9kFgICAQ8WAh8DaGQCBQ9kFgICAg9kFgICAQ8QZGQWAGQCCw8WAh4LXyFJdGVtQ291bnQCAWQCDQ9kFgICAQ8WAh4EVGV4dAV7PGEgY2xhc3M9ImFuY2hvckxpbmsiIGhyZWY9Ii9BcnRpY2xlcy8xNjA3NC9EdWNrVHlwaW5nLVJ1bnRpbWUtRHluYW1pYy1JbnRlcmZhY2UtSW1wbGVtZW50YXRpbyNfYXJ0aWNsZVRvcCI+QXJ0aWNsZSBUb3A8L2E+ZAIKDw8WBB8FBQlQZXJtYWxpbmsfAAVCL0FydGljbGVzLzE2MDc0L0R1Y2tUeXBpbmctUnVudGltZS1EeW5hbWljLUludGVyZmFjZS1JbXBsZW1lbnRhdGlvZGQCGQ8WAh8FBSRDb3B5cmlnaHQgMjAwNiBieSBHdWVudGVyIFByb3NzbGluZXJkAhcPZBYCAgUPDxYCHwNoZGRk3UeAuIE45AIx7Sd05X8AFCwNOWU=" />
+</div>
+
+<div>
+
+	<input type="hidden" name="__EVENTVALIDATION" id="__EVENTVALIDATION" value="/wEWCAL9tv6GDgLAlMXDBwLBlMXDBwLClMXDBwLDlMXDBwLElMXDBwLP+++tCwK5upDkC8GLoXKrHimpanLy0klde4+Z4hnz" />
+</div>
+
+						<a id="ctl00_AddAlternative" title="Write a related article about upgrades or translate this into a different language." class="button add-alternative float-right" href="/script/Articles/SubmissionWizard.aspx?at=1&amp;apid=16074">Add your own<br />alternative version</a>
+
+						<!-- Article Text Start -->
+						<div id="contentdiv">
+						
+
+
+
+<UL class=download>
+<LI><A href="/KB/cs/nduck/NDuck_bin.zip">Download binaries (release) - 11.8 Kb</A> 
+<LI><A href="/KB/cs/nduck/NDuck_demo.zip">Download demo project - 10.3 Kb</A> 
+<LI><A href="/KB/cs/nduck/NDuck_src.zip">Download source code - 6.5 Kb</A> </LI></UL>
+<H2>Introduction</H2>
+<P>This article presents an implementation of runtime Duck-Typing for .NET.</P>
+<P>Duck typing is a term for dynamic typing typical of some programming languages, such as Smalltalk, Visual FoxPro, or Coldfusion, where a variable's value itself determines what the variable can do.</P>
+<P>Thus, <B>an object having all the methods described in an interface</B> can be made to <B>implement that interface dynamically at runtime</B>, even if the object’s type does not include the interface in its definition. </P>
+<P>The term is a reference to the "duck test": "If it walks like a duck and quacks like a duck, it must be a duck." One can also say that the duck typing method ducks the issue of typing variables (from <A href="http://en.wikipedia.org/wiki/Duck_typing" target=_blank>Wikipedia</A>).</P>
+<P>Note: Although the library can be used in all CLS compliant languages (C#, VB.NET, and many others), the article and the source code is based on C# 2.0.</P>
+<H2>Background</H2>
+<P>In statically typed languages like C#, the interface of a class defines which operations are supported. A supported operation may be calling a method with a specified signature, or getting or setting a property, or be able to attach to a specific event. In most cases, this makes perfect sense, since the compiler is able to verify if the operations are supported by the specified type.</P>
+<P>But there are cases in which static typing is very annoying. Consider a method that loads an image into the <CODE>Image</CODE> property of a <CODE>PictureBox</CODE>:</P><PRE lang=cs><span class="code-keyword">public</span> <span class="code-keyword">static</span> <span class="code-keyword">class</span> ImageTools {
+    <span class="code-keyword">public</span> <span class="code-keyword">static</span> <span class="code-keyword">void</span> SetImage(PictureBox obj, <span class="code-keyword">string</span> resourceName){
+        Stream imgStream = 
+         <span class="code-keyword">typeof</span>(ImageTools).Assembly.GetManifestResourceStream(resourceName);
+        Image image = Image.FromStream(imgStream);
+    
+        obj.Image = image;
+    
+        <span class="code-comment">//</span><span class="code-comment"> ensure that the Image and the Stream will
+</span>        <span class="code-comment">//</span><span class="code-comment"> be closed when the PictureBox is diposed.
+</span>        obj.Disposed += <span class="code-keyword">delegate</span>(<span class="code-keyword">object</span> sender, EventArgs e){
+            image.Dispose();
+            imgStream.Dispose();
+        };
+    }
+}
+
+<span class="code-comment">//</span><span class="code-comment"> test code
+</span>ImageTools.SetImage(<span class="code-keyword">this</span>.PictureBox1, <span class="code-string">"</span><span class="code-string">Image"</span>);</PRE>
+<P>As long as you know the Type of <CODE>obj</CODE> (<CODE>PictureBox</CODE>), this code works well. But what if you want to call <CODE>SetImage</CODE> with a <CODE>Label</CODE> control? The <CODE>Label</CODE> control contains both operations we need: the <CODE>Image</CODE> property, and the <CODE>Disposed</CODE> event, so it sould be possible to use a <CODE>Label</CODE>.</P>
+<P>But how do we need to write this in code? The first method avoids reflection. It uses the "<CODE lang=cs>as</CODE>" operator to check for each type that needs to be supported.</P><PRE lang=cs><span class="code-keyword">public</span> <span class="code-keyword">static</span> <span class="code-keyword">void</span> SetImage(<span class="code-keyword">object</span> owner, <span class="code-keyword">string</span> resourceName){    
+    <span class="code-keyword">if</span> (owner == <span class="code-keyword">null</span>) <span class="code-keyword">throw</span> <span class="code-keyword">new</span> ArgumentNullException(<span class="code-string">"</span><span class="code-string">owner"</span>);
+    
+    Component ownerAsComponent = owner <span class="code-keyword">as</span> Component;
+    PictureBox ownerAsPictureBox = owner <span class="code-keyword">as</span> PictureBox;
+    Label ownerAsLabel = owner <span class="code-keyword">as</span> Label;
+    
+    <span class="code-comment">//</span><span class="code-comment"> validate type of "owner"
+</span>    <span class="code-keyword">if</span> (ownerAsPictureBox == <span class="code-keyword">null</span> &amp;&amp; ownerAsLabel == <span class="code-keyword">null</span>)
+        <span class="code-keyword">throw</span> <span class="code-keyword">new</span> ArgumentException(<span class="code-string">"</span><span class="code-string">Wrong owner Type! "</span> + 
+              <span class="code-string">"</span><span class="code-string">Only Labels and PictureBoxes are supported!"</span>);
+    
+    Stream imgStream = 
+      <span class="code-keyword">typeof</span>(ImageTools).Assembly.GetManifestResourceStream(resourceName);
+    Image image = Image.FromStream(imgStream);
+    
+    <span class="code-keyword">if</span> (ownerAsPictureBox != <span class="code-keyword">null</span>)
+        ownerAsPictureBox.Image = image;
+        
+    <span class="code-keyword">if</span> (ownerAsLabel != <span class="code-keyword">null</span>)
+        ownerAsLabel.Image = image;
+    
+    ownerAsComponent.Disposed += <span class="code-keyword">delegate</span>(<span class="code-keyword">object</span> sender, EventArgs e){
+        image.Dispose();
+        imgStream.Dispose();
+    }; 
+}</PRE>
+<P>This method has significant drawbacks:</P>
+<UL>
+<LI>The <CODE>owner</CODE> parameter does not expose any Type-information that is expected by the function. You need to check them manually. 
+<LI>Every type that has to be supported needs to be specified within the code. When you have to support a new Type, the assembly has to be recompiled. 
+<LI>The code gets unnessersary long because of the nessersary type-checking. </LI></UL>
+<P>Another possibility would be to use reflection. Most code that I've seen which uses a kind of Signature Based Polymorphism uses this approach:</P><PRE lang=cs><span class="code-keyword">public</span> <span class="code-keyword">static</span> <span class="code-keyword">void</span> SetImage(<span class="code-keyword">object</span> owner, <span class="code-keyword">string</span> resourceName){    
+    PropertyInfo piImage = owner.GetType().GetProperty(<span class="code-string">"</span><span class="code-string">Image"</span>);
+    EventInfo eiDisposed = owner.GetType().GetEvent(<span class="code-string">"</span><span class="code-string">Disposed"</span>);
+    
+    <span class="code-keyword">if</span> (piImage == <span class="code-keyword">null</span> || piDisposed == <span class="code-keyword">null</span>)
+        <span class="code-keyword">throw</span> <span class="code-keyword">new</span> ArgumentException(<span class="code-string">"</span><span class="code-string">The 'owner' object"</span> + 
+              <span class="code-string">"</span><span class="code-string"> is not compatible with the required interface!"</span>);
+        
+    Stream imgStream = 
+       <span class="code-keyword">typeof</span>(ImageTools).Assembly.GetManifestResourceStream(resourceName);
+    Image image = Image.FromStream(imgStream);
+
+    piImage.SetValue(owner, image, <span class="code-keyword">new</span> <span class="code-keyword">object</span>[<span class="code-digit">0</span>]);
+    
+    EventHandler disposedHandler = <span class="code-keyword">delegate</span>(<span class="code-keyword">object</span> sender, EventArgs e){
+        image.Dispose();
+        imgStream.Dispose();
+    };
+    
+    eiDisposed.AddEventHandler(owner, disposedHandler);
+}</PRE>
+<P>By using Reflection, you can avoid having to specify every possible Type within the implementation, but then you have other drawbacks:</P>
+<UL>
+<LI>The <CODE>owner</CODE> parameter do not expose any Type-information that is expected by the function. You need to check them manually. 
+<LI>Reflection overhead degrades performance on each call. 
+<LI>Reflection degrades maintainability (the method has to be implemented different). 
+<LI>Some operations (like Indexers) are tricky to handle with Reflection. </LI></UL>
+<P>So what can be done to solve the problem? Would it not be nice to declare the method like the following snippet?</P><PRE lang=cs><span class="code-keyword">public</span> <span class="code-keyword">static</span> <span class="code-keyword">void</span> SetImage(<I>[any <span class="code-keyword">object</span> with <span class="code-string">"</span><span class="code-string">Image"</span> property 
+              and <span class="code-string">"</span><span class="code-string">Disposed"</span> <span class="code-keyword">event</span>]</I> obj, <span class="code-keyword">string</span> resourceName){
+    obj.Image = ....;
+}
+</PRE>
+<P>The first thing which comes in mind of a .NET programmer is to declare an interface (I'll name it <CODE>IImageContainer</CODE>) which contains the operations we need within the method. The <CODE>SetImage</CODE> method will be modified to take an <CODE>IImageContainer</CODE> instance instead of a <CODE>PictureBox</CODE> instance:</P><PRE lang=cs><span class="code-keyword">public</span> <span class="code-keyword">interface</span> IImageContainer{
+    Image Image{<span class="code-keyword">set</span>;}
+    <span class="code-keyword">event</span> EventHander Disposed;
+}
+
+<span class="code-keyword">public</span> <span class="code-keyword">static</span> <span class="code-keyword">class</span> ImageTools {
+    <span class="code-keyword">public</span> <span class="code-keyword">static</span> <span class="code-keyword">void</span> SetImage(IImageContainer obj, <span class="code-keyword">string</span> resourceName){
+        Stream imgStream = 
+          <span class="code-keyword">typeof</span>(ImageTools).Assembly.GetManifestResourceStream(resourceName);
+        Image image = Image.FromStream(imgStream);
+    
+        obj.Image = image;
+    
+        <span class="code-comment">//</span><span class="code-comment"> ensure that the Image and the Stream will
+</span>        <span class="code-comment">//</span><span class="code-comment"> be closed when the PictureBox is diposed.
+</span>        obj.Disposed += <span class="code-keyword">delegate</span>(<span class="code-keyword">object</span> sender, EventArgs e){
+            image.Dispose();
+            imgStream.Dispose();
+        };
+    }
+}</PRE>
+<P>The question is: How to get an instance of <CODE>IImageContainer</CODE> which can be passed into the method? For a class whose source you can recompile, you can put the <CODE>IImageContainer</CODE> interface within the class declaration, but it is impossible to implement the interface when you cannot recompile the class (the <CODE>Label</CODE> or the <CODE>PictureBox</CODE> classes, for example).</P>
+<P>This is where DuckTyping comes into play. For classes which implement <B>all</B> interface-operations, you can create a DuckType by using the <CODE>DuckTyping.Implement&lt;IImageContainer&gt;(object)</CODE> method. The method returns an instance of a dynamically constructed type that redirects all operations to the specified object.</P><PRE lang=cs><span class="code-comment">//</span><span class="code-comment"> test code
+</span>ImageTools.SetImage(
+    DuckTyping.Implement&lt;IImageContainer&gt;(<span class="code-keyword">this</span>.PictureBox1), <span class="code-string">"</span><span class="code-string">Image"</span>);
+ImageTools.SetImage(
+    DuckTyping.Implement&lt;IImageContainer&gt;(<span class="code-keyword">this</span>.Label1), <span class="code-string">"</span><span class="code-string">Image2"</span>);
+</PRE>
+<H2>Implementation Details</H2>
+<P>Before starting, I would like to define the terms being used:</P>
+<UL>
+<LI><B>DuckedType: </B>A DuckedType is the type for which a DuckType is generated (within the example, this would be the <CODE>PictureBox</CODE> or <CODE>Label</CODE> types). 
+<LI><B>DuckType: </B>A DuckType is the Type which is generated at runtime, based on the Type of the interface, and the DuckedType. 
+<LI><B>Duck: </B>A Duck is an instance of a DuckType. Ducks are returned by the <CODE>Implement</CODE> method. </LI></UL>
+<P>What happens when <CODE>Implement</CODE> gets called? Basically a type (the DuckType) will be generated on-the-fly which takes an instance of the DuckedType within the constructor.</P>
+<P>All interface-operations will be redirected to the DuckedType instance that was used to create the Duck. To show you how it works, the DuckType of our example (printed for the <CODE>PictureBox</CODE> as the DuckedType) is shown below:</P><PRE lang=cs><span class="code-keyword">namespace</span> DynamicDucks.IImageContainer {
+    <span class="code-keyword">public</span> <span class="code-keyword">class</span> Duck0 : IImageContainer {
+            
+        PicturBox _obj; <span class="code-comment">//</span><span class="code-comment"> ducked object
+</span>    
+        <span class="code-keyword">public</span> Duck0(PictureBox obj){
+            _obj = obj;
+        }
+    
+        <span class="code-keyword">public</span> Image Image {
+            <span class="code-keyword">set</span>{
+                _obj.Image = value;
+            }
+        }
+        
+        <span class="code-keyword">public</span> <span class="code-keyword">event</span> EventHandler Disposed {
+            add {_obj.Disposed += value;}
+            remove {_obj.Disposed -= value;}
+        }
+    }
+}</PRE>
+<H3>Thread Safety</H3>
+<P>You can see that the DuckType itself holds no internal state - all operations are redirected to the ducked object. So thread safety is not affected by using DuckTyping.</P>
+<H3>Reflection</H3>
+<P>Another thing you may have noticed is: Reflection is only used for creating the DuckType, but not for calling the operations. Calling methods on Duck-Types can be made without the performance degradation from reflection.</P>
+<H3>DuckType Cache</H3>
+<P>DuckTypes are only created once for each interface and DuckedType. When a DuckType has been compiled successfully, it will be inserted into an internal cache-class. Subsequent calls to the <CODE>Implement</CODE> method by using the same types will not compile the DuckType again, but will use the type from the cache. 
+<H2>Optimization Overloads</H2>
+<P>With the <CODE>DuckTyping.Implement&lt;TInterface&gt;(obj)</CODE> method, you can create <B>all DuckTypes</B> you like. In some scenarios, you can optimize the way DuckTyping works by using alternative overloads. How significant the optimization (either in speed or in memory footprint) is, depends on the specific usage. </P>
+<P>There are two fields of possible optimization:</P>
+<H3>Implementing an Array of Ducks with one call</H3>
+<P>With each call to <CODE>DuckTyping.Implement&lt;TInterface&gt;(obj)</CODE>, an assembly will be emitted and compiled (when not found in the cache). When you know that there are several Ducks to be created, you can create them in one call. NDuck will emit a single source file for all DuckTypes that need to be created, so the generation and compilation process will happen only once. Because only one additional assembly will be loaded, the program also benefits from a smaller memory footprint. </P><PRE lang=cs><span class="code-comment">//</span><span class="code-comment"> sample call with Arrays:
+</span>IImageContainer[] ducks = 
+   DuckTyping.Implement&lt;IImageContainer&gt;(<span class="code-keyword">this</span>.PictureBox1, <span class="code-keyword">this</span>.Label1);
+IImageContainer pictureBoxDuck = ducks[<span class="code-digit">0</span>];
+IImageContainer labelDuck = ducks[<span class="code-digit">0</span>];
+
+ImageTools.SetImage(pictureBoxDuck, <span class="code-string">"</span><span class="code-string">Image"</span>);
+ImageTools.SetImage(labelDuck, <span class="code-string">"</span><span class="code-string">Image2"</span>);
+</PRE>
+<P>If you want to create serveral needed DuckTypes once, but you do not have an object-instance (e.g., at startup), you can use the <CODE lang=cs>DuckTyping.PrepareDuckTypes&lt;TInterface&gt;(params Type[] duckedTypes)</CODE> method.</P>
+<H3>Static Specification of the DuckedType</H3>
+<P>If you call <CODE>DuckTyping.Implement&lt;TInterface&gt;(obj)</CODE>, the DuckType will be generated from the dynamic type of <CODE>obj</CODE> (this is <CODE>obj.GetType()</CODE>). In some scenarios, this could result in unnecessary DuckTypes being generated. By specifying the static object Type, you can force NDuck to use a static type instead of the dynamic type. </P>
+<P>Consider the following code:</P><PRE lang=cs><span class="code-keyword">public</span> <span class="code-keyword">class</span> MyLabel : Label {
+    <span class="code-keyword">public</span> <span class="code-keyword">void</span> SomeMethod() {}
+}
+</PRE>
+<P>The class <CODE>MyLabel</CODE> extents the default <CODE>Label</CODE> class. If we let DuckTyping implement a Duck for the <CODE>IImageContainer</CODE> interface (we assume that a DuckType for <CODE>IImageContainer</CODE> based on the default <CODE>Label</CODE> class has already been created and inserted into the cache), DuckTyping would create a new DuckType for the <CODE>MyLabel</CODE> class. By specifying the <CODE>TStaticObjectType</CODE> Type-parameter, the existing implementation can be used. </P><PRE lang=cs>IImageContainer duck = 
+    DuckTyping.Implement&lt;IImageContainer, Label&gt;(<span class="code-keyword">this</span>.MyLabel1);</PRE>
+<P>It would be possible to determine the best DuckedType for any type by reflecting the class hierarchy to get the deepest base-type that declares all needed members. This could be an improvement for the next version. </P>
+<H2>Requirements and Restrictions</H2>
+<P>The library is CLS compliant, it can be used by all CLS compliant languages such as C# or VB.NET. The language of your choice has to support Generics (it&nbsp;should be able to call generic methods).</P>
+<P>NDuck emits code at runtime which will be compiled dynamically. Because the Compiler needz to access the Type of the interface and the Ducked-Type, these Types must have public scope. If the interface-type is not public, an exception will be thrown.</P>
+<P>Because NDuck is implemented by using Generics, you have to know the Type of the interface at compile-time.</P>
+<H2>Conclusion</H2>
+<P>By using DuckTyping, you can combine type-safety with flexibility. DuckTyping is not something that you need in every scenario, but there are cases where DuckTyping is very useful. With DuckTyping, you can avoid type-casts (which are not any safer than DuckTyping) and redundant code. </P>
+<H2>History</H2>
+<UL>
+<LI>2006/10/10 
+<UL>
+<LI>Initial release. </LI></UL></LI></UL>
+
+
+						</div>
+						<!-- Article Text End -->
+
+						
+						
+						<h2>License</h2>
+						<div id="LicenseTerms"><p>This article has no explicit license attached to it but may contain usage terms in the article text or the download files themselves. If in doubt please contact the author via the discussion board below.</p><p>A list of licenses authors might use can be found <a href="/info/Licenses.aspx">here</a></p></div>
+						
+
+						
+						<h2 id="ctl00_AboutHeading">About the Author</h2>
+
+						<div class="float-right">
+						<div class="lqm_ad" lqm_publisher="lqm.codeproject.site"  lqm_zone="ros" lqm_format="300x250" lqm_country='US' lqm_loadOnView='true'  lqm_tags='.NET2.0, VS2005, C#2.0, Windows, Dev, Intermediate,rating4.5'></div>
+						</div>
+
+						
+						
+<table cellpadding="0" cellspacing="5" border="0">
+<tr valign="top">
+<td id="ctl00_AboutAuthorRptr_ctl00_AboutAuthor_memberPhotoTable" valign="top" style="width:155px;">
+	<b><a id="ctl00_AboutAuthorRptr_ctl00_AboutAuthor_memberProfileLink" href="/Members/Guenter-Prossliner">Guenter Prossliner</a></b><br /><br />
+	<center></center>
+
+	<div class="small-text">
+		<span id="ctl00_AboutAuthorRptr_ctl00_AboutAuthor_memberJobTitle">Architect</span><br />
+		<span id="ctl00_AboutAuthorRptr_ctl00_AboutAuthor_memberCompany"></span><br />
+		<span id="ctl00_AboutAuthorRptr_ctl00_AboutAuthor_memberLocation"><img src="/script/Geo/Images/AT.gif" alt="Austria" width="16px" height="11px" /> Austria</span><br />
+		<br />
+		<span id="ctl00_AboutAuthorRptr_ctl00_AboutAuthor_memberType">Member</span><br />
+		
+		<br />
+
+		
+	</div>
+</td>
+
+<td>
+	<br />	
+</td>
+</tr>
+</table><br />
+						
+						
+
+						<div class="clearfix"></div>
+
+						
+						<div id="ctl00_RateArticleRow" class="clearfix voting-bar">
+						<div class="float-left" style="padding-top:8px"><a class="anchorLink" href="/Articles/16074/DuckTyping-Runtime-Dynamic-Interface-Implementatio#_articleTop">Article Top</a></div>
+						<div class="float-right"><a id="_rating" name="_rating">&nbsp;</a></div> 
+						<div class="float-right align-right">
+							<div id="ctl00_RateArticle_RateItemWrapper" class="container-rating small-text" name="RateItem_16074">
+
+	<table width="100%" cellpadding="0" cellspacing="0" class="small-text">
+	<tr>
+		<td id="ctl00_RateArticle_VoteResultDiv" nowrap="nowrap" align="right">
+			<span class="voteRes"></span>
+			<img class="loaderImg" width="16px" alt="loading..." height="16px" 
+				src="/Images/animated_loading_blue.gif" style="display:none;" /> 
+		</td>
+
+	
+		<td class="voteTbl" style="white-space:nowrap" align="right">
+			<table class="small-text">
+			<tr>
+				
+				<td id="ctl00_RateArticle_RateText" class="rating-prompt">
+					Rate this:
+				</td>
+
+				<td id="ctl00_RateArticle_StartForm" align="right" nowrap="nowrap">
+					<i>&nbsp;&nbsp;Poor</i>
+				</td>
+
+				<td id="ctl00_RateArticle_VoteFormDiv" class="nowrap">
+					
+
+					<span id="ctl00_RateArticle_RB" class="tooltip ajaxHist radio voting">
+						<span id="ctl00_RateArticle_VoteRBL"><input id="ctl00_RateArticle_VoteRBL_0" type="radio" name="ctl00$RateArticle$VoteRBL" value="1" onclick="ChkRtctl00_RateArticle(1, 16074);
+$(&#39;#ctl00_RateArticle_RCD&#39;).show();
+;" /><input id="ctl00_RateArticle_VoteRBL_1" type="radio" name="ctl00$RateArticle$VoteRBL" value="2" onclick="ChkRtctl00_RateArticle(2, 16074);
+$(&#39;#ctl00_RateArticle_RCD&#39;).show();
+;" /><input id="ctl00_RateArticle_VoteRBL_2" type="radio" name="ctl00$RateArticle$VoteRBL" value="3" onclick="ChkRtctl00_RateArticle(3, 16074);
+$(&#39;#ctl00_RateArticle_RCD&#39;).show();
+;" /><input id="ctl00_RateArticle_VoteRBL_3" type="radio" name="ctl00$RateArticle$VoteRBL" value="4" onclick="ChkRtctl00_RateArticle(4, 16074);
+$(&#39;#ctl00_RateArticle_RCD&#39;).show();
+;" /><input id="ctl00_RateArticle_VoteRBL_4" type="radio" name="ctl00$RateArticle$VoteRBL" value="5" onclick="ChkRtctl00_RateArticle(5, 16074);
+$(&#39;#ctl00_RateArticle_RCD&#39;).show();
+;" /></span> 
+
+						
+					</span>
+
+				</td>
+
+				<td id="ctl00_RateArticle_EndForm" align="left">
+					<i>Excellent</i>
+				</td>
+
+				<td>	
+					<input type="submit" name="ctl00$RateArticle$SubmitRateBtn" value="Vote" onclick="return PostBack_ctl00_RateArticle_RateItemWrapper();" id="ctl00_RateArticle_SubmitRateBtn" class="button" />
+				</td>
+			</tr>
+			</table>
+			<span id="ctl00_RateArticle_ErrorMessage" class="error"></span>
+		</td>
+	</tr>
+	</table>
+	<div class="hover-container">
+		<div id="ctl00_RateArticle_RCD" class="rating-comment align-left float-right">
+			Add a reason or comment to your vote: <a href="#" id="clear-rate_ctl00_RateArticle_RCD" 
+				title="close">x</a><br />
+			<textarea class="RateComment" rows="5" cols="60" style="width:98%;"></textarea>
+			<span id="ctl00_RateArticle_CommentReq" class="subdue">Votes of 3 or less require a comment</span>
+		</div>
+	</div>
+</div>
+						</div>
+						</div>
+						
+
+					</form>
+
+					
+					<div style="margin:auto;width:728px;height:90px;margin-top:10px">		  
+						<div class="lqm_ad" lqm_publisher="lqm.codeproject.site"  lqm_zone="bottom" lqm_format="728x90" lqm_country='US' lqm_loadOnView='true'  lqm_tags='.NET2.0, VS2005, C#2.0, Windows, Dev, Intermediate,pos_bottom'></div>
+					</div>
+					
+
+					
+					
+					<h2>Comments and Discussions</h2>
+					<a name="_comments" id="_comments">&nbsp;</a><div id="_MessageBoardctl00_MessageBoard" onclick="return SwitchMessage(event, null)">
+	<table id="ForumTable" class="box forum" cellpadding="0" cellspacing="0">
+		<tr>
+			<td><table width="100%" border="0" cellpadding="3px" cellspacing="0">
+				<tr class="forum-header1">
+					<td colspan="2" style="white-space:nowrap;"><div class="container">
+						<div class="button-newmsg float-left" onclick="FireNew(this)">
+							<img src="http://s.codeproject.com/script/Forums/Images/forum_newmsg.gif" alt="new" width="16px" height="16px" border="0" align="top" /> <a href="/script/Forums/Edit.aspx?fid=351497&amp;floc=/Articles/16074/DuckTyping-Runtime-Dynamic-Interface-Implementatio" name="Frm_HoverNL" title="Add a Add a Comment or Question" target="_top"><b>Add a Comment or Question</b></a>&nbsp;
+						</div><div class="admin-links float-left" style="width:60px;">
+							&nbsp;<a href="/KB/FAQs/MessageBoardsFAQ.aspx"><img src="http://s.codeproject.com/script/Forums/Images/msg_question.gif" title="FAQ" alt="FAQ" style="border-width:0;width:16px;height:16px;vertical-align:middle;" /></a>
+						</div>&nbsp;<div class="float-right">
+							<form action="/Search.aspx?fid=0" method="get" class="tight">
+								<input type="hidden" name="fid" value="351497" /><b>Search this forum </b><input type="text" class="Frm_Input" name="qf" style="width:200px;" />&nbsp;<input type="submit" value="Go" class="button" />
+							</form>
+						</div>
+					</div></td><tr class="forum-header2">
+						<td></td><td style="width:100%;"><div style="text-align:right;">
+							<form action="/script/Forums/SetOptions.aspx?floc=%2fArticles%2f16074%2fDuckTyping-Runtime-Dynamic-Interface-Implementatio&amp;fid=351497&amp;df=90&amp;mpp=25&amp;noise=3&amp;prof=False&amp;sort=Position&amp;view=Quick" method="get" style="margin:0;padding:0;">
+								<input type="hidden" name="fid" value="351497" /><input type="hidden" name="currentQS" value="?floc=%2fArticles%2f16074%2fDuckTyping-Runtime-Dynamic-Interface-Implementatio&amp;fid=351497&amp;df=90&amp;mpp=25&amp;noise=3&amp;prof=False&amp;sort=Position&amp;view=Quick" /><input type="hidden" name="floc" value="/Articles/16074/DuckTyping-Runtime-Dynamic-Interface-Implementatio" /><input type="checkbox" name="prof" id="prof" style="vertical-align:middle;" /><label for="prof">Profile popups</label>&nbsp;&nbsp;&nbsp;&nbsp;Noise<select size="1" class="Frm_DropDown" name="noise">
+									<option value="1">Very High</option><option value="2">High</option><option selected value="3">Medium</option><option value="4">Low</option><option value="5">Very Low</option>
+								</select>&nbsp;&nbsp;Layout<select size="1" class="Frm_DropDown" name="view">
+									<option selected value="Quick">Normal</option><option value="Topic">Expand Posts only</option><option value="Expanded">Expand Posts & Replies</option><option value="Thread">Thread View</option><option value="Normal">No Javascript</option><option value="Preview">No JS + Preview</option>
+								</select>&nbsp;&nbsp;Per page<select size="1" class="Frm_DropDown" name="mpp">
+									<option value="10">10</option><option selected value="25">25</option><option value="50">50</option>
+								</select>&nbsp;&nbsp;&nbsp;<input type="submit" value="Update" name="SetOpt" class="button" />
+							</form>
+						</div></td>
+					</tr>
+				</tr>
+			</table></td><tr>
+				<td><a name="xx0xx"></a><table border="0" cellpadding="2px" cellspacing="0" width="100%">
+					<tr class="forum-navbar">
+						<td>&nbsp;</td><td style="text-align:right;width:50%;"> <a href="/Articles/16074/DuckTyping-Runtime-Dynamic-Interface-Implementatio?fid=351497&amp;df=90&amp;mpp=25&amp;noise=3&amp;prof=False&amp;sort=Position&amp;view=Quick">Refresh</a></td><td class="nav-link" style="text-align:right;white-space:nowrap;"><span class="subdue">First</span> <span class="subdue">Prev</span><a class="toolbar" name="Frm_HoverNL" href="/Articles/16074/DuckTyping-Runtime-Dynamic-Interface-Implementatio?fid=351497&amp;df=90&amp;mpp=25&amp;noise=3&amp;prof=False&amp;sort=Position&amp;view=Quick&amp;fr=26#xx0xx">Next</a></td>
+					</tr>
+				</table></td>
+			</tr><tr>
+				<td><table border="0" cellpadding="0" cellspacing="0" width="100%" class="fixed-layout blank-background">
+					<tr>
+						<td><img src="http://s.codeproject.com/script/Forums/Images/t.gif" border="0" width="1px" height="5px" alt="" /></td>
+					</tr><tr class="MsgHd Rt HdUnSel " id="F2843163_h0">
+						<td width="100%"><table class="quickHd" border="0" cellpadding="0" cellspacing="0" width="100%">
+							<tr class="hover-row">
+								<td width="16px" class="Frm_MsgIndent"><a name="xx2843163xx"></a><img height="16px" width="16px" align="top" src="/script/Forums/Images/msg_general.gif" alt="General" /></td><td class="Frm_MsgSubject hover-container"><a class="message-link" name="2843163" parent="0" thread="2843163" href="/Messages/2843163/Duck-typing.aspx">Duck typing</a> <a onclick="return Pin(this);" href="#" title="Click to pin message"><img src="http://s.codeproject.com/script/Forums/Images/pin.gif" border="0" align="top" alt="Pin" width="13px" height="12px" /></a></td><td class="Frm_MsgIcon"><img border="0" src="http://s.codeproject.com/App_Themes/Std/Img/icn-member-16.gif" title="member" alt="member" height="16px" /></td><td class="Frm_MsgAuthor"><a href="/script/Membership/View.aspx?mid=2587207">PIEBALDconsult</a></td><td class="Frm_MsgDate" style="vertical-align:top;white-space:nowrap;">13:37 13 Dec '08 &nbsp;</td>
+							</tr>
+						</table></td>
+					</tr><tr id="F2843163_h1" style="display:none;">
+						<td width="100%"><table class="quickBd" border="0" cellpadding="0" cellspacing="0" width="100%">
+							<tr>
+								<td class="Frm_MsgIndent" style="width:16px;"><img src="http://s.codeproject.com/script/Forums/Images/t.gif" height="1px" width="16px" alt="" /></td><td class="MsgBd BdSel "><table border="0" cellpadding="0" cellspacing="5px" width="100%">
+									<tr>
+										<td><table border="0" cellpadding="0" cellspacing="0" width="100%">
+											<tr>
+												<td colspan="2">I'm not a fan of duck typing because there's no way to enforce the "like a duck" part; you may get a wolf-in-duck's-clothing.<br />
+&nbsp;<br />
+But if it <i>is</i> to be done, this seems like a decent technique.<br /></td>
+											</tr><tr style="vertical-align:middle;">
+												<td class="msg-footer"><a class="button-newmsg" href="/script/Forums/Edit.aspx?fid=351497&amp;select=2843163&amp;floc=/Articles/16074/DuckTyping-Runtime-Dynamic-Interface-Implementatio&amp;action=r" title="Reply">Reply</a>·<a class="toolbar" href="/script/Forums/Edit.aspx?fid=351497&amp;select=2843163&amp;floc=/Articles/16074/DuckTyping-Runtime-Dynamic-Interface-Implementatio&amp;action=e" title="Email">Email</a>·<a class="toolbar" href="/Articles/16074/DuckTyping-Runtime-Dynamic-Interface-Implementatio?fid=351497&amp;df=90&amp;mpp=25&amp;sort=Position&amp;tid=2843163" title="View&nbsp;Thread">View&nbsp;Thread</a>·<a class="toolbar" href="/Messages/2843163/Duck-typing.aspx" title="Get permanent link">Permalink</a>·<a class="toolbar" href="/script/Bookmarks/Add.aspx?obid=2843163&amp;obtid=3&amp;action=AddBookmark&amp;bio=false" title="Bookmark this post" onclick="return bookmarkMe(0,0,'/script/Bookmarks/Ajax/Add.aspx?obid=2843163&obtid=3&action=AddBookmark&bio=false',false, this, this);">Bookmark</a></td><td class="msg-footer" style="text-align:right;"><span id="MVF2843163" style="white-space:nowrap;"><span class="voteform" ownerid="2587207" msgid="2843163" goodbad="false" gpre="" bpre="" msgtype=""></span></span></td>
+											</tr>
+										</table></td>
+									</tr>
+								</table></td>
+							</tr>
+						</table></td>
+					</tr><tr class="quick">
+						<td class="root msg-divide"><img src="http://s.codeproject.com/script/Forums/Images/t.gif" border="0" width="1px" height="1px" alt="" /></td>
+					</tr><tr class="MsgHd Rt HdUnSel " id="F2360111_h0">
+						<td width="100%"><table class="quickHd" border="0" cellpadding="0" cellspacing="0" width="100%">
+							<tr class="hover-row">
+								<td width="16px" class="Frm_MsgIndent"><a name="xx2360111xx"></a><img height="16px" width="16px" align="top" src="/script/Forums/Images/msg_general.gif" alt="General" /></td><td class="Frm_MsgSubject hover-container"><a class="message-link" name="2360111" parent="0" thread="2360111" href="/Messages/2360111/Wonderfull.aspx">Wonderfull</a> <a onclick="return Pin(this);" href="#" title="Click to pin message"><img src="http://s.codeproject.com/script/Forums/Images/pin.gif" border="0" align="top" alt="Pin" width="13px" height="12px" /></a></td><td class="Frm_MsgIcon"><img border="0" src="http://s.codeproject.com/App_Themes/Std/Img/icn-member-16.gif" title="member" alt="member" height="16px" /></td><td class="Frm_MsgAuthor"><a href="/script/Membership/View.aspx?mid=4417279">PeterLevin</a></td><td class="Frm_MsgDate" style="vertical-align:top;white-space:nowrap;">14:16 17 Dec '07 &nbsp;</td>
+							</tr>
+						</table></td>
+					</tr><tr id="F2360111_h1" style="display:none;">
+						<td width="100%"><table class="quickBd" border="0" cellpadding="0" cellspacing="0" width="100%">
+							<tr>
+								<td class="Frm_MsgIndent" style="width:16px;"><img src="http://s.codeproject.com/script/Forums/Images/t.gif" height="1px" width="16px" alt="" /></td><td class="MsgBd BdSel "><table border="0" cellpadding="0" cellspacing="5px" width="100%">
+									<tr>
+										<td><table border="0" cellpadding="0" cellspacing="0" width="100%">
+											<tr>
+												<td colspan="2">I am amazed by the beauty <img src="/script/Forums/Images/smiley_smile.gif" align="top" alt="Smile | :)" /> ) <br /></td>
+											</tr><tr style="vertical-align:middle;">
+												<td class="msg-footer"><a class="button-newmsg" href="/script/Forums/Edit.aspx?fid=351497&amp;select=2360111&amp;floc=/Articles/16074/DuckTyping-Runtime-Dynamic-Interface-Implementatio&amp;action=r" title="Reply">Reply</a>·<a class="toolbar" href="/script/Forums/Edit.aspx?fid=351497&amp;select=2360111&amp;floc=/Articles/16074/DuckTyping-Runtime-Dynamic-Interface-Implementatio&amp;action=e" title="Email">Email</a>·<a class="toolbar" href="/Articles/16074/DuckTyping-Runtime-Dynamic-Interface-Implementatio?fid=351497&amp;df=90&amp;mpp=25&amp;sort=Position&amp;tid=2360111" title="View&nbsp;Thread">View&nbsp;Thread</a>·<a class="toolbar" href="/Messages/2360111/Wonderfull.aspx" title="Get permanent link">Permalink</a>·<a class="toolbar" href="/script/Bookmarks/Add.aspx?obid=2360111&amp;obtid=3&amp;action=AddBookmark&amp;bio=false" title="Bookmark this post" onclick="return bookmarkMe(0,0,'/script/Bookmarks/Ajax/Add.aspx?obid=2360111&obtid=3&action=AddBookmark&bio=false',false, this, this);">Bookmark</a></td><td class="msg-footer" style="text-align:right;"><span id="MVF2360111" style="white-space:nowrap;"><span class="voteform" ownerid="4417279" msgid="2360111" goodbad="false" gpre="" bpre="" msgtype=""></span></span></td>
+											</tr>
+										</table></td>
+									</tr>
+								</table></td>
+							</tr>
+						</table></td>
+					</tr><tr class="quick">
+						<td class="root msg-divide"><img src="http://s.codeproject.com/script/Forums/Images/t.gif" border="0" width="1px" height="1px" alt="" /></td>
+					</tr><tr class="MsgHd Rt HdUnSel " id="F2215573_h0">
+						<td width="100%"><table class="quickHd" border="0" cellpadding="0" cellspacing="0" width="100%">
+							<tr class="hover-row">
+								<td width="16px" class="Frm_MsgIndent"><a name="xx2215573xx"></a><img height="16px" width="16px" align="top" src="/script/Forums/Images/msg_general.gif" alt="General" /></td><td class="Frm_MsgSubject hover-container"><a class="message-link" name="2215573" parent="0" thread="2215573" href="/Messages/2215573/Latest-Version.aspx">Latest Version</a> <a onclick="return Pin(this);" href="#" title="Click to pin message"><img src="http://s.codeproject.com/script/Forums/Images/pin.gif" border="0" align="top" alt="Pin" width="13px" height="12px" /></a></td><td class="Frm_MsgIcon"><img border="0" src="http://s.codeproject.com/App_Themes/Std/Img/icn-member-16.gif" title="member" alt="member" height="16px" /></td><td class="Frm_MsgAuthor"><a href="/script/Membership/View.aspx?mid=1303714">Joey O'Neil</a></td><td class="Frm_MsgDate" style="vertical-align:top;white-space:nowrap;">8:40 6 Sep '07 &nbsp;</td>
+							</tr>
+						</table></td>
+					</tr><tr id="F2215573_h1" style="display:none;">
+						<td width="100%"><table class="quickBd" border="0" cellpadding="0" cellspacing="0" width="100%">
+							<tr>
+								<td class="Frm_MsgIndent" style="width:16px;"><img src="http://s.codeproject.com/script/Forums/Images/t.gif" height="1px" width="16px" alt="" /></td><td class="MsgBd BdSel "><table border="0" cellpadding="0" cellspacing="5px" width="100%">
+									<tr>
+										<td><table border="0" cellpadding="0" cellspacing="0" width="100%">
+											<tr>
+												<td colspan="2">Great!  5 from me.<br />
+BTW, has there been any updates to this code? <br />
+&nbsp;<br />
+joey<br /></td>
+											</tr><tr style="vertical-align:middle;">
+												<td class="msg-footer"><a class="button-newmsg" href="/script/Forums/Edit.aspx?fid=351497&amp;select=2215573&amp;floc=/Articles/16074/DuckTyping-Runtime-Dynamic-Interface-Implementatio&amp;action=r" title="Reply">Reply</a>·<a class="toolbar" href="/script/Forums/Edit.aspx?fid=351497&amp;select=2215573&amp;floc=/Articles/16074/DuckTyping-Runtime-Dynamic-Interface-Implementatio&amp;action=e" title="Email">Email</a>·<a class="toolbar" href="/Articles/16074/DuckTyping-Runtime-Dynamic-Interface-Implementatio?fid=351497&amp;df=90&amp;mpp=25&amp;sort=Position&amp;tid=2215573" title="View&nbsp;Thread">View&nbsp;Thread</a>·<a class="toolbar" href="/Messages/2215573/Latest-Version.aspx" title="Get permanent link">Permalink</a>·<a class="toolbar" href="/script/Bookmarks/Add.aspx?obid=2215573&amp;obtid=3&amp;action=AddBookmark&amp;bio=false" title="Bookmark this post" onclick="return bookmarkMe(0,0,'/script/Bookmarks/Ajax/Add.aspx?obid=2215573&obtid=3&action=AddBookmark&bio=false',false, this, this);">Bookmark</a></td><td class="msg-footer" style="text-align:right;"><span id="MVF2215573" style="white-space:nowrap;">3.78/5 (2 votes) <span class="voteform" ownerid="1303714" msgid="2215573" goodbad="false" gpre="" bpre="" msgtype=""></span></span></td>
+											</tr>
+										</table></td>
+									</tr>
+								</table></td>
+							</tr>
+						</table></td>
+					</tr><tr class="quick">
+						<td class="root msg-divide"><img src="http://s.codeproject.com/script/Forums/Images/t.gif" border="0" width="1px" height="1px" alt="" /></td>
+					</tr><tr class="MsgHd LoVote Rt HdUnSel " id="F2160625_h0">
+						<td width="100%"><table class="quickHd" border="0" cellpadding="0" cellspacing="0" width="100%">
+							<tr class="hover-row">
+								<td width="16px" class="Frm_MsgIndent"><a name="xx2160625xx"></a><img height="16px" width="16px" align="top" src="/script/Forums/Images/msg_general.gif" alt="General" /></td><td class="Frm_MsgSubject hover-container"><a class="message-link" name="2160625" parent="0" thread="2160625" href="/Messages/2160625/Error.aspx">Error</a> <a onclick="return Pin(this);" href="#" title="Click to pin message"><img src="http://s.codeproject.com/script/Forums/Images/pin.gif" border="0" align="top" alt="Pin" width="13px" height="12px" /></a></td><td class="Frm_MsgIcon"><img border="0" src="http://s.codeproject.com/App_Themes/Std/Img/icn-member-16.gif" title="member" alt="member" height="16px" /></td><td class="Frm_MsgAuthor"><a href="/script/Membership/View.aspx?mid=2665364">phancey</a></td><td class="Frm_MsgDate" style="vertical-align:top;white-space:nowrap;">14:38 31 Jul '07 &nbsp;</td>
+							</tr>
+						</table></td>
+					</tr><tr id="F2160625_h1" style="display:none;">
+						<td width="100%"><table class="quickBd" border="0" cellpadding="0" cellspacing="0" width="100%">
+							<tr>
+								<td class="Frm_MsgIndent" style="width:16px;"><img src="http://s.codeproject.com/script/Forums/Images/t.gif" height="1px" width="16px" alt="" /></td><td class="MsgBd BdSel "><table border="0" cellpadding="0" cellspacing="5px" width="100%">
+									<tr>
+										<td><table border="0" cellpadding="0" cellspacing="0" width="100%">
+											<tr>
+												<td colspan="2">In the method AddReference (Type type) in class CodeDomDuckTypeGenerator, the type.BaseType is null in my test case (using IAsyncResult as parameter) and therefore it errors on code type.BaseType.Assembly.<br />
+&nbsp;<br />
+Also, despite trying to ducktype a SqlCommand as an IAsyncCommand (my own interface which basically implements IDbCommand plus BeginExecuteReader and EndExecuteReader - so that I can implement an Oracle  version with similar interface), it says that it does not implement various IDbCommand methods. I assume this is because the SqlCommand methods are returning/using Sql specific objects rather than generic interfaces even though the Sql specific objects do implement the same interface?<br />
+&nbsp;<br />
+cheers,<br />
+Phil <br /></td>
+											</tr><tr style="vertical-align:middle;">
+												<td class="msg-footer"><a class="button-newmsg" href="/script/Forums/Edit.aspx?fid=351497&amp;select=2160625&amp;floc=/Articles/16074/DuckTyping-Runtime-Dynamic-Interface-Implementatio&amp;action=r" title="Reply">Reply</a>·<a class="toolbar" href="/script/Forums/Edit.aspx?fid=351497&amp;select=2160625&amp;floc=/Articles/16074/DuckTyping-Runtime-Dynamic-Interface-Implementatio&amp;action=e" title="Email">Email</a>·<a class="toolbar" href="/Articles/16074/DuckTyping-Runtime-Dynamic-Interface-Implementatio?fid=351497&amp;df=90&amp;mpp=25&amp;sort=Position&amp;tid=2160625" title="View&nbsp;Thread">View&nbsp;Thread</a>·<a class="toolbar" href="/Messages/2160625/Error.aspx" title="Get permanent link">Permalink</a>·<a class="toolbar" href="/script/Bookmarks/Add.aspx?obid=2160625&amp;obtid=3&amp;action=AddBookmark&amp;bio=false" title="Bookmark this post" onclick="return bookmarkMe(0,0,'/script/Bookmarks/Ajax/Add.aspx?obid=2160625&obtid=3&action=AddBookmark&bio=false',false, this, this);">Bookmark</a></td><td class="msg-footer" style="text-align:right;"><span id="MVF2160625" style="white-space:nowrap;">2.00/5 (1 vote) <span class="voteform" ownerid="2665364" msgid="2160625" goodbad="false" gpre="" bpre="" msgtype=""></span></span></td>
+											</tr>
+										</table></td>
+									</tr>
+								</table></td>
+							</tr>
+						</table></td>
+					</tr><tr class="quick">
+						<td class="root msg-divide"><img src="http://s.codeproject.com/script/Forums/Images/t.gif" border="0" width="1px" height="1px" alt="" /></td>
+					</tr><tr class="MsgHd Rt HdUnSel " id="F1987067_h0">
+						<td width="100%"><table class="quickHd" border="0" cellpadding="0" cellspacing="0" width="100%">
+							<tr class="hover-row">
+								<td width="16px" class="Frm_MsgIndent"><a name="xx1987067xx"></a><img height="16px" width="16px" align="top" src="/script/Forums/Images/msg_news.gif" alt="News" /></td><td class="Frm_MsgSubject hover-container"><a class="message-link" name="1987067" parent="0" thread="1987067" href="/Messages/1987067/Another-implementation-with-Emits.aspx">Another implementation with Emits</a> <a onclick="return Pin(this);" href="#" title="Click to pin message"><img src="http://s.codeproject.com/script/Forums/Images/pin.gif" border="0" align="top" alt="Pin" width="13px" height="12px" /></a></td><td class="Frm_MsgIcon"><img border="0" src="http://s.codeproject.com/App_Themes/Std/Img/icn-member-16.gif" title="member" alt="member" height="16px" /></td><td class="Frm_MsgAuthor"><a href="/script/Membership/View.aspx?mid=1642108">yzh_x</a></td><td class="Frm_MsgDate" style="vertical-align:top;white-space:nowrap;">23:48 12 Apr '07 &nbsp;</td>
+							</tr>
+						</table></td>
+					</tr><tr id="F1987067_h1" style="display:none;">
+						<td width="100%"><table class="quickBd" border="0" cellpadding="0" cellspacing="0" width="100%">
+							<tr>
+								<td class="Frm_MsgIndent" style="width:16px;"><img src="http://s.codeproject.com/script/Forums/Images/t.gif" height="1px" width="16px" alt="" /></td><td class="MsgBd BdSel "><table border="0" cellpadding="0" cellspacing="5px" width="100%">
+									<tr>
+										<td><table border="0" cellpadding="0" cellspacing="0" width="100%">
+											<tr>
+												<td colspan="2">Source code and test code download: http://pickup.mofile.com/6746720256721810<br />
+Support geninic interface.<br />
+Can't deal with internal class or interface.(Runtime error.) <br /></td>
+											</tr><tr style="vertical-align:middle;">
+												<td class="msg-footer"><a class="button-newmsg" href="/script/Forums/Edit.aspx?fid=351497&amp;select=1987067&amp;floc=/Articles/16074/DuckTyping-Runtime-Dynamic-Interface-Implementatio&amp;action=r" title="Reply">Reply</a>·<a class="toolbar" href="/script/Forums/Edit.aspx?fid=351497&amp;select=1987067&amp;floc=/Articles/16074/DuckTyping-Runtime-Dynamic-Interface-Implementatio&amp;action=e" title="Email">Email</a>·<a class="toolbar" href="/Articles/16074/DuckTyping-Runtime-Dynamic-Interface-Implementatio?fid=351497&amp;df=90&amp;mpp=25&amp;sort=Position&amp;tid=1987067" title="View&nbsp;Thread">View&nbsp;Thread</a>·<a class="toolbar" href="/Messages/1987067/Another-implementation-with-Emits.aspx" title="Get permanent link">Permalink</a>·<a class="toolbar" href="/script/Bookmarks/Add.aspx?obid=1987067&amp;obtid=3&amp;action=AddBookmark&amp;bio=false" title="Bookmark this post" onclick="return bookmarkMe(0,0,'/script/Bookmarks/Ajax/Add.aspx?obid=1987067&obtid=3&action=AddBookmark&bio=false',false, this, this);">Bookmark</a></td><td class="msg-footer" style="text-align:right;"><span id="MVF1987067" style="white-space:nowrap;">3.80/5 (4 votes) <span class="voteform" ownerid="1642108" msgid="1987067" goodbad="false" gpre="" bpre="" msgtype=""></span></span></td>
+											</tr>
+										</table></td>
+									</tr>
+								</table></td>
+							</tr>
+						</table></td>
+					</tr><tr class="quick">
+						<td class="msg-divide"><img src="http://s.codeproject.com/script/Forums/Images/t.gif" border="0" width="1px" height="1px" alt="" /></td>
+					</tr><tr class="MsgHd HdUnSel " id="F3469976_h0">
+						<td width="100%"><table class="quickHd" border="0" cellpadding="0" cellspacing="0" width="100%">
+							<tr class="hover-row">
+								<td width="34px" class="Frm_MsgIndent"><a name="xx3469976xx"></a><img height="16px" width="16px" align="top" src="/script/Forums/Images/msg_general.gif" alt="General" /></td><td class="Frm_MsgSubject hover-container"><a class="message-link" name="3469976" parent="1987067" thread="1987067" href="/Messages/3469976/Re-Another-implementation-with-Emits.aspx">Re: Another implementation with Emits</a> <a onclick="return Pin(this);" href="#" title="Click to pin message"><img src="http://s.codeproject.com/script/Forums/Images/pin.gif" border="0" align="top" alt="Pin" width="13px" height="12px" /></a></td><td class="Frm_MsgIcon"><img border="0" src="http://s.codeproject.com/App_Themes/Std/Img/icn-member-16.gif" title="member" alt="member" height="16px" /></td><td class="Frm_MsgAuthor"><a href="/script/Membership/View.aspx?mid=4624527">Munius</a></td><td class="Frm_MsgDate" style="vertical-align:top;white-space:nowrap;">11:42 12 May '10 &nbsp;</td>
+							</tr>
+						</table></td>
+					</tr><tr id="F3469976_h1" style="display:none;">
+						<td width="100%"><table class="quickBd" border="0" cellpadding="0" cellspacing="0" width="100%">
+							<tr>
+								<td class="Frm_MsgIndent" style="width:34px;"><img src="http://s.codeproject.com/script/Forums/Images/t.gif" height="1px" width="34px" alt="" /></td><td class="MsgBd BdSel "><table border="0" cellpadding="0" cellspacing="5px" width="100%">
+									<tr>
+										<td><table border="0" cellpadding="0" cellspacing="0" width="100%">
+											<tr>
+												<td colspan="2">Thanks, great code!! <br />
+&nbsp;<br />
+Regards,<br />
+&nbsp;<br />
+Munius<br /></td>
+											</tr><tr style="vertical-align:middle;">
+												<td class="msg-footer"><a class="button-newmsg" href="/script/Forums/Edit.aspx?fid=351497&amp;select=3469976&amp;floc=/Articles/16074/DuckTyping-Runtime-Dynamic-Interface-Implementatio&amp;action=r" title="Reply">Reply</a>·<a class="toolbar" href="/script/Forums/Edit.aspx?fid=351497&amp;select=3469976&amp;floc=/Articles/16074/DuckTyping-Runtime-Dynamic-Interface-Implementatio&amp;action=e" title="Email">Email</a>·<a class="toolbar" href="/Articles/16074/DuckTyping-Runtime-Dynamic-Interface-Implementatio?fid=351497&amp;df=90&amp;mpp=25&amp;sort=Position&amp;tid=1987067" title="View&nbsp;Thread">View&nbsp;Thread</a>·<a class="toolbar" href="/Messages/3469976/Re-Another-implementation-with-Emits.aspx" title="Get permanent link">Permalink</a>·<a class="toolbar" href="/script/Bookmarks/Add.aspx?obid=3469976&amp;obtid=3&amp;action=AddBookmark&amp;bio=false" title="Bookmark this post" onclick="return bookmarkMe(0,0,'/script/Bookmarks/Ajax/Add.aspx?obid=3469976&obtid=3&action=AddBookmark&bio=false',false, this, this);">Bookmark</a></td><td class="msg-footer" style="text-align:right;"><span id="MVF3469976" style="white-space:nowrap;"><span class="voteform" ownerid="4624527" msgid="3469976" goodbad="false" gpre="" bpre="" msgtype=""></span></span></td>
+											</tr>
+										</table></td>
+									</tr>
+								</table></td>
+							</tr>
+						</table></td>
+					</tr><tr class="quick">
+						<td class="root msg-divide"><img src="http://s.codeproject.com/script/Forums/Images/t.gif" border="0" width="1px" height="1px" alt="" /></td>
+					</tr><tr class="MsgHd Rt HdUnSel " id="F1875365_h0">
+						<td width="100%"><table class="quickHd" border="0" cellpadding="0" cellspacing="0" width="100%">
+							<tr class="hover-row">
+								<td width="16px" class="Frm_MsgIndent"><a name="xx1875365xx"></a><img height="16px" width="16px" align="top" src="/script/Forums/Images/msg_general.gif" alt="General" /></td><td class="Frm_MsgSubject hover-container"><a class="message-link" name="1875365" parent="0" thread="1875365" href="/Messages/1875365/Outstanding-equals.aspx">Outstanding =)</a> <a onclick="return Pin(this);" href="#" title="Click to pin message"><img src="http://s.codeproject.com/script/Forums/Images/pin.gif" border="0" align="top" alt="Pin" width="13px" height="12px" /></a></td><td class="Frm_MsgIcon"><img border="0" src="http://s.codeproject.com/App_Themes/Std/Img/icn-member-16.gif" title="member" alt="member" height="16px" /></td><td class="Frm_MsgAuthor"><a href="/script/Membership/View.aspx?mid=1190888">Marcos Meli</a></td><td class="Frm_MsgDate" style="vertical-align:top;white-space:nowrap;">18:59 2 Feb '07 &nbsp;</td>
+							</tr>
+						</table></td>
+					</tr><tr id="F1875365_h1" style="display:none;">
+						<td width="100%"><table class="quickBd" border="0" cellpadding="0" cellspacing="0" width="100%">
+							<tr>
+								<td class="Frm_MsgIndent" style="width:16px;"><img src="http://s.codeproject.com/script/Forums/Images/t.gif" height="1px" width="16px" alt="" /></td><td class="MsgBd BdSel "><table border="0" cellpadding="0" cellspacing="5px" width="100%">
+									<tr>
+										<td><table border="0" cellpadding="0" cellspacing="0" width="100%">
+											<tr>
+												<td colspan="2">Thanks a lot dude:<br />
+&nbsp;<br />
+Clear, clever, simple, useful and outstanding <img src="/script/Forums/Images/smiley_smile.gif" align="top" alt="Smile | :)" /> <br />
+&nbsp;<br />
+You deserve a big 5 !!<br />
+&nbsp;<br />
+Cheers <br />
+&nbsp;<br />
+ <br />
+&nbsp;<br />
+<div class="ForumSig">-----<br />
+<a href="http://www.codeproject.com/script/Articles/list_articles.asp?userid=1190888" rel="nofollow">--> Other Articles</a> [<a href="http://www.codeproject.com/script/Articles/list_articles.asp?userid=1190888" target="_blank" rel="nofollow" title="New Window">^</a>]   <a href="http://www.devoo.net" rel="nofollow">Devoo Software (my company)</a> [<a href="http://www.devoo.net" target="_blank" rel="nofollow" title="New Window">^</a>]</div><br /></td>
+											</tr><tr style="vertical-align:middle;">
+												<td class="msg-footer"><a class="button-newmsg" href="/script/Forums/Edit.aspx?fid=351497&amp;select=1875365&amp;floc=/Articles/16074/DuckTyping-Runtime-Dynamic-Interface-Implementatio&amp;action=r" title="Reply">Reply</a>·<a class="toolbar" href="/script/Forums/Edit.aspx?fid=351497&amp;select=1875365&amp;floc=/Articles/16074/DuckTyping-Runtime-Dynamic-Interface-Implementatio&amp;action=e" title="Email">Email</a>·<a class="toolbar" href="/Articles/16074/DuckTyping-Runtime-Dynamic-Interface-Implementatio?fid=351497&amp;df=90&amp;mpp=25&amp;sort=Position&amp;tid=1875365" title="View&nbsp;Thread">View&nbsp;Thread</a>·<a class="toolbar" href="/Messages/1875365/Outstanding-equals.aspx" title="Get permanent link">Permalink</a>·<a class="toolbar" href="/script/Bookmarks/Add.aspx?obid=1875365&amp;obtid=3&amp;action=AddBookmark&amp;bio=false" title="Bookmark this post" onclick="return bookmarkMe(0,0,'/script/Bookmarks/Ajax/Add.aspx?obid=1875365&obtid=3&action=AddBookmark&bio=false',false, this, this);">Bookmark</a></td><td class="msg-footer" style="text-align:right;"><span id="MVF1875365" style="white-space:nowrap;">3.78/5 (2 votes) <span class="voteform" ownerid="1190888" msgid="1875365" goodbad="false" gpre="" bpre="" msgtype=""></span></span></td>
+											</tr>
+										</table></td>
+									</tr>
+								</table></td>
+							</tr>
+						</table></td>
+					</tr><tr class="quick">
+						<td class="root msg-divide"><img src="http://s.codeproject.com/script/Forums/Images/t.gif" border="0" width="1px" height="1px" alt="" /></td>
+					</tr><tr class="MsgHd Rt HdUnSel " id="F1814965_h0">
+						<td width="100%"><table class="quickHd" border="0" cellpadding="0" cellspacing="0" width="100%">
+							<tr class="hover-row">
+								<td width="16px" class="Frm_MsgIndent"><a name="xx1814965xx"></a><img height="16px" width="16px" align="top" src="/script/Forums/Images/msg_general.gif" alt="General" /></td><td class="Frm_MsgSubject hover-container"><a class="message-link" name="1814965" parent="0" thread="1814965" href="/Messages/1814965/System-Xml-namespace.aspx">System.Xml namespace</a> <a onclick="return Pin(this);" href="#" title="Click to pin message"><img src="http://s.codeproject.com/script/Forums/Images/pin.gif" border="0" align="top" alt="Pin" width="13px" height="12px" /></a></td><td class="Frm_MsgIcon"><img border="0" src="http://s.codeproject.com/App_Themes/Std/Img/icn-member-16.gif" title="member" alt="member" height="16px" /></td><td class="Frm_MsgAuthor"><a href="/script/Membership/View.aspx?mid=1842371">dagadsg</a></td><td class="Frm_MsgDate" style="vertical-align:top;white-space:nowrap;">16:18 21 Dec '06 &nbsp;</td>
+							</tr>
+						</table></td>
+					</tr><tr id="F1814965_h1" style="display:none;">
+						<td width="100%"><table class="quickBd" border="0" cellpadding="0" cellspacing="0" width="100%">
+							<tr>
+								<td class="Frm_MsgIndent" style="width:16px;"><img src="http://s.codeproject.com/script/Forums/Images/t.gif" height="1px" width="16px" alt="" /></td><td class="MsgBd BdSel "><table border="0" cellpadding="0" cellspacing="5px" width="100%">
+									<tr>
+										<td><table border="0" cellpadding="0" cellspacing="0" width="100%">
+											<tr>
+												<td colspan="2">This is beautiful.  I did have one error when the interface inexplicably was referencing System.Xml.Serialization... when my code wasn't.<br />
+&nbsp;<br />
+Turns out that the compiler wanted referenced assemblies.  I modified your code below...<br />
+&nbsp;<br />
+			public void AddReference(Type type) {<br />
+				AddReference(type.Assembly);<br />
+				if(type.BaseType.Assembly != mscorlib)<br />
+					AddReference(type.BaseType);<br />
+&nbsp;<br />
+                foreach (AssemblyName asm in type.Assembly.GetReferencedAssemblies())<br />
+                    if (asm.FullName != mscorlib.FullName)<br />
+                    {<br />
+                        Assembly asm2 = Assembly.Load(asm);<br />
+                        if (!_lst.Contains(asm2.Location))<br />
+                        {<br />
+                            _lst.Add(asm2.Location);<br />
+                        }<br />
+                    }<br />
+            }<br />
+&nbsp;<br />
+Thanks again! <br /></td>
+											</tr><tr style="vertical-align:middle;">
+												<td class="msg-footer"><a class="button-newmsg" href="/script/Forums/Edit.aspx?fid=351497&amp;select=1814965&amp;floc=/Articles/16074/DuckTyping-Runtime-Dynamic-Interface-Implementatio&amp;action=r" title="Reply">Reply</a>·<a class="toolbar" href="/script/Forums/Edit.aspx?fid=351497&amp;select=1814965&amp;floc=/Articles/16074/DuckTyping-Runtime-Dynamic-Interface-Implementatio&amp;action=e" title="Email">Email</a>·<a class="toolbar" href="/Articles/16074/DuckTyping-Runtime-Dynamic-Interface-Implementatio?fid=351497&amp;df=90&amp;mpp=25&amp;sort=Position&amp;tid=1814965" title="View&nbsp;Thread">View&nbsp;Thread</a>·<a class="toolbar" href="/Messages/1814965/System-Xml-namespace.aspx" title="Get permanent link">Permalink</a>·<a class="toolbar" href="/script/Bookmarks/Add.aspx?obid=1814965&amp;obtid=3&amp;action=AddBookmark&amp;bio=false" title="Bookmark this post" onclick="return bookmarkMe(0,0,'/script/Bookmarks/Ajax/Add.aspx?obid=1814965&obtid=3&action=AddBookmark&bio=false',false, this, this);">Bookmark</a></td><td class="msg-footer" style="text-align:right;"><span id="MVF1814965" style="white-space:nowrap;"><span class="voteform" ownerid="1842371" msgid="1814965" goodbad="false" gpre="" bpre="" msgtype=""></span></span></td>
+											</tr>
+										</table></td>
+									</tr>
+								</table></td>
+							</tr>
+						</table></td>
+					</tr><tr class="quick">
+						<td class="root msg-divide"><img src="http://s.codeproject.com/script/Forums/Images/t.gif" border="0" width="1px" height="1px" alt="" /></td>
+					</tr><tr class="MsgHd Rt HdUnSel " id="F1780723_h0">
+						<td width="100%"><table class="quickHd" border="0" cellpadding="0" cellspacing="0" width="100%">
+							<tr class="hover-row">
+								<td width="16px" class="Frm_MsgIndent"><a name="xx1780723xx"></a><img height="16px" width="16px" align="top" src="/script/Forums/Images/msg_general.gif" alt="General" /></td><td class="Frm_MsgSubject hover-container"><a class="message-link" name="1780723" parent="0" thread="1780723" href="/Messages/1780723/Sweet.aspx">Sweet</a> <a onclick="return Pin(this);" href="#" title="Click to pin message"><img src="http://s.codeproject.com/script/Forums/Images/pin.gif" border="0" align="top" alt="Pin" width="13px" height="12px" /></a></td><td class="Frm_MsgIcon"><img border="0" src="http://s.codeproject.com/App_Themes/Std/Img/icn-member-16.gif" title="member" alt="member" height="16px" /></td><td class="Frm_MsgAuthor"><a href="/script/Membership/View.aspx?mid=75761">Roger J</a></td><td class="Frm_MsgDate" style="vertical-align:top;white-space:nowrap;">4:29 29 Nov '06 &nbsp;</td>
+							</tr>
+						</table></td>
+					</tr><tr id="F1780723_h1" style="display:none;">
+						<td width="100%"><table class="quickBd" border="0" cellpadding="0" cellspacing="0" width="100%">
+							<tr>
+								<td class="Frm_MsgIndent" style="width:16px;"><img src="http://s.codeproject.com/script/Forums/Images/t.gif" height="1px" width="16px" alt="" /></td><td class="MsgBd BdSel "><table border="0" cellpadding="0" cellspacing="5px" width="100%">
+									<tr>
+										<td><table border="0" cellpadding="0" cellspacing="0" width="100%">
+											<tr>
+												<td colspan="2">5/5 from me.<br />
+&nbsp;<br />
+I never thought of doing typed ducktyping <img src="/script/Forums/Images/smiley_smile.gif" align="top" alt="Smile | :)" />  <br />
+&nbsp;<br />
+<div class="ForumSig"><a href ="http://www.puzzleframework.com">http://www.puzzleframework.com</a></div><br /></td>
+											</tr><tr style="vertical-align:middle;">
+												<td class="msg-footer"><a class="button-newmsg" href="/script/Forums/Edit.aspx?fid=351497&amp;select=1780723&amp;floc=/Articles/16074/DuckTyping-Runtime-Dynamic-Interface-Implementatio&amp;action=r" title="Reply">Reply</a>·<a class="toolbar" href="/script/Forums/Edit.aspx?fid=351497&amp;select=1780723&amp;floc=/Articles/16074/DuckTyping-Runtime-Dynamic-Interface-Implementatio&amp;action=e" title="Email">Email</a>·<a class="toolbar" href="/Articles/16074/DuckTyping-Runtime-Dynamic-Interface-Implementatio?fid=351497&amp;df=90&amp;mpp=25&amp;sort=Position&amp;tid=1780723" title="View&nbsp;Thread">View&nbsp;Thread</a>·<a class="toolbar" href="/Messages/1780723/Sweet.aspx" title="Get permanent link">Permalink</a>·<a class="toolbar" href="/script/Bookmarks/Add.aspx?obid=1780723&amp;obtid=3&amp;action=AddBookmark&amp;bio=false" title="Bookmark this post" onclick="return bookmarkMe(0,0,'/script/Bookmarks/Ajax/Add.aspx?obid=1780723&obtid=3&action=AddBookmark&bio=false',false, this, this);">Bookmark</a></td><td class="msg-footer" style="text-align:right;"><span id="MVF1780723" style="white-space:nowrap;"><span class="voteform" ownerid="75761" msgid="1780723" goodbad="false" gpre="" bpre="" msgtype=""></span></span></td>
+											</tr>
+										</table></td>
+									</tr>
+								</table></td>
+							</tr>
+						</table></td>
+					</tr><tr class="quick">
+						<td class="root msg-divide"><img src="http://s.codeproject.com/script/Forums/Images/t.gif" border="0" width="1px" height="1px" alt="" /></td>
+					</tr><tr class="MsgHd Rt HdUnSel " id="F1776274_h0">
+						<td width="100%"><table class="quickHd" border="0" cellpadding="0" cellspacing="0" width="100%">
+							<tr class="hover-row">
+								<td width="16px" class="Frm_MsgIndent"><a name="xx1776274xx"></a><img height="16px" width="16px" align="top" src="/script/Forums/Images/msg_general.gif" alt="General" /></td><td class="Frm_MsgSubject hover-container"><a class="message-link" name="1776274" parent="0" thread="1776274" href="/Messages/1776274/Great-idea.aspx">Great idea!</a> <a onclick="return Pin(this);" href="#" title="Click to pin message"><img src="http://s.codeproject.com/script/Forums/Images/pin.gif" border="0" align="top" alt="Pin" width="13px" height="12px" /></a></td><td class="Frm_MsgIcon"><img border="0" src="http://s.codeproject.com/App_Themes/Std/Img/icn-member-16.gif" title="member" alt="member" height="16px" /></td><td class="Frm_MsgAuthor"><a href="/script/Membership/View.aspx?mid=34580">Tomas Petricek</a></td><td class="Frm_MsgDate" style="vertical-align:top;white-space:nowrap;">20:57 26 Nov '06 &nbsp;</td>
+							</tr>
+						</table></td>
+					</tr><tr id="F1776274_h1" style="display:none;">
+						<td width="100%"><table class="quickBd" border="0" cellpadding="0" cellspacing="0" width="100%">
+							<tr>
+								<td class="Frm_MsgIndent" style="width:16px;"><img src="http://s.codeproject.com/script/Forums/Images/t.gif" height="1px" width="16px" alt="" /></td><td class="MsgBd BdSel "><table border="0" cellpadding="0" cellspacing="5px" width="100%">
+									<tr>
+										<td><table border="0" cellpadding="0" cellspacing="0" width="100%">
+											<tr>
+												<td colspan="2">Hi, this is a really brilliant idea!<br />
+You showed that it is useful for standard OOP languages (like C# and VB.NET), but I think that the real power of your idea can be reveald by using this as an interface for accessing objects in dynamic languages compiled to CLR. I'm currently working on an implementation that would allow calling objects declared in PHP (see the <a href="http://www.codeplex.com/Phalanger" rel="nofollow">Phalanger</a>[<a target=_blank title='New Window' rel='nofollow' href="http://www.codeplex.com/Phalanger">^</a>] project) in this way and it looks really interesting. I think this could be very interesting for IronPython too. Again, thanks for the idea <img src="/script/Forums/Images/smiley_cool.gif" align="top" alt="Cool | :cool:" /> !<br />
+&nbsp;<br />
+BTW: If you want to make it even better (more efficient) I would recommend using <code>Reflection.Emit</code> instead of <code>CodeDom</code>. The generated source isn't that complex so it should be possible <img src="/script/Forums/Images/smiley_smile.gif" align="top" alt="Smile | :)" /> . <br />
+&nbsp;<br />
+<div class="ForumSig"><div style="margin:0px;padding-removed5px;font:9pt 'franklin gothic medium';"><br />
+Tomas Petricek, C# MVP<br><a target="_blank" href="http://www.tomasp.net">Tomasp.net</a> | <a href="http://www.tomasp.net/calendar">My Photos</a> | <a target="_blank" href="http://www.tomasp.net/blog">My Blog (C# 3, LINQ, F# etc..)</a></div></div><br /></td>
+											</tr><tr style="vertical-align:middle;">
+												<td class="msg-footer"><a class="button-newmsg" href="/script/Forums/Edit.aspx?fid=351497&amp;select=1776274&amp;floc=/Articles/16074/DuckTyping-Runtime-Dynamic-Interface-Implementatio&amp;action=r" title="Reply">Reply</a>·<a class="toolbar" href="/script/Forums/Edit.aspx?fid=351497&amp;select=1776274&amp;floc=/Articles/16074/DuckTyping-Runtime-Dynamic-Interface-Implementatio&amp;action=e" title="Email">Email</a>·<a class="toolbar" href="/Articles/16074/DuckTyping-Runtime-Dynamic-Interface-Implementatio?fid=351497&amp;df=90&amp;mpp=25&amp;sort=Position&amp;tid=1776274" title="View&nbsp;Thread">View&nbsp;Thread</a>·<a class="toolbar" href="/Messages/1776274/Great-idea.aspx" title="Get permanent link">Permalink</a>·<a class="toolbar" href="/script/Bookmarks/Add.aspx?obid=1776274&amp;obtid=3&amp;action=AddBookmark&amp;bio=false" title="Bookmark this post" onclick="return bookmarkMe(0,0,'/script/Bookmarks/Ajax/Add.aspx?obid=1776274&obtid=3&action=AddBookmark&bio=false',false, this, this);">Bookmark</a></td><td class="msg-footer" style="text-align:right;"><span id="MVF1776274" style="white-space:nowrap;"><span class="voteform" ownerid="34580" msgid="1776274" goodbad="false" gpre="" bpre="" msgtype=""></span></span></td>
+											</tr>
+										</table></td>
+									</tr>
+								</table></td>
+							</tr>
+						</table></td>
+					</tr><tr class="quick">
+						<td class="root msg-divide"><img src="http://s.codeproject.com/script/Forums/Images/t.gif" border="0" width="1px" height="1px" alt="" /></td>
+					</tr><tr class="MsgHd Rt HdUnSel " id="F1750102_h0">
+						<td width="100%"><table class="quickHd" border="0" cellpadding="0" cellspacing="0" width="100%">
+							<tr class="hover-row">
+								<td width="16px" class="Frm_MsgIndent"><a name="xx1750102xx"></a><img height="16px" width="16px" align="top" src="/script/Forums/Images/msg_question.gif" alt="Question" /></td><td class="Frm_MsgSubject hover-container"><a class="message-link" name="1750102" parent="0" thread="1750102" href="/Messages/1750102/Getting-an-error.aspx">Getting an error</a> <a onclick="return Pin(this);" href="#" title="Click to pin message"><img src="http://s.codeproject.com/script/Forums/Images/pin.gif" border="0" align="top" alt="Pin" width="13px" height="12px" /></a></td><td class="Frm_MsgIcon"><img border="0" src="http://s.codeproject.com/App_Themes/Std/Img/icn-member-16.gif" title="member" alt="member" height="16px" /></td><td class="Frm_MsgAuthor"><a href="/script/Membership/View.aspx?mid=253899">sdhpublic</a></td><td class="Frm_MsgDate" style="vertical-align:top;white-space:nowrap;">12:43 9 Nov '06 &nbsp;</td>
+							</tr>
+						</table></td>
+					</tr><tr id="F1750102_h1" style="display:none;">
+						<td width="100%"><table class="quickBd" border="0" cellpadding="0" cellspacing="0" width="100%">
+							<tr>
+								<td class="Frm_MsgIndent" style="width:16px;"><img src="http://s.codeproject.com/script/Forums/Images/t.gif" height="1px" width="16px" alt="" /></td><td class="MsgBd BdSel "><table border="0" cellpadding="0" cellspacing="5px" width="100%">
+									<tr>
+										<td><table border="0" cellpadding="0" cellspacing="0" width="100%">
+											<tr>
+												<td colspan="2">Can you help me understand the following error when I call .Implement?<br />
+&nbsp;<br />
+System.NotSupportedException: The invoked member is not supported in a dynamic module.<br />
+&nbsp;<br />
+Please let me know if there is additional information that would help diagnose the problem. <br /></td>
+											</tr><tr style="vertical-align:middle;">
+												<td class="msg-footer"><a class="button-newmsg" href="/script/Forums/Edit.aspx?fid=351497&amp;select=1750102&amp;floc=/Articles/16074/DuckTyping-Runtime-Dynamic-Interface-Implementatio&amp;action=r" title="Reply">Reply</a>·<a class="toolbar" href="/script/Forums/Edit.aspx?fid=351497&amp;select=1750102&amp;floc=/Articles/16074/DuckTyping-Runtime-Dynamic-Interface-Implementatio&amp;action=e" title="Email">Email</a>·<a class="toolbar" href="/Articles/16074/DuckTyping-Runtime-Dynamic-Interface-Implementatio?fid=351497&amp;df=90&amp;mpp=25&amp;sort=Position&amp;tid=1750102" title="View&nbsp;Thread">View&nbsp;Thread</a>·<a class="toolbar" href="/Messages/1750102/Getting-an-error.aspx" title="Get permanent link">Permalink</a>·<a class="toolbar" href="/script/Bookmarks/Add.aspx?obid=1750102&amp;obtid=3&amp;action=AddBookmark&amp;bio=false" title="Bookmark this post" onclick="return bookmarkMe(0,0,'/script/Bookmarks/Ajax/Add.aspx?obid=1750102&obtid=3&action=AddBookmark&bio=false',false, this, this);">Bookmark</a></td><td class="msg-footer" style="text-align:right;"><span id="MVF1750102" style="white-space:nowrap;"><span class="voteform" ownerid="253899" msgid="1750102" goodbad="false" gpre="" bpre="" msgtype=""></span></span></td>
+											</tr>
+										</table></td>
+									</tr>
+								</table></td>
+							</tr>
+						</table></td>
+					</tr><tr class="quick">
+						<td class="msg-divide"><img src="http://s.codeproject.com/script/Forums/Images/t.gif" border="0" width="1px" height="1px" alt="" /></td>
+					</tr><tr class="MsgHd HdUnSel " id="F1756049_h0">
+						<td width="100%"><table class="quickHd" border="0" cellpadding="0" cellspacing="0" width="100%">
+							<tr class="hover-row">
+								<td width="34px" class="Frm_MsgIndent"><a name="xx1756049xx"></a><img height="16px" width="16px" align="top" src="/script/Forums/Images/msg_answer.gif" alt="Answer" /></td><td class="Frm_MsgSubject hover-container"><a class="message-link" name="1756049" parent="1750102" thread="1750102" href="/Messages/1756049/Re-Getting-an-error.aspx">Re: Getting an error</a> <a onclick="return Pin(this);" href="#" title="Click to pin message"><img src="http://s.codeproject.com/script/Forums/Images/pin.gif" border="0" align="top" alt="Pin" width="13px" height="12px" /></a></td><td class="Frm_MsgIcon"><img border="0" src="http://s.codeproject.com/App_Themes/Std/Img/icn-member-16.gif" title="member" alt="member" height="16px" /></td><td class="Frm_MsgAuthor"><a href="/script/Membership/View.aspx?mid=206501">Guenter Prossliner</a></td><td class="Frm_MsgDate" style="vertical-align:top;white-space:nowrap;">3:05 14 Nov '06 &nbsp;</td>
+							</tr>
+						</table></td>
+					</tr><tr id="F1756049_h1" style="display:none;">
+						<td width="100%"><table class="quickBd" border="0" cellpadding="0" cellspacing="0" width="100%">
+							<tr>
+								<td class="Frm_MsgIndent" style="width:34px;"><img src="http://s.codeproject.com/script/Forums/Images/t.gif" height="1px" width="34px" alt="" /></td><td class="MsgBd BdSel "><table border="0" cellpadding="0" cellspacing="5px" width="100%">
+									<tr>
+										<td><table border="0" cellpadding="0" cellspacing="0" width="100%">
+											<tr>
+												<td colspan="2">Hello!<br />
+&nbsp;<br />
+Is the Interface or the DuckedType somehow defined in a dynamic module? Maybe you can post some code. <br /></td>
+											</tr><tr style="vertical-align:middle;">
+												<td class="msg-footer"><a class="button-newmsg" href="/script/Forums/Edit.aspx?fid=351497&amp;select=1756049&amp;floc=/Articles/16074/DuckTyping-Runtime-Dynamic-Interface-Implementatio&amp;action=r" title="Reply">Reply</a>·<a class="toolbar" href="/script/Forums/Edit.aspx?fid=351497&amp;select=1756049&amp;floc=/Articles/16074/DuckTyping-Runtime-Dynamic-Interface-Implementatio&amp;action=e" title="Email">Email</a>·<a class="toolbar" href="/Articles/16074/DuckTyping-Runtime-Dynamic-Interface-Implementatio?fid=351497&amp;df=90&amp;mpp=25&amp;sort=Position&amp;tid=1750102" title="View&nbsp;Thread">View&nbsp;Thread</a>·<a class="toolbar" href="/Messages/1756049/Re-Getting-an-error.aspx" title="Get permanent link">Permalink</a>·<a class="toolbar" href="/script/Bookmarks/Add.aspx?obid=1756049&amp;obtid=3&amp;action=AddBookmark&amp;bio=false" title="Bookmark this post" onclick="return bookmarkMe(0,0,'/script/Bookmarks/Ajax/Add.aspx?obid=1756049&obtid=3&action=AddBookmark&bio=false',false, this, this);">Bookmark</a></td><td class="msg-footer" style="text-align:right;"><span id="MVF1756049" style="white-space:nowrap;"><span class="voteform" ownerid="206501" msgid="1756049" goodbad="false" gpre="" bpre="" msgtype=""></span></span></td>
+											</tr>
+										</table></td>
+									</tr>
+								</table></td>
+							</tr>
+						</table></td>
+					</tr><tr class="quick">
+						<td class="root msg-divide"><img src="http://s.codeproject.com/script/Forums/Images/t.gif" border="0" width="1px" height="1px" alt="" /></td>
+					</tr><tr class="MsgHd Rt HdUnSel " id="F1740188_h0">
+						<td width="100%"><table class="quickHd" border="0" cellpadding="0" cellspacing="0" width="100%">
+							<tr class="hover-row">
+								<td width="16px" class="Frm_MsgIndent"><a name="xx1740188xx"></a><img height="16px" width="16px" align="top" src="/script/Forums/Images/msg_general.gif" alt="General" /></td><td class="Frm_MsgSubject hover-container"><a class="message-link" name="1740188" parent="0" thread="1740188" href="/Messages/1740188/generic-interface.aspx">generic interface</a> <a onclick="return Pin(this);" href="#" title="Click to pin message"><img src="http://s.codeproject.com/script/Forums/Images/pin.gif" border="0" align="top" alt="Pin" width="13px" height="12px" /></a></td><td class="Frm_MsgIcon"><img border="0" src="http://s.codeproject.com/App_Themes/Std/Img/icn-member-16.gif" title="member" alt="member" height="16px" /></td><td class="Frm_MsgAuthor"><a href="/script/Membership/View.aspx?mid=128630">jackyjak</a></td><td class="Frm_MsgDate" style="vertical-align:top;white-space:nowrap;">10:03 3 Nov '06 &nbsp;</td>
+							</tr>
+						</table></td>
+					</tr><tr id="F1740188_h1" style="display:none;">
+						<td width="100%"><table class="quickBd" border="0" cellpadding="0" cellspacing="0" width="100%">
+							<tr>
+								<td class="Frm_MsgIndent" style="width:16px;"><img src="http://s.codeproject.com/script/Forums/Images/t.gif" height="1px" width="16px" alt="" /></td><td class="MsgBd BdSel "><table border="0" cellpadding="0" cellspacing="5px" width="100%">
+									<tr>
+										<td><table border="0" cellpadding="0" cellspacing="0" width="100%">
+											<tr>
+												<td colspan="2">Great stuff. I came across this article 2 hours ago, <br />
+and happen to need it in my code now. <br />
+&nbsp;<br />
+but it seems that it does not work with interface with generics ! <br />
+&nbsp;<br />
+i.e. <br />
+&nbsp;<br />
+<br />
+interface MyList<T>{<br />
+   void Add( T item );<br />
+}<br />
+&nbsp;<br />
+List<int> obj = new List<int>();<br />
+MyList<int> myObj = <br />
+                      NDuck.DuckTyping.Implement<    MyList< int >   >( obj ) ;<br />
+&nbsp;<br />
+<br />
+&nbsp;<br />
+ok, it is quite a rare case !<br />
+&nbsp;<br />
+<br />
+&nbsp;<br />
+JaK<br />
+&nbsp;<br />
+<br />
+ <br /></td>
+											</tr><tr style="vertical-align:middle;">
+												<td class="msg-footer"><a class="button-newmsg" href="/script/Forums/Edit.aspx?fid=351497&amp;select=1740188&amp;floc=/Articles/16074/DuckTyping-Runtime-Dynamic-Interface-Implementatio&amp;action=r" title="Reply">Reply</a>·<a class="toolbar" href="/script/Forums/Edit.aspx?fid=351497&amp;select=1740188&amp;floc=/Articles/16074/DuckTyping-Runtime-Dynamic-Interface-Implementatio&amp;action=e" title="Email">Email</a>·<a class="toolbar" href="/Articles/16074/DuckTyping-Runtime-Dynamic-Interface-Implementatio?fid=351497&amp;df=90&amp;mpp=25&amp;sort=Position&amp;tid=1740188" title="View&nbsp;Thread">View&nbsp;Thread</a>·<a class="toolbar" href="/Messages/1740188/generic-interface.aspx" title="Get permanent link">Permalink</a>·<a class="toolbar" href="/script/Bookmarks/Add.aspx?obid=1740188&amp;obtid=3&amp;action=AddBookmark&amp;bio=false" title="Bookmark this post" onclick="return bookmarkMe(0,0,'/script/Bookmarks/Ajax/Add.aspx?obid=1740188&obtid=3&action=AddBookmark&bio=false',false, this, this);">Bookmark</a></td><td class="msg-footer" style="text-align:right;"><span id="MVF1740188" style="white-space:nowrap;"><span class="voteform" ownerid="128630" msgid="1740188" goodbad="false" gpre="" bpre="" msgtype=""></span></span></td>
+											</tr>
+										</table></td>
+									</tr>
+								</table></td>
+							</tr>
+						</table></td>
+					</tr><tr class="quick">
+						<td class="msg-divide"><img src="http://s.codeproject.com/script/Forums/Images/t.gif" border="0" width="1px" height="1px" alt="" /></td>
+					</tr><tr class="MsgHd HdUnSel " id="F1756052_h0">
+						<td width="100%"><table class="quickHd" border="0" cellpadding="0" cellspacing="0" width="100%">
+							<tr class="hover-row">
+								<td width="34px" class="Frm_MsgIndent"><a name="xx1756052xx"></a><img height="16px" width="16px" align="top" src="/script/Forums/Images/msg_general.gif" alt="General" /></td><td class="Frm_MsgSubject hover-container"><a class="message-link" name="1756052" parent="1740188" thread="1740188" href="/Messages/1756052/Re-generic-interface.aspx">Re: generic interface</a> <a onclick="return Pin(this);" href="#" title="Click to pin message"><img src="http://s.codeproject.com/script/Forums/Images/pin.gif" border="0" align="top" alt="Pin" width="13px" height="12px" /></a></td><td class="Frm_MsgIcon"><img border="0" src="http://s.codeproject.com/App_Themes/Std/Img/icn-member-16.gif" title="member" alt="member" height="16px" /></td><td class="Frm_MsgAuthor"><a href="/script/Membership/View.aspx?mid=206501">Guenter Prossliner</a></td><td class="Frm_MsgDate" style="vertical-align:top;white-space:nowrap;">3:10 14 Nov '06 &nbsp;</td>
+							</tr>
+						</table></td>
+					</tr><tr id="F1756052_h1" style="display:none;">
+						<td width="100%"><table class="quickBd" border="0" cellpadding="0" cellspacing="0" width="100%">
+							<tr>
+								<td class="Frm_MsgIndent" style="width:34px;"><img src="http://s.codeproject.com/script/Forums/Images/t.gif" height="1px" width="34px" alt="" /></td><td class="MsgBd BdSel "><table border="0" cellpadding="0" cellspacing="5px" width="100%">
+									<tr>
+										<td><table border="0" cellpadding="0" cellspacing="0" width="100%">
+											<tr>
+												<td colspan="2">Hello!<br />
+&nbsp;<br />
+Nice that you like it!<br />
+&nbsp;<br />
+There really seem to be a problem with generic interfaces. The problem seems to be related to CodeDom, which renders names of generic functions wrong.<br />
+&nbsp;<br />
+I will try to get around this problem. Maybe I will kick out CodeDom and build the Code by Hand. Reflection.Emit would also do the work (it would be the best solution, but also the one where the most time will be needed for the implementation). <br /></td>
+											</tr><tr style="vertical-align:middle;">
+												<td class="msg-footer"><a class="button-newmsg" href="/script/Forums/Edit.aspx?fid=351497&amp;select=1756052&amp;floc=/Articles/16074/DuckTyping-Runtime-Dynamic-Interface-Implementatio&amp;action=r" title="Reply">Reply</a>·<a class="toolbar" href="/script/Forums/Edit.aspx?fid=351497&amp;select=1756052&amp;floc=/Articles/16074/DuckTyping-Runtime-Dynamic-Interface-Implementatio&amp;action=e" title="Email">Email</a>·<a class="toolbar" href="/Articles/16074/DuckTyping-Runtime-Dynamic-Interface-Implementatio?fid=351497&amp;df=90&amp;mpp=25&amp;sort=Position&amp;tid=1740188" title="View&nbsp;Thread">View&nbsp;Thread</a>·<a class="toolbar" href="/Messages/1756052/Re-generic-interface.aspx" title="Get permanent link">Permalink</a>·<a class="toolbar" href="/script/Bookmarks/Add.aspx?obid=1756052&amp;obtid=3&amp;action=AddBookmark&amp;bio=false" title="Bookmark this post" onclick="return bookmarkMe(0,0,'/script/Bookmarks/Ajax/Add.aspx?obid=1756052&obtid=3&action=AddBookmark&bio=false',false, this, this);">Bookmark</a></td><td class="msg-footer" style="text-align:right;"><span id="MVF1756052" style="white-space:nowrap;">3.78/5 (2 votes) <span class="voteform" ownerid="206501" msgid="1756052" goodbad="false" gpre="" bpre="" msgtype=""></span></span></td>
+											</tr>
+										</table></td>
+									</tr>
+								</table></td>
+							</tr>
+						</table></td>
+					</tr><tr class="quick">
+						<td class="root msg-divide"><img src="http://s.codeproject.com/script/Forums/Images/t.gif" border="0" width="1px" height="1px" alt="" /></td>
+					</tr><tr class="MsgHd Rt HdUnSel " id="F1738886_h0">
+						<td width="100%"><table class="quickHd" border="0" cellpadding="0" cellspacing="0" width="100%">
+							<tr class="hover-row">
+								<td width="16px" class="Frm_MsgIndent"><a name="xx1738886xx"></a><img height="16px" width="16px" align="top" src="/script/Forums/Images/msg_question.gif" alt="Question" /></td><td class="Frm_MsgSubject hover-container"><a class="message-link" name="1738886" parent="0" thread="1738886" href="/Messages/1738886/Mind-if-I-port-this-to-be-included-in-my-Dynamic-l.aspx">Mind if I port this to be included in my Dynamic library on CodePlex?</a> <a onclick="return Pin(this);" href="#" title="Click to pin message"><img src="http://s.codeproject.com/script/Forums/Images/pin.gif" border="0" align="top" alt="Pin" width="13px" height="12px" /></a></td><td class="Frm_MsgIcon"><img border="0" src="http://s.codeproject.com/App_Themes/Std/Img/icn-member-16.gif" title="member" alt="member" height="16px" /></td><td class="Frm_MsgAuthor"><a href="/script/Membership/View.aspx?mid=12304">Marc Brooks</a></td><td class="Frm_MsgDate" style="vertical-align:top;white-space:nowrap;">15:37 2 Nov '06 &nbsp;</td>
+							</tr>
+						</table></td>
+					</tr><tr id="F1738886_h1" style="display:none;">
+						<td width="100%"><table class="quickBd" border="0" cellpadding="0" cellspacing="0" width="100%">
+							<tr>
+								<td class="Frm_MsgIndent" style="width:16px;"><img src="http://s.codeproject.com/script/Forums/Images/t.gif" height="1px" width="16px" alt="" /></td><td class="MsgBd BdSel "><table border="0" cellpadding="0" cellspacing="5px" width="100%">
+									<tr>
+										<td><table border="0" cellpadding="0" cellspacing="0" width="100%">
+											<tr>
+												<td colspan="2">I've got a Dynamic method caller library that uses Lightweight Code Generation and DynamicMethod to do this on a method-by-method basis... any objections to adding your "whole interface" at a time code to my techniques? <br />
+&nbsp;<br />
+<div class="ForumSig">http://musingmarc.blogspot.com</div><br /></td>
+											</tr><tr style="vertical-align:middle;">
+												<td class="msg-footer"><a class="button-newmsg" href="/script/Forums/Edit.aspx?fid=351497&amp;select=1738886&amp;floc=/Articles/16074/DuckTyping-Runtime-Dynamic-Interface-Implementatio&amp;action=r" title="Reply">Reply</a>·<a class="toolbar" href="/script/Forums/Edit.aspx?fid=351497&amp;select=1738886&amp;floc=/Articles/16074/DuckTyping-Runtime-Dynamic-Interface-Implementatio&amp;action=e" title="Email">Email</a>·<a class="toolbar" href="/Articles/16074/DuckTyping-Runtime-Dynamic-Interface-Implementatio?fid=351497&amp;df=90&amp;mpp=25&amp;sort=Position&amp;tid=1738886" title="View&nbsp;Thread">View&nbsp;Thread</a>·<a class="toolbar" href="/Messages/1738886/Mind-if-I-port-this-to-be-included-in-my-Dynamic-l.aspx" title="Get permanent link">Permalink</a>·<a class="toolbar" href="/script/Bookmarks/Add.aspx?obid=1738886&amp;obtid=3&amp;action=AddBookmark&amp;bio=false" title="Bookmark this post" onclick="return bookmarkMe(0,0,'/script/Bookmarks/Ajax/Add.aspx?obid=1738886&obtid=3&action=AddBookmark&bio=false',false, this, this);">Bookmark</a></td><td class="msg-footer" style="text-align:right;"><span id="MVF1738886" style="white-space:nowrap;"><span class="voteform" ownerid="12304" msgid="1738886" goodbad="false" gpre="" bpre="" msgtype=""></span></span></td>
+											</tr>
+										</table></td>
+									</tr>
+								</table></td>
+							</tr>
+						</table></td>
+					</tr><tr class="quick">
+						<td class="msg-divide"><img src="http://s.codeproject.com/script/Forums/Images/t.gif" border="0" width="1px" height="1px" alt="" /></td>
+					</tr><tr class="MsgHd HdUnSel " id="F1756064_h0">
+						<td width="100%"><table class="quickHd" border="0" cellpadding="0" cellspacing="0" width="100%">
+							<tr class="hover-row">
+								<td width="34px" class="Frm_MsgIndent"><a name="xx1756064xx"></a><img height="16px" width="16px" align="top" src="/script/Forums/Images/msg_answer.gif" alt="Answer" /></td><td class="Frm_MsgSubject hover-container"><a class="message-link" name="1756064" parent="1738886" thread="1738886" href="/Messages/1756064/Re-Mind-if-I-port-this-to-be-included-in-my-Dynami.aspx">Re: Mind if I port this to be included in my Dynamic library on CodePlex?</a> <a onclick="return Pin(this);" href="#" title="Click to pin message"><img src="http://s.codeproject.com/script/Forums/Images/pin.gif" border="0" align="top" alt="Pin" width="13px" height="12px" /></a></td><td class="Frm_MsgIcon"><img border="0" src="http://s.codeproject.com/App_Themes/Std/Img/icn-member-16.gif" title="member" alt="member" height="16px" /></td><td class="Frm_MsgAuthor"><a href="/script/Membership/View.aspx?mid=206501">Guenter Prossliner</a></td><td class="Frm_MsgDate" style="vertical-align:top;white-space:nowrap;">3:17 14 Nov '06 &nbsp;</td>
+							</tr>
+						</table></td>
+					</tr><tr id="F1756064_h1" style="display:none;">
+						<td width="100%"><table class="quickBd" border="0" cellpadding="0" cellspacing="0" width="100%">
+							<tr>
+								<td class="Frm_MsgIndent" style="width:34px;"><img src="http://s.codeproject.com/script/Forums/Images/t.gif" height="1px" width="34px" alt="" /></td><td class="MsgBd BdSel "><table border="0" cellpadding="0" cellspacing="5px" width="100%">
+									<tr>
+										<td><table border="0" cellpadding="0" cellspacing="0" width="100%">
+											<tr>
+												<td colspan="2">I also thought about using the really cool LCG (DynamicMethod). But the main problem is, that a DynamicMethod is only able to emit one method, but no complete class (there is no "DynamicClass").<br />
+&nbsp;<br />
+Or have I understood something wrong?<br />
+&nbsp;<br />
+Of cause you are free to use the code wherever you like. <br /></td>
+											</tr><tr style="vertical-align:middle;">
+												<td class="msg-footer"><a class="button-newmsg" href="/script/Forums/Edit.aspx?fid=351497&amp;select=1756064&amp;floc=/Articles/16074/DuckTyping-Runtime-Dynamic-Interface-Implementatio&amp;action=r" title="Reply">Reply</a>·<a class="toolbar" href="/script/Forums/Edit.aspx?fid=351497&amp;select=1756064&amp;floc=/Articles/16074/DuckTyping-Runtime-Dynamic-Interface-Implementatio&amp;action=e" title="Email">Email</a>·<a class="toolbar" href="/Articles/16074/DuckTyping-Runtime-Dynamic-Interface-Implementatio?fid=351497&amp;df=90&amp;mpp=25&amp;sort=Position&amp;tid=1738886" title="View&nbsp;Thread">View&nbsp;Thread</a>·<a class="toolbar" href="/Messages/1756064/Re-Mind-if-I-port-this-to-be-included-in-my-Dynami.aspx" title="Get permanent link">Permalink</a>·<a class="toolbar" href="/script/Bookmarks/Add.aspx?obid=1756064&amp;obtid=3&amp;action=AddBookmark&amp;bio=false" title="Bookmark this post" onclick="return bookmarkMe(0,0,'/script/Bookmarks/Ajax/Add.aspx?obid=1756064&obtid=3&action=AddBookmark&bio=false',false, this, this);">Bookmark</a></td><td class="msg-footer" style="text-align:right;"><span id="MVF1756064" style="white-space:nowrap;"><span class="voteform" ownerid="206501" msgid="1756064" goodbad="false" gpre="" bpre="" msgtype=""></span></span></td>
+											</tr>
+										</table></td>
+									</tr>
+								</table></td>
+							</tr>
+						</table></td>
+					</tr><tr class="quick">
+						<td class="root msg-divide"><img src="http://s.codeproject.com/script/Forums/Images/t.gif" border="0" width="1px" height="1px" alt="" /></td>
+					</tr><tr class="MsgHd Rt HdUnSel " id="F1738455_h0">
+						<td width="100%"><table class="quickHd" border="0" cellpadding="0" cellspacing="0" width="100%">
+							<tr class="hover-row">
+								<td width="16px" class="Frm_MsgIndent"><a name="xx1738455xx"></a><img height="16px" width="16px" align="top" src="/script/Forums/Images/msg_general.gif" alt="General" /></td><td class="Frm_MsgSubject hover-container"><a class="message-link" name="1738455" parent="0" thread="1738455" href="/Messages/1738455/Very-nice.aspx">Very nice</a> <a onclick="return Pin(this);" href="#" title="Click to pin message"><img src="http://s.codeproject.com/script/Forums/Images/pin.gif" border="0" align="top" alt="Pin" width="13px" height="12px" /></a></td><td class="Frm_MsgIcon"><img border="0" src="http://s.codeproject.com/App_Themes/Std/Img/icn-member-16.gif" title="member" alt="member" height="16px" /></td><td class="Frm_MsgAuthor"><a href="/script/Membership/View.aspx?mid=616289">D4Skunk</a></td><td class="Frm_MsgDate" style="vertical-align:top;white-space:nowrap;">11:17 2 Nov '06 &nbsp;</td>
+							</tr>
+						</table></td>
+					</tr><tr id="F1738455_h1" style="display:none;">
+						<td width="100%"><table class="quickBd" border="0" cellpadding="0" cellspacing="0" width="100%">
+							<tr>
+								<td class="Frm_MsgIndent" style="width:16px;"><img src="http://s.codeproject.com/script/Forums/Images/t.gif" height="1px" width="16px" alt="" /></td><td class="MsgBd BdSel "><table border="0" cellpadding="0" cellspacing="5px" width="100%">
+									<tr>
+										<td><table border="0" cellpadding="0" cellspacing="0" width="100%">
+											<tr>
+												<td colspan="2">I have been very frustrated sometimes, because I had to fallback to reflection to handle some things. Your workaround is a very nice solution to the problem (If it gets generated at runtime, that is, I still have to check it out). 5 stars indeed, and keep articles like this 1 coming please <br />
+&nbsp;<br />
+<div class="ForumSig">Tom<br />
+&nbsp;<br />
+<A href="http://www.corebvba.be">Core</A></div><br /></td>
+											</tr><tr style="vertical-align:middle;">
+												<td class="msg-footer"><a class="button-newmsg" href="/script/Forums/Edit.aspx?fid=351497&amp;select=1738455&amp;floc=/Articles/16074/DuckTyping-Runtime-Dynamic-Interface-Implementatio&amp;action=r" title="Reply">Reply</a>·<a class="toolbar" href="/script/Forums/Edit.aspx?fid=351497&amp;select=1738455&amp;floc=/Articles/16074/DuckTyping-Runtime-Dynamic-Interface-Implementatio&amp;action=e" title="Email">Email</a>·<a class="toolbar" href="/Articles/16074/DuckTyping-Runtime-Dynamic-Interface-Implementatio?fid=351497&amp;df=90&amp;mpp=25&amp;sort=Position&amp;tid=1738455" title="View&nbsp;Thread">View&nbsp;Thread</a>·<a class="toolbar" href="/Messages/1738455/Very-nice.aspx" title="Get permanent link">Permalink</a>·<a class="toolbar" href="/script/Bookmarks/Add.aspx?obid=1738455&amp;obtid=3&amp;action=AddBookmark&amp;bio=false" title="Bookmark this post" onclick="return bookmarkMe(0,0,'/script/Bookmarks/Ajax/Add.aspx?obid=1738455&obtid=3&action=AddBookmark&bio=false',false, this, this);">Bookmark</a></td><td class="msg-footer" style="text-align:right;"><span id="MVF1738455" style="white-space:nowrap;"><span class="voteform" ownerid="616289" msgid="1738455" goodbad="false" gpre="" bpre="" msgtype=""></span></span></td>
+											</tr>
+										</table></td>
+									</tr>
+								</table></td>
+							</tr>
+						</table></td>
+					</tr><tr class="quick">
+						<td class="msg-divide"><img src="http://s.codeproject.com/script/Forums/Images/t.gif" border="0" width="1px" height="1px" alt="" /></td>
+					</tr><tr class="MsgHd HdUnSel " id="F1756230_h0">
+						<td width="100%"><table class="quickHd" border="0" cellpadding="0" cellspacing="0" width="100%">
+							<tr class="hover-row">
+								<td width="34px" class="Frm_MsgIndent"><a name="xx1756230xx"></a><img height="16px" width="16px" align="top" src="/script/Forums/Images/msg_general.gif" alt="General" /></td><td class="Frm_MsgSubject hover-container"><a class="message-link" name="1756230" parent="1738455" thread="1738455" href="/Messages/1756230/Re-Very-nice.aspx">Re: Very nice</a> <a onclick="return Pin(this);" href="#" title="Click to pin message"><img src="http://s.codeproject.com/script/Forums/Images/pin.gif" border="0" align="top" alt="Pin" width="13px" height="12px" /></a></td><td class="Frm_MsgIcon"><img border="0" src="http://s.codeproject.com/App_Themes/Std/Img/icn-member-16.gif" title="member" alt="member" height="16px" /></td><td class="Frm_MsgAuthor"><a href="/script/Membership/View.aspx?mid=206501">Guenter Prossliner</a></td><td class="Frm_MsgDate" style="vertical-align:top;white-space:nowrap;">4:55 14 Nov '06 &nbsp;</td>
+							</tr>
+						</table></td>
+					</tr><tr id="F1756230_h1" style="display:none;">
+						<td width="100%"><table class="quickBd" border="0" cellpadding="0" cellspacing="0" width="100%">
+							<tr>
+								<td class="Frm_MsgIndent" style="width:34px;"><img src="http://s.codeproject.com/script/Forums/Images/t.gif" height="1px" width="34px" alt="" /></td><td class="MsgBd BdSel "><table border="0" cellpadding="0" cellspacing="5px" width="100%">
+									<tr>
+										<td><table border="0" cellpadding="0" cellspacing="0" width="100%">
+											<tr>
+												<td colspan="2">Thank you! <br /></td>
+											</tr><tr style="vertical-align:middle;">
+												<td class="msg-footer"><a class="button-newmsg" href="/script/Forums/Edit.aspx?fid=351497&amp;select=1756230&amp;floc=/Articles/16074/DuckTyping-Runtime-Dynamic-Interface-Implementatio&amp;action=r" title="Reply">Reply</a>·<a class="toolbar" href="/script/Forums/Edit.aspx?fid=351497&amp;select=1756230&amp;floc=/Articles/16074/DuckTyping-Runtime-Dynamic-Interface-Implementatio&amp;action=e" title="Email">Email</a>·<a class="toolbar" href="/Articles/16074/DuckTyping-Runtime-Dynamic-Interface-Implementatio?fid=351497&amp;df=90&amp;mpp=25&amp;sort=Position&amp;tid=1738455" title="View&nbsp;Thread">View&nbsp;Thread</a>·<a class="toolbar" href="/Messages/1756230/Re-Very-nice.aspx" title="Get permanent link">Permalink</a>·<a class="toolbar" href="/script/Bookmarks/Add.aspx?obid=1756230&amp;obtid=3&amp;action=AddBookmark&amp;bio=false" title="Bookmark this post" onclick="return bookmarkMe(0,0,'/script/Bookmarks/Ajax/Add.aspx?obid=1756230&obtid=3&action=AddBookmark&bio=false',false, this, this);">Bookmark</a></td><td class="msg-footer" style="text-align:right;"><span id="MVF1756230" style="white-space:nowrap;"><span class="voteform" ownerid="206501" msgid="1756230" goodbad="false" gpre="" bpre="" msgtype=""></span></span></td>
+											</tr>
+										</table></td>
+									</tr>
+								</table></td>
+							</tr>
+						</table></td>
+					</tr><tr class="quick">
+						<td class="root msg-divide"><img src="http://s.codeproject.com/script/Forums/Images/t.gif" border="0" width="1px" height="1px" alt="" /></td>
+					</tr><tr class="MsgHd Rt HdUnSel " id="F1737225_h0">
+						<td width="100%"><table class="quickHd" border="0" cellpadding="0" cellspacing="0" width="100%">
+							<tr class="hover-row">
+								<td width="16px" class="Frm_MsgIndent"><a name="xx1737225xx"></a><img height="16px" width="16px" align="top" src="/script/Forums/Images/msg_general.gif" alt="General" /></td><td class="Frm_MsgSubject hover-container"><a class="message-link" name="1737225" parent="0" thread="1737225" href="/Messages/1737225/Will-get-people-thinking-out-of-the-box.aspx">Will get people thinking out of the box!</a> <a onclick="return Pin(this);" href="#" title="Click to pin message"><img src="http://s.codeproject.com/script/Forums/Images/pin.gif" border="0" align="top" alt="Pin" width="13px" height="12px" /></a></td><td class="Frm_MsgIcon"><img border="0" src="http://s.codeproject.com/App_Themes/Std/Img/icn-member-16.gif" title="member" alt="member" height="16px" /></td><td class="Frm_MsgAuthor"><a href="/script/Membership/View.aspx?mid=117364">Frank Hileman</a></td><td class="Frm_MsgDate" style="vertical-align:top;white-space:nowrap;">17:04 1 Nov '06 &nbsp;</td>
+							</tr>
+						</table></td>
+					</tr><tr id="F1737225_h1" style="display:none;">
+						<td width="100%"><table class="quickBd" border="0" cellpadding="0" cellspacing="0" width="100%">
+							<tr>
+								<td class="Frm_MsgIndent" style="width:16px;"><img src="http://s.codeproject.com/script/Forums/Images/t.gif" height="1px" width="16px" alt="" /></td><td class="MsgBd BdSel "><table border="0" cellpadding="0" cellspacing="5px" width="100%">
+									<tr>
+										<td><table border="0" cellpadding="0" cellspacing="0" width="100%">
+											<tr>
+												<td colspan="2">Too often we get locked into our favorite language way of thinking. This is a nice elegant implementation of inference typing that might be useful when building a simple interpreter. <br />
+&nbsp;<br />
+<div class="ForumSig">check out VG.net: <a href="http://www.vgdotnet.com">www.vgdotnet.com</a><br />
+An animated vector graphics system integrated in VS.net</div><br /></td>
+											</tr><tr style="vertical-align:middle;">
+												<td class="msg-footer"><a class="button-newmsg" href="/script/Forums/Edit.aspx?fid=351497&amp;select=1737225&amp;floc=/Articles/16074/DuckTyping-Runtime-Dynamic-Interface-Implementatio&amp;action=r" title="Reply">Reply</a>·<a class="toolbar" href="/script/Forums/Edit.aspx?fid=351497&amp;select=1737225&amp;floc=/Articles/16074/DuckTyping-Runtime-Dynamic-Interface-Implementatio&amp;action=e" title="Email">Email</a>·<a class="toolbar" href="/Articles/16074/DuckTyping-Runtime-Dynamic-Interface-Implementatio?fid=351497&amp;df=90&amp;mpp=25&amp;sort=Position&amp;tid=1737225" title="View&nbsp;Thread">View&nbsp;Thread</a>·<a class="toolbar" href="/Messages/1737225/Will-get-people-thinking-out-of-the-box.aspx" title="Get permanent link">Permalink</a>·<a class="toolbar" href="/script/Bookmarks/Add.aspx?obid=1737225&amp;obtid=3&amp;action=AddBookmark&amp;bio=false" title="Bookmark this post" onclick="return bookmarkMe(0,0,'/script/Bookmarks/Ajax/Add.aspx?obid=1737225&obtid=3&action=AddBookmark&bio=false',false, this, this);">Bookmark</a></td><td class="msg-footer" style="text-align:right;"><span id="MVF1737225" style="white-space:nowrap;"><span class="voteform" ownerid="117364" msgid="1737225" goodbad="false" gpre="" bpre="" msgtype=""></span></span></td>
+											</tr>
+										</table></td>
+									</tr>
+								</table></td>
+							</tr>
+						</table></td>
+					</tr><tr class="quick">
+						<td class="msg-divide"><img src="http://s.codeproject.com/script/Forums/Images/t.gif" border="0" width="1px" height="1px" alt="" /></td>
+					</tr><tr class="MsgHd HdUnSel " id="F1737229_h0">
+						<td width="100%"><table class="quickHd" border="0" cellpadding="0" cellspacing="0" width="100%">
+							<tr class="hover-row">
+								<td width="34px" class="Frm_MsgIndent"><a name="xx1737229xx"></a><img height="16px" width="16px" align="top" src="/script/Forums/Images/msg_general.gif" alt="General" /></td><td class="Frm_MsgSubject hover-container"><a class="message-link" name="1737229" parent="1737225" thread="1737225" href="/Messages/1737229/Re-Will-get-people-thinking-out-of-the-box.aspx">Re: Will get people thinking out of the box!</a> <a onclick="return Pin(this);" href="#" title="Click to pin message"><img src="http://s.codeproject.com/script/Forums/Images/pin.gif" border="0" align="top" alt="Pin" width="13px" height="12px" /></a></td><td class="Frm_MsgIcon"><img border="0" src="http://s.codeproject.com/App_Themes/Std/Img/icn-member-16.gif" title="member" alt="member" height="16px" /></td><td class="Frm_MsgAuthor"><a href="/script/Membership/View.aspx?mid=117364">Frank Hileman</a></td><td class="Frm_MsgDate" style="vertical-align:top;white-space:nowrap;">17:09 1 Nov '06 &nbsp;</td>
+							</tr>
+						</table></td>
+					</tr><tr id="F1737229_h1" style="display:none;">
+						<td width="100%"><table class="quickBd" border="0" cellpadding="0" cellspacing="0" width="100%">
+							<tr>
+								<td class="Frm_MsgIndent" style="width:34px;"><img src="http://s.codeproject.com/script/Forums/Images/t.gif" height="1px" width="34px" alt="" /></td><td class="MsgBd BdSel "><table border="0" cellpadding="0" cellspacing="5px" width="100%">
+									<tr>
+										<td><table border="0" cellpadding="0" cellspacing="0" width="100%">
+											<tr>
+												<td colspan="2">Actually it is dynamic typing isn't it? If a member is not implemented, the error does not appear until run time (as a run-time compiler error). My understanding is that true duck-typing is checked at compile time. <br />
+&nbsp;<br />
+<div class="ForumSig">check out VG.net: <a href="http://www.vgdotnet.com">www.vgdotnet.com</a><br />
+An animated vector graphics system integrated in VS.net</div><br /></td>
+											</tr><tr style="vertical-align:middle;">
+												<td class="msg-footer"><a class="button-newmsg" href="/script/Forums/Edit.aspx?fid=351497&amp;select=1737229&amp;floc=/Articles/16074/DuckTyping-Runtime-Dynamic-Interface-Implementatio&amp;action=r" title="Reply">Reply</a>·<a class="toolbar" href="/script/Forums/Edit.aspx?fid=351497&amp;select=1737229&amp;floc=/Articles/16074/DuckTyping-Runtime-Dynamic-Interface-Implementatio&amp;action=e" title="Email">Email</a>·<a class="toolbar" href="/Articles/16074/DuckTyping-Runtime-Dynamic-Interface-Implementatio?fid=351497&amp;df=90&amp;mpp=25&amp;sort=Position&amp;tid=1737225" title="View&nbsp;Thread">View&nbsp;Thread</a>·<a class="toolbar" href="/Messages/1737229/Re-Will-get-people-thinking-out-of-the-box.aspx" title="Get permanent link">Permalink</a>·<a class="toolbar" href="/script/Bookmarks/Add.aspx?obid=1737229&amp;obtid=3&amp;action=AddBookmark&amp;bio=false" title="Bookmark this post" onclick="return bookmarkMe(0,0,'/script/Bookmarks/Ajax/Add.aspx?obid=1737229&obtid=3&action=AddBookmark&bio=false',false, this, this);">Bookmark</a></td><td class="msg-footer" style="text-align:right;"><span id="MVF1737229" style="white-space:nowrap;"><span class="voteform" ownerid="117364" msgid="1737229" goodbad="false" gpre="" bpre="" msgtype=""></span></span></td>
+											</tr>
+										</table></td>
+									</tr>
+								</table></td>
+							</tr>
+						</table></td>
+					</tr><tr class="quick">
+						<td class="msg-divide"><img src="http://s.codeproject.com/script/Forums/Images/t.gif" border="0" width="1px" height="1px" alt="" /></td>
+					</tr><tr class="MsgHd HdUnSel " id="F1756240_h0">
+						<td width="100%"><table class="quickHd" border="0" cellpadding="0" cellspacing="0" width="100%">
+							<tr class="hover-row">
+								<td width="52px" class="Frm_MsgIndent"><a name="xx1756240xx"></a><img height="16px" width="16px" align="top" src="/script/Forums/Images/msg_general.gif" alt="General" /></td><td class="Frm_MsgSubject hover-container"><a class="message-link" name="1756240" parent="1737229" thread="1737225" href="/Messages/1756240/Re-Will-get-people-thinking-out-of-the-box.aspx">Re: Will get people thinking out of the box!</a> <a onclick="return Pin(this);" href="#" title="Click to pin message"><img src="http://s.codeproject.com/script/Forums/Images/pin.gif" border="0" align="top" alt="Pin" width="13px" height="12px" /></a></td><td class="Frm_MsgIcon"><img border="0" src="http://s.codeproject.com/App_Themes/Std/Img/icn-member-16.gif" title="member" alt="member" height="16px" /></td><td class="Frm_MsgAuthor"><a href="/script/Membership/View.aspx?mid=206501">Guenter Prossliner</a></td><td class="Frm_MsgDate" style="vertical-align:top;white-space:nowrap;">5:00 14 Nov '06 &nbsp;</td>
+							</tr>
+						</table></td>
+					</tr><tr id="F1756240_h1" style="display:none;">
+						<td width="100%"><table class="quickBd" border="0" cellpadding="0" cellspacing="0" width="100%">
+							<tr>
+								<td class="Frm_MsgIndent" style="width:52px;"><img src="http://s.codeproject.com/script/Forums/Images/t.gif" height="1px" width="52px" alt="" /></td><td class="MsgBd BdSel "><table border="0" cellpadding="0" cellspacing="5px" width="100%">
+									<tr>
+										<td><table border="0" cellpadding="0" cellspacing="0" width="100%">
+											<tr>
+												<td colspan="2">It is dynamic typing. If a member is not implemented, the current version throws an error at runtime. I consider the option to throw an "NotImplementedException" in this case when the method is called.<br />
+&nbsp;<br />
+Throwing an Exception at compilation time is not possible with duck-typing, because there is no compile-time code generation. It would be possible to encapsulate the Codegeneration Logic, and write a small tool which creates the code on compile-time (maybe for a next version but I cannot promise to do so).<br />
+&nbsp;<br />
+DuckTyping is usually very related to "late-binding", where the type-information is only available at runtime. Maybe there are other implementations, but none that I am aware of. <br /></td>
+											</tr><tr style="vertical-align:middle;">
+												<td class="msg-footer"><a class="button-newmsg" href="/script/Forums/Edit.aspx?fid=351497&amp;select=1756240&amp;floc=/Articles/16074/DuckTyping-Runtime-Dynamic-Interface-Implementatio&amp;action=r" title="Reply">Reply</a>·<a class="toolbar" href="/script/Forums/Edit.aspx?fid=351497&amp;select=1756240&amp;floc=/Articles/16074/DuckTyping-Runtime-Dynamic-Interface-Implementatio&amp;action=e" title="Email">Email</a>·<a class="toolbar" href="/Articles/16074/DuckTyping-Runtime-Dynamic-Interface-Implementatio?fid=351497&amp;df=90&amp;mpp=25&amp;sort=Position&amp;tid=1737225" title="View&nbsp;Thread">View&nbsp;Thread</a>·<a class="toolbar" href="/Messages/1756240/Re-Will-get-people-thinking-out-of-the-box.aspx" title="Get permanent link">Permalink</a>·<a class="toolbar" href="/script/Bookmarks/Add.aspx?obid=1756240&amp;obtid=3&amp;action=AddBookmark&amp;bio=false" title="Bookmark this post" onclick="return bookmarkMe(0,0,'/script/Bookmarks/Ajax/Add.aspx?obid=1756240&obtid=3&action=AddBookmark&bio=false',false, this, this);">Bookmark</a></td><td class="msg-footer" style="text-align:right;"><span id="MVF1756240" style="white-space:nowrap;"><span class="voteform" ownerid="206501" msgid="1756240" goodbad="false" gpre="" bpre="" msgtype=""></span></span></td>
+											</tr>
+										</table></td>
+									</tr>
+								</table></td>
+							</tr>
+						</table></td>
+					</tr><tr class="quick">
+						<td class="msg-divide"><img src="http://s.codeproject.com/script/Forums/Images/t.gif" border="0" width="1px" height="1px" alt="" /></td>
+					</tr><tr class="MsgHd HdUnSel " id="F1756942_h0">
+						<td width="100%"><table class="quickHd" border="0" cellpadding="0" cellspacing="0" width="100%">
+							<tr class="hover-row">
+								<td width="70px" class="Frm_MsgIndent"><a name="xx1756942xx"></a><img height="16px" width="16px" align="top" src="/script/Forums/Images/msg_general.gif" alt="General" /></td><td class="Frm_MsgSubject hover-container"><a class="message-link" name="1756942" parent="1756240" thread="1737225" href="/Messages/1756942/Re-Will-get-people-thinking-out-of-the-box.aspx">Re: Will get people thinking out of the box!</a> <a onclick="return Pin(this);" href="#" title="Click to pin message"><img src="http://s.codeproject.com/script/Forums/Images/pin.gif" border="0" align="top" alt="Pin" width="13px" height="12px" /></a></td><td class="Frm_MsgIcon"><img border="0" src="http://s.codeproject.com/App_Themes/Std/Img/icn-member-16.gif" title="member" alt="member" height="16px" /></td><td class="Frm_MsgAuthor"><a href="/script/Membership/View.aspx?mid=117364">Frank Hileman</a></td><td class="Frm_MsgDate" style="vertical-align:top;white-space:nowrap;">12:04 14 Nov '06 &nbsp;</td>
+							</tr>
+						</table></td>
+					</tr><tr id="F1756942_h1" style="display:none;">
+						<td width="100%"><table class="quickBd" border="0" cellpadding="0" cellspacing="0" width="100%">
+							<tr>
+								<td class="Frm_MsgIndent" style="width:70px;"><img src="http://s.codeproject.com/script/Forums/Images/t.gif" height="1px" width="70px" alt="" /></td><td class="MsgBd BdSel "><table border="0" cellpadding="0" cellspacing="5px" width="100%">
+									<tr>
+										<td><table border="0" cellpadding="0" cellspacing="0" width="100%">
+											<tr>
+												<td colspan="2">I can see that ruby uses dynamic typing when duck typing, and boo. But if the language is statically typed it is possible to verify the runtime correctness of a method call even with duck typing, by checking to see if the method exists at compile time. That would be nice as it would allow multiple inheritance (mixin) style programming in a statically typed language. <br />
+&nbsp;<br />
+<div class="ForumSig">check out VG.net: <a href="http://www.vgdotnet.com">www.vgdotnet.com</a><br />
+An animated vector graphics system integrated in VS.net</div><br /></td>
+											</tr><tr style="vertical-align:middle;">
+												<td class="msg-footer"><a class="button-newmsg" href="/script/Forums/Edit.aspx?fid=351497&amp;select=1756942&amp;floc=/Articles/16074/DuckTyping-Runtime-Dynamic-Interface-Implementatio&amp;action=r" title="Reply">Reply</a>·<a class="toolbar" href="/script/Forums/Edit.aspx?fid=351497&amp;select=1756942&amp;floc=/Articles/16074/DuckTyping-Runtime-Dynamic-Interface-Implementatio&amp;action=e" title="Email">Email</a>·<a class="toolbar" href="/Articles/16074/DuckTyping-Runtime-Dynamic-Interface-Implementatio?fid=351497&amp;df=90&amp;mpp=25&amp;sort=Position&amp;tid=1737225" title="View&nbsp;Thread">View&nbsp;Thread</a>·<a class="toolbar" href="/Messages/1756942/Re-Will-get-people-thinking-out-of-the-box.aspx" title="Get permanent link">Permalink</a>·<a class="toolbar" href="/script/Bookmarks/Add.aspx?obid=1756942&amp;obtid=3&amp;action=AddBookmark&amp;bio=false" title="Bookmark this post" onclick="return bookmarkMe(0,0,'/script/Bookmarks/Ajax/Add.aspx?obid=1756942&obtid=3&action=AddBookmark&bio=false',false, this, this);">Bookmark</a></td><td class="msg-footer" style="text-align:right;"><span id="MVF1756942" style="white-space:nowrap;">4.00/5 (1 vote) <span class="voteform" ownerid="117364" msgid="1756942" goodbad="false" gpre="" bpre="" msgtype=""></span></span></td>
+											</tr>
+										</table></td>
+									</tr>
+								</table></td>
+							</tr>
+						</table></td>
+					</tr><tr class="quick">
+						<td class="root msg-divide"><img src="http://s.codeproject.com/script/Forums/Images/t.gif" border="0" width="1px" height="1px" alt="" /></td>
+					</tr><tr class="MsgHd Rt HdUnSel " id="F1734281_h0">
+						<td width="100%"><table class="quickHd" border="0" cellpadding="0" cellspacing="0" width="100%">
+							<tr class="hover-row">
+								<td width="16px" class="Frm_MsgIndent"><a name="xx1734281xx"></a><img height="16px" width="16px" align="top" src="/script/Forums/Images/msg_general.gif" alt="General" /></td><td class="Frm_MsgSubject hover-container"><a class="message-link" name="1734281" parent="0" thread="1734281" href="/Messages/1734281/Simple-mistake.aspx">Simple mistake</a> <a onclick="return Pin(this);" href="#" title="Click to pin message"><img src="http://s.codeproject.com/script/Forums/Images/pin.gif" border="0" align="top" alt="Pin" width="13px" height="12px" /></a></td><td class="Frm_MsgIcon"><img border="0" src="http://s.codeproject.com/App_Themes/Std/Img/icn-member-16.gif" title="member" alt="member" height="16px" /></td><td class="Frm_MsgAuthor"><a href="/script/Membership/View.aspx?mid=422505">Omer van Kloeten</a></td><td class="Frm_MsgDate" style="vertical-align:top;white-space:nowrap;">3:24 31 Oct '06 &nbsp;</td>
+							</tr>
+						</table></td>
+					</tr><tr id="F1734281_h1" style="display:none;">
+						<td width="100%"><table class="quickBd" border="0" cellpadding="0" cellspacing="0" width="100%">
+							<tr>
+								<td class="Frm_MsgIndent" style="width:16px;"><img src="http://s.codeproject.com/script/Forums/Images/t.gif" height="1px" width="16px" alt="" /></td><td class="MsgBd BdSel "><table border="0" cellpadding="0" cellspacing="5px" width="100%">
+									<tr>
+										<td><table border="0" cellpadding="0" cellspacing="0" width="100%">
+											<tr>
+												<td colspan="2">In "Implementing an Array of Ducks with one call" there is a problem with the example - you use ducks[0] twice.<br />
+&nbsp;<br />
+Other than that, excellent article. 5/5 and well deserved. <br />
+&nbsp;<br />
+<div class="ForumSig"><hr/><br />
+Programming is life,<br />
+The rest is mere details.<br />
+&nbsp;<br />
+Omer van Kloeten</div><br /></td>
+											</tr><tr style="vertical-align:middle;">
+												<td class="msg-footer"><a class="button-newmsg" href="/script/Forums/Edit.aspx?fid=351497&amp;select=1734281&amp;floc=/Articles/16074/DuckTyping-Runtime-Dynamic-Interface-Implementatio&amp;action=r" title="Reply">Reply</a>·<a class="toolbar" href="/script/Forums/Edit.aspx?fid=351497&amp;select=1734281&amp;floc=/Articles/16074/DuckTyping-Runtime-Dynamic-Interface-Implementatio&amp;action=e" title="Email">Email</a>·<a class="toolbar" href="/Articles/16074/DuckTyping-Runtime-Dynamic-Interface-Implementatio?fid=351497&amp;df=90&amp;mpp=25&amp;sort=Position&amp;tid=1734281" title="View&nbsp;Thread">View&nbsp;Thread</a>·<a class="toolbar" href="/Messages/1734281/Simple-mistake.aspx" title="Get permanent link">Permalink</a>·<a class="toolbar" href="/script/Bookmarks/Add.aspx?obid=1734281&amp;obtid=3&amp;action=AddBookmark&amp;bio=false" title="Bookmark this post" onclick="return bookmarkMe(0,0,'/script/Bookmarks/Ajax/Add.aspx?obid=1734281&obtid=3&action=AddBookmark&bio=false',false, this, this);">Bookmark</a></td><td class="msg-footer" style="text-align:right;"><span id="MVF1734281" style="white-space:nowrap;"><span class="voteform" ownerid="422505" msgid="1734281" goodbad="false" gpre="" bpre="" msgtype=""></span></span></td>
+											</tr>
+										</table></td>
+									</tr>
+								</table></td>
+							</tr>
+						</table></td>
+					</tr><tr class="quick">
+						<td class="msg-divide"><img src="http://s.codeproject.com/script/Forums/Images/t.gif" border="0" width="1px" height="1px" alt="" /></td>
+					</tr><tr class="MsgHd HiVote HdUnSel " id="F1756241_h0">
+						<td width="100%"><table class="quickHd" border="0" cellpadding="0" cellspacing="0" width="100%">
+							<tr class="hover-row">
+								<td width="34px" class="Frm_MsgIndent"><a name="xx1756241xx"></a><img height="16px" width="16px" align="top" src="/script/Forums/Images/msg_general.gif" alt="General" /></td><td class="Frm_MsgSubject hover-container"><a class="message-link" name="1756241" parent="1734281" thread="1734281" href="/Messages/1756241/Re-Simple-mistake.aspx">Re: Simple mistake</a> <a onclick="return Pin(this);" href="#" title="Click to pin message"><img src="http://s.codeproject.com/script/Forums/Images/pin.gif" border="0" align="top" alt="Pin" width="13px" height="12px" /></a></td><td class="Frm_MsgIcon"><img border="0" src="http://s.codeproject.com/App_Themes/Std/Img/icn-member-16.gif" title="member" alt="member" height="16px" /></td><td class="Frm_MsgAuthor"><a href="/script/Membership/View.aspx?mid=206501">Guenter Prossliner</a></td><td class="Frm_MsgDate" style="vertical-align:top;white-space:nowrap;">5:01 14 Nov '06 &nbsp;</td>
+							</tr>
+						</table></td>
+					</tr><tr id="F1756241_h1" style="display:none;">
+						<td width="100%"><table class="quickBd" border="0" cellpadding="0" cellspacing="0" width="100%">
+							<tr>
+								<td class="Frm_MsgIndent" style="width:34px;"><img src="http://s.codeproject.com/script/Forums/Images/t.gif" height="1px" width="34px" alt="" /></td><td class="MsgBd BdSel "><table border="0" cellpadding="0" cellspacing="5px" width="100%">
+									<tr>
+										<td><table border="0" cellpadding="0" cellspacing="0" width="100%">
+											<tr>
+												<td colspan="2">Thank you for reporting this typo. I will correct it in the next version. <br /></td>
+											</tr><tr style="vertical-align:middle;">
+												<td class="msg-footer"><a class="button-newmsg" href="/script/Forums/Edit.aspx?fid=351497&amp;select=1756241&amp;floc=/Articles/16074/DuckTyping-Runtime-Dynamic-Interface-Implementatio&amp;action=r" title="Reply">Reply</a>·<a class="toolbar" href="/script/Forums/Edit.aspx?fid=351497&amp;select=1756241&amp;floc=/Articles/16074/DuckTyping-Runtime-Dynamic-Interface-Implementatio&amp;action=e" title="Email">Email</a>·<a class="toolbar" href="/Articles/16074/DuckTyping-Runtime-Dynamic-Interface-Implementatio?fid=351497&amp;df=90&amp;mpp=25&amp;sort=Position&amp;tid=1734281" title="View&nbsp;Thread">View&nbsp;Thread</a>·<a class="toolbar" href="/Messages/1756241/Re-Simple-mistake.aspx" title="Get permanent link">Permalink</a>·<a class="toolbar" href="/script/Bookmarks/Add.aspx?obid=1756241&amp;obtid=3&amp;action=AddBookmark&amp;bio=false" title="Bookmark this post" onclick="return bookmarkMe(0,0,'/script/Bookmarks/Ajax/Add.aspx?obid=1756241&obtid=3&action=AddBookmark&bio=false',false, this, this);">Bookmark</a></td><td class="msg-footer" style="text-align:right;"><span id="MVF1756241" style="white-space:nowrap;">5.00/5 (1 vote) <span class="voteform" ownerid="206501" msgid="1756241" goodbad="false" gpre="" bpre="" msgtype=""></span></span></td>
+											</tr>
+										</table></td>
+									</tr>
+								</table></td>
+							</tr>
+						</table></td>
+					</tr><tr class="quick">
+						<td class="root msg-divide"><img src="http://s.codeproject.com/script/Forums/Images/t.gif" border="0" width="1px" height="1px" alt="" /></td>
+					</tr><tr class="MsgHd Rt HdUnSel " id="F1728437_h0">
+						<td width="100%"><table class="quickHd" border="0" cellpadding="0" cellspacing="0" width="100%">
+							<tr class="hover-row">
+								<td width="16px" class="Frm_MsgIndent"><a name="xx1728437xx"></a><img height="16px" width="16px" align="top" src="/script/Forums/Images/msg_general.gif" alt="General" /></td><td class="Frm_MsgSubject hover-container"><a class="message-link" name="1728437" parent="0" thread="1728437" href="/Messages/1728437/Great-start-want-more.aspx">Great start; want more!</a> <a onclick="return Pin(this);" href="#" title="Click to pin message"><img src="http://s.codeproject.com/script/Forums/Images/pin.gif" border="0" align="top" alt="Pin" width="13px" height="12px" /></a></td><td class="Frm_MsgIcon"><img border="0" src="http://s.codeproject.com/App_Themes/Std/Img/icn-member-16.gif" title="member" alt="member" height="16px" /></td><td class="Frm_MsgAuthor"><a href="/script/Membership/View.aspx?mid=156197">Chris Wuestefeld</a></td><td class="Frm_MsgDate" style="vertical-align:top;white-space:nowrap;">13:07 26 Oct '06 &nbsp;</td>
+							</tr>
+						</table></td>
+					</tr><tr id="F1728437_h1" style="display:none;">
+						<td width="100%"><table class="quickBd" border="0" cellpadding="0" cellspacing="0" width="100%">
+							<tr>
+								<td class="Frm_MsgIndent" style="width:16px;"><img src="http://s.codeproject.com/script/Forums/Images/t.gif" height="1px" width="16px" alt="" /></td><td class="MsgBd BdSel "><table border="0" cellpadding="0" cellspacing="5px" width="100%">
+									<tr>
+										<td><table border="0" cellpadding="0" cellspacing="0" width="100%">
+											<tr>
+												<td colspan="2">As others have said, this looks like a really elegant solution. But being such a negative person <img src="/script/Forums/Images/smiley_sniff.gif" align="top" alt="Sniff | :^)" /> , it just makes me think of more questions.<br />
+&nbsp;<br />
+First, what happens when trying to duck a method that is implemented by an explicit interface declaration?<br />
+&nbsp;<br />
+Are there any rules for parameter and return type covariance and contravariance? Without digging into your source code, I assume that you require exact correspondence for all types, but I think that the new rules for delegates would work pretty well.<br />
+&nbsp;<br />
+Again, good work, you've got a 5 from me.<br />
+&nbsp;<br />
+ <br /></td>
+											</tr><tr style="vertical-align:middle;">
+												<td class="msg-footer"><a class="button-newmsg" href="/script/Forums/Edit.aspx?fid=351497&amp;select=1728437&amp;floc=/Articles/16074/DuckTyping-Runtime-Dynamic-Interface-Implementatio&amp;action=r" title="Reply">Reply</a>·<a class="toolbar" href="/script/Forums/Edit.aspx?fid=351497&amp;select=1728437&amp;floc=/Articles/16074/DuckTyping-Runtime-Dynamic-Interface-Implementatio&amp;action=e" title="Email">Email</a>·<a class="toolbar" href="/Articles/16074/DuckTyping-Runtime-Dynamic-Interface-Implementatio?fid=351497&amp;df=90&amp;mpp=25&amp;sort=Position&amp;tid=1728437" title="View&nbsp;Thread">View&nbsp;Thread</a>·<a class="toolbar" href="/Messages/1728437/Great-start-want-more.aspx" title="Get permanent link">Permalink</a>·<a class="toolbar" href="/script/Bookmarks/Add.aspx?obid=1728437&amp;obtid=3&amp;action=AddBookmark&amp;bio=false" title="Bookmark this post" onclick="return bookmarkMe(0,0,'/script/Bookmarks/Ajax/Add.aspx?obid=1728437&obtid=3&action=AddBookmark&bio=false',false, this, this);">Bookmark</a></td><td class="msg-footer" style="text-align:right;"><span id="MVF1728437" style="white-space:nowrap;"><span class="voteform" ownerid="156197" msgid="1728437" goodbad="false" gpre="" bpre="" msgtype=""></span></span></td>
+											</tr>
+										</table></td>
+									</tr>
+								</table></td>
+							</tr>
+						</table></td>
+					</tr><tr>
+						<td><img src="http://s.codeproject.com/script/Forums/Images/t.gif" border="0" width="1px" height="5px" alt="" /></td>
+					</tr>
+				</table></td>
+			</tr><tr>
+				<td><table width="100%" cellpadding="2px" cellspacing="0">
+					<tr class="forum-footer">
+						<td>Last Visit: 15:31 21 Jun '12  &nbsp; &nbsp; Last Update: 13:48 21 Jun '12 </td><td class="nav-link" style="text-align:right;white-space:nowrap;"><input id="_mbnUrl" type="hidden" value="/Articles/16074/DuckTyping-Runtime-Dynamic-Interface-Implementatio?fid=351497&amp;df=90&amp;mpp=25&amp;noise=3&amp;prof=False&amp;sort=Position&amp;view=Quick&amp;fr=26" /><b>1</b><a class="toolbar" name="Frm_HoverNL" href="/Articles/16074/DuckTyping-Runtime-Dynamic-Interface-Implementatio?fid=351497&amp;df=90&amp;mpp=25&amp;noise=3&amp;prof=False&amp;sort=Position&amp;view=Quick&amp;fr=26#xx0xx">2</a> <a class="toolbar" name="Frm_HoverNL" href="/Articles/16074/DuckTyping-Runtime-Dynamic-Interface-Implementatio?fid=351497&amp;df=90&amp;mpp=25&amp;noise=3&amp;prof=False&amp;sort=Position&amp;view=Quick&amp;fr=26#xx0xx">Next »</a></td>
+					</tr>
+				</table></td>
+			</tr>
+		</tr>
+	</table>
+</div><p class="small-text"><img align="top" src="/script/Forums/Images/msg_general.gif" width="16px" height="16px" alt="General" /> General &nbsp;&nbsp; <img align="top" src="/script/Forums/Images/msg_news.gif" width="16px" height="16px" alt="News" /> News &nbsp;&nbsp; <img align="top" src="/script/Forums/Images/msg_idea.gif" width="16px" height="16px" alt="Suggestion" /> Suggestion &nbsp;&nbsp; <img align="top" src="/script/Forums/Images/msg_question.gif" width="16px" height="16px" alt="Question" /> Question &nbsp;&nbsp; <img align="top" src="/script/Forums/Images/msg_bug.gif" width="16px" height="16px" alt="Bug" /> Bug &nbsp;&nbsp; <img align="top" src="/script/Forums/Images/msg_answer.gif" width="16px" height="16px" alt="Answer" /> Answer &nbsp;&nbsp; <img align="top" src="/script/Forums/Images/msg_joke.gif" width="16px" height="16px" alt="Joke" /> Joke &nbsp;&nbsp; <img align="top" src="/script/Forums/Images/msg_rant.gif" width="16px" height="16px" alt="Rant" /> Rant &nbsp;&nbsp; <img align="top" src="/script/Forums/Images/msg_admin.gif" width="16px" height="16px" alt="Admin" /> Admin &nbsp;&nbsp; </p><p class="small-text">Use Ctrl+Left/Right to switch messages, Ctrl+Up/Down to switch threads, Ctrl+Shift+Left/Right to switch pages.</p>
+
+					
+					<div class="theme1-background" style="height:2px"></div>
+
+					<div class="extended tiny-text">
+						<div class="row">
+							<div class="float-left">
+								<a id="ctl00_PermaLink" href="/Articles/16074/DuckTyping-Runtime-Dynamic-Interface-Implementatio">Permalink</a> | 
+								<a id="ctl00_AdvertiseLink" href="http://lakequincy.com/">Advertise </a> |
+								<a id="ctl00_PrivacyLink" href="/info/privacy.aspx">Privacy</a> |
+								<a id="ctl00_Mobile" rel="nofollow" href="/Articles/16074/DuckTyping-Runtime-Dynamic-Interface-Implementatio?display=Mobile">Mobile</a>
+								<br />
+								
+								Web02 |
+								2.5.120620.1 |
+								Last Updated 23 Oct 2006								
+							</div>
+							<div class="float-right align-right">
+								Article Copyright 2006 by Guenter Prossliner<br />Everything else
+								Copyright &copy; <a href="mailto:webmaster@codeproject.com">CodeProject</a>, 1999-2012 <br />
+								<a id="ctl00_TermsOfUseLink" href="/info/TermsOfUse.aspx">Terms of Use</a>
+							</div>
+
+							
+
+
+<div class="page-width">
+Layout: <a id="ctl00_PageWidth_FixedT" title="Fixed width layout" rel="nofollow" class=" active" href="/Articles/16074/DuckTyping-Runtime-Dynamic-Interface-Implementatio?PageFlow=FixedWidth">fixed</a>
+|
+<a id="ctl00_PageWidth_FluidT" title="Fluid layout" rel="nofollow" href="/Articles/16074/DuckTyping-Runtime-Dynamic-Interface-Implementatio?PageFlow=Fluid">fluid</a>
+</div>
+
+
+
+						</div>
+					</div>
+					
+
+				<br clear="all" />
+		
+				
+				</div>
+
+				<div id="ctl00_ContentSide" class="text-sidebar">
+					
+
+					
+
+					
+
+					
+<div class="announce">
+
+<div class="announce-content">
+
+<div>Hot News: <a id="ctl00_News_News_ctl01_Link" href="http://www.inc.com/ron-burley/4-million-complaint-call.html">The $4 Million Complaint Call</a></div>
+
+The Code Project Insider. <a id="ctl00_News_News_ctl02_Subscribe" href="/Feature/Insider/">Free each morning.</a>
+</div>
+</div>
+
+						
+					<div style="width:160px;margin: 10px 0;">
+						<div class="lqm_ad" lqm_publisher="lqm.codeproject.site"  lqm_zone="ros" lqm_format="160x600" lqm_country='US' lqm_tags='.NET2.0, VS2005, C#2.0, Windows, Dev, Intermediate,rating4.5'></div>
+					</div>
+
+					
+	<div class="announce">
+	<div id="ctl00_RelatedArticles_RelatedResults_ctl00_header" class="announce-header">Related Articles</div>
+	<div class="announce-content">	
+	
+	<div class="container-related-item">
+		<a id="ctl00_RelatedArticles_RelatedResults_ctl02_Link" class="title" href="/KB/cs/AutoInterfaceImplementer.aspx">Automatic Interface Implementer:  An Example of Runtime Type Building</a>
+		
+	</div>
+	
+	<div class="container-related-item">
+		<a id="ctl00_RelatedArticles_RelatedResults_ctl03_Link" class="title" href="/KB/WPF/DynamicUIs.aspx">Dynamic User Interfaces in WPF</a>
+		
+	</div>
+	
+	<div class="container-related-item">
+		<a id="ctl00_RelatedArticles_RelatedResults_ctl04_Link" class="title" href="/KB/cs/392516.aspx">Why I use explicit interface implementation as a default implementation technique</a>
+		
+	</div>
+	
+	<div class="container-related-item">
+		<a id="ctl00_RelatedArticles_RelatedResults_ctl05_Link" class="title" href="/KB/cs/Interface.aspx">Explicit Implementation of Interface</a>
+		
+	</div>
+	
+	<div class="container-related-item">
+		<a id="ctl00_RelatedArticles_RelatedResults_ctl06_Link" class="title" href="/KB/cs/DynamicEnumExtensions.aspx">Adding data-bindable attributes to C# enums using the dynamic runtime</a>
+		
+	</div>
+	
+	<div class="container-related-item">
+		<a id="ctl00_RelatedArticles_RelatedResults_ctl07_Link" class="title" href="/KB/linq/LINQDynamicPredicate.aspx">LINQ and Dynamic Predicate Construction at Runtime</a>
+		
+	</div>
+	
+	<div class="container-related-item">
+		<a id="ctl00_RelatedArticles_RelatedResults_ctl08_Link" class="title" href="/KB/COM/dyn_idispatch.aspx">Dynamic Creation of IDispatch interfaces using simple classes</a>
+		
+	</div>
+	
+	<div class="container-related-item">
+		<a id="ctl00_RelatedArticles_RelatedResults_ctl09_Link" class="title" href="/KB/dotnet/gointerfaces.aspx">Dynamic interfaces in any .NET language</a>
+		
+	</div>
+	
+	<div class="container-related-item">
+		<a id="ctl00_RelatedArticles_RelatedResults_ctl10_Link" class="title" href="/KB/architecture/userDefinedInterfaces2.aspx">Dynamically Generated User Defined Interfaces (Part 2)</a>
+		
+	</div>
+	
+	<div class="container-related-item">
+		<a id="ctl00_RelatedArticles_RelatedResults_ctl11_Link" class="title" href="/KB/tabs/RunTimePropertyViewer.aspx">Dynamic Runtime Property Viewer</a>
+		
+	</div>
+	
+	<div class="container-related-item">
+		<a id="ctl00_RelatedArticles_RelatedResults_ctl12_Link" class="title" href="/KB/cpp/com_variadic_templates.aspx">Implementing COM Interfaces with C++0x Variadic Templates</a>
+		
+	</div>
+	
+	<div class="container-related-item">
+		<a id="ctl00_RelatedArticles_RelatedResults_ctl13_Link" class="title" href="/KB/vb/DynamicFactoryDemo.aspx">Dynamic Objects, Factories, and Runtime Machines to Boost Performance</a>
+		
+	</div>
+	
+	<div class="container-related-item">
+		<a id="ctl00_RelatedArticles_RelatedResults_ctl14_Link" class="title" href="/KB/dotnet/Dynamic_Properties.aspx">Dynamic Properties - A Database Created At Runtime</a>
+		
+	</div>
+	
+	<div class="container-related-item">
+		<a id="ctl00_RelatedArticles_RelatedResults_ctl15_Link" class="title" href="/KB/IP/DynamicGeneration.aspx">Dynamic Generation of Interfaces Using a Pool of Objects</a>
+		
+	</div>
+	
+	<div class="container-related-item">
+		<a id="ctl00_RelatedArticles_RelatedResults_ctl16_Link" class="title" href="/KB/toolbars/dynamictb.aspx">Changing toolbars dynamically at runtime</a>
+		
+	</div>
+	
+	<div class="container-related-item">
+		<a id="ctl00_RelatedArticles_RelatedResults_ctl17_Link" class="title" href="/KB/dotnet/validation_class_interfac.aspx">Validation Across Class Hierarchies and Interface Implementations</a>
+		
+	</div>
+	
+	<div class="container-related-item">
+		<a id="ctl00_RelatedArticles_RelatedResults_ctl18_Link" class="title" href="/KB/architecture/bridge.aspx">Bridge Pattern - Bridging the gap between Interface and Implementation</a>
+		
+	</div>
+	
+	<div class="container-related-item">
+		<a id="ctl00_RelatedArticles_RelatedResults_ctl19_Link" class="title" href="/KB/XML/isoaptypemapper.aspx">IsoapTypeMapper interface – a C++ implementation</a>
+		
+	</div>
+	
+	<div class="container-related-item">
+		<a id="ctl00_RelatedArticles_RelatedResults_ctl20_Link" class="title" href="/KB/aspnet/dynamicloading.aspx">Dynamically Loading .NET Assemblies using Interfaces and Reflection</a>
+		
+	</div>
+	
+	<div class="container-related-item">
+		<a id="ctl00_RelatedArticles_RelatedResults_ctl21_Link" class="title" href="/KB/DLL/DynamicUserDLL.aspx">Load a User DLL implementing an AppIn interface</a>
+		
+	</div>
+	
+	</div>
+	</div>
+	
+
+
+					
+
+				</div>
+
+			</div>
+			
+
+		</div>
+		
+
+	</div>
+</div>
+
+
+<div style="display:none;" id="lqm_AdTable">
+	
+</div>
+
+<script type="text/javascript" language="Javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script><script type='text/javascript'>//<![CDATA[
+if (typeof jQuery == 'undefined') {
+    document.write(unescape("%3Cscript src='/script/JS/jquery-1.6.2.min.js' type='text/javascript' %3E%3C/script%3E"));
+}//]]></script>
+<script type="text/javascript" language="Javascript" src="http://s.codeproject.com/script/Articles/JS/article.min.js?dt=2.5.120620.1"></script>
+<script type="text/javascript" language="Javascript" src="http://s.codeproject.com/script/JS/navbar.min.js?dt=2.5.120620.1"></script>
+<script type="text/javascript" language="Javascript" src="/Script/JS/m.min.js?dt=2.5.120620.1"></script>
+<script type="text/javascript" language="Javascript">//<![CDATA[
+var socialLinks = new social();
+socialLinks.PlaceholderId="ATD";socialLinks.ObjectId=16074;
+socialLinks.ObjectTypeId=2;
+socialLinks.addtoMethod=1;
+socialLinks.Horizontal=false;
+socialLinks.Showname=true;
+socialLinks.setupLinks("socialLinks", escape(document.location.href),escape(document.title), 100, 0, "small-text Bold", "AddTo");
+socialLinks.setupMenu();
+if($.LqmAds)$.LqmAds();
+var oSrchFlt = false, oSrchBox=false,srchBoxFoc=false;
+$(document).ready(function() {
+ if(InitWatermark)InitWatermark('sb_tb', 'Search site');
+ var sbar = $('#sb_tb'); 
+ var sfilter = $('#SearchFilter');
+ if (sbar && sfilter) {
+  sfilter.removeClass('popup'); sfilter.hide();
+  sbar.blur(function() { if (!oSrchFlt)sfilter.hide();srchBoxFoc=false; });
+  sbar.focus(function() { oSrchFlt=false;srchBoxFoc=true;sfilter.show(); });
+  sbar.mouseleave(function() { oSrchBox=false; });
+  sbar.mouseover(function() { oSrchBox=true; });
+  sfilter.mouseleave(function() { oSrchFlt=false; if (!srchBoxFoc&&!oSrchBox)sfilter.hide();});
+  sfilter.mouseover(function() { oSrchFlt=true; });
+ }
+});
+$(document).ready(function() { anchorAnimate(); });
+$("#ctl00_RateArticle_RateItemWrapper").removeClass("container-rating");$('#clear-rate_ctl00_RateArticle_RCD').click(function () { $('#ctl00_RateArticle_RCD').hide(); return false;});
+function PostBack_ctl00_RateArticle_RateItemWrapper() {
+  return rateItem(16074,2,1,true,true,3);
+}
+function ChkRtctl00_RateArticle(val, objId) {if (val<=3||true) {
+$('div[name=RateItem_' + objId + '] .rating-comment').css("display","");}
+else $('div[name=RateItem_' + objId + '] .rating-comment').css("display","none");}
+
+
+//]]>
+</script>
+
+</body>
+</html>

@@ -1,0 +1,68 @@
+DVMS WorkSpaces - Design Notes
+==============================
+8/31/2026
+
+
+DVMS WorkSpaces - A Super Fusion Personal Dashboard/Desktop/Organizer
+
+The WorkSpaces idea is to have an app which strives to be the fusion of a personal desktop dashboard and work organizer and advances the Windows Desktop paradigm to a more advanced app level that fuses and integrates multiple applications and tools for a more advanced desktop environment and experience.  WorkSpaces is dynamic and consists of a gridded work space where the user can add, edit, and mix and match a variety of Buttons, Widgets, and Mini Apps with integration into regular full apps and tools.  It will provide a number of centralized common functions including work logging and tracking, alerts and notifications, app IPC, and WIWA (Where I Was At) functionality.  In use, it presents a digital representation of multiple workspaces to the user when the user can more efficiently see status, access and use apps and tools, and strives towards a Data and App Fusion Convergence.  
+
+See my chat with Nex about all this...it's extensive.
+
+
+Buttons			Bars			Trees
+-------------------------------------------------------------------
+App Buttons		- Button Bars		- App Trees
+Document Buttons	- Doc Bars		- Doc Trees
+Grouper Buttons		- Grouper Bars		- Grouper Trees
+
+
+Widgets			- Mini Apps		- Integrated Apps
+
+Buttons - Normal and Hexagon
+Bars...And Hex Flowers
+Trees
+
+Widgets
+Mini Apps
+Integrated Apps
+
+Activity Windows
+Status Windows
+Command Windows
+
+Grouper Folders and Containers...
+   - Including Virtual File Folders...Bars...and Trees...
+
+
+Common Services:
+   - Toolbox
+   - Alerts
+   - Notifications
+   - Reminders
+   - WorkSpace background images and grids...
+   - Work Logging
+   - Where I Was At (WIWA)
+   - ...
+
+Everything Collapses down to a Button...Then Expands upwards...And Back...
+
+Buttons run as Widgets...and also run on the Desktop...
+
+
+	Fusion (Apps & Data) - Views - Dashboard Like WorkSpaces
+
+		Widgets - Mini Apps - Integrated Apps
+
+
+		Personal - Teams - Enterprise
+
+
+Essentially what DVMS WorkSpaces is...is what the Windows Desktop should
+have been!!!
+
+What I'm trying to do here is to create a 2D version of my 3D+ Multiple
+Dimensions Interface(s) that I am used to back on my Home Planet/Life...
+
+
+			=== END ===

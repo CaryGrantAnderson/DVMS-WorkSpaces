@@ -1,0 +1,55 @@
+
+														CRM			Coffee		Abiss		Math
+
+lnk_FILE_Location_Info:							Loc		1E1			22F			1A9			22B
+public DWORD LinkInfoSize;      						67			6F			4F			6A		lnk_FILE_Location_Info+LinkInfoSize = StartChar of FinalPath Unicode
+public DWORD LinkInfoHeaderSize;						1C			1C			1C			1C
+public DWORD VolumeFlags;       						1			1			1			1
+public DWORD offsetVolumeTable; 						1C			1C			1C			1C
+public DWORD offsetBasePath;    						2D			2D			2D			2D		lnk_FILE_Location_Info+offsetBasePath = BasePath as c_str Path
+public DWORD offsetNetwork;     						0			0			0			0
+public DWORD offsetFinalPath;   						66			6E			4E			69		lnk_FILE_Location_Info+offsetFinalPath = StartChar of FinalPath-1 Unicode	
+optinal: if LinkInfoHeaderSize > 0x1c					
+public UInt32 LocalBasePathOffsetUnicode;  				na			na			na			na
+public UInt32 CommonPathSuffixOffsetUnicode;			na			na			na			na
+
+
+	local_Volume_Table:							Loc		1FD			24A			1C5			247
+	public DWORD volumeTableLength;         			11			11			11			11
+    public DWORD volumeType;                			03			03			03			03
+    public ULONG volumeSerialNbr;           												
+    public DWORD offsetVolumeName;          			10			10			10			10
+    public ULONG VolumeLabelOffsetUnicode;				0x0			0x0			0x0			0x0		see length = 11 bytes
+	
+	
+	
+	BasePath c_str								Loc		20E			25C			1D6			258
+	FinalPath Unicode							Loc		248			29E			1F8			295		
+	Remaining Path Unicode						Loc		27A			320			246			319
+	Netw										Loc									loc + offsetNetwork
+	
+	CRM has 2 more unicode entries
+	
+	pos													42A			368			274			371
+	CRM additional Flags set:
+	Link Flags:
+  A shell link Name is present
+  A Icon Location is entered
+  The link is saved with an IconEnvironmentDataBlock
+
+	ExtraDataTables start here
+	SPECIAL_FOLDER										73E			368			274			371	No variables
+	KNOWN_FOLDER										74E			378         284         381 No variables
+	PROPERTY_STORE										76A			394         2A0         39D Has Variables
+	TRACKER												7B7			429         4B0         3EA	DW blockSize, DW signature, DW length, DW version, var machineId c_str, 
+																								32Byte (GUID) droid, 32Byte (GUID) droidBirth
+	Terminator 0x0
+	
+	No info on structures as:
+	ENVIRONMENT
+	CONSOLE
+	CONSOLE_FE
+	DARWIN
+	ICON_ENVIRONMENT
+	SHIM
+	VISTA_AND_ABOVE_IDLIST

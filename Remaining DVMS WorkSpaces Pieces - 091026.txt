@@ -1,0 +1,19 @@
+Remaining DVMS WorkSpaces Pieces - 091026
+=========================================
+9/10/2026
+
+
+DVMS WorkSpaces Manager
+
+Using SignalR as the IPC message bus...
+
+
+DVMS Calendar Tree
+
+
+DVMS Reminders
+
+DVMS Alerts - Windows & My Custom
+
+
+			=== END ===

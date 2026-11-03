@@ -1,0 +1,14 @@
+Auto - Zip Tool/Environment
+===========================
+8/27/2012
+
+
+   - I need a tool that zips up a collection of files so that
+     they can be managed as a single unit, copied easily,
+     auto un-zipped for running etc.
+
+	- Example is e-books, there are a lot of files in
+	  some that are HTML based.  I don't access them
+	  that frequently so a "working archive" format
+	  would be useful.
+

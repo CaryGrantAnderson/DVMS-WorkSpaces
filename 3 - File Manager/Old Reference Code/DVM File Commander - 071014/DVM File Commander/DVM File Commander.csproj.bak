@@ -1,0 +1,167 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{AE0ECCA0-6609-44DD-8F8C-6716D87D2384}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>DVM_File_Commander</RootNamespace>
+    <AssemblyName>DVM File Commander</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="DevExpress.Data.v14.1" />
+    <Reference Include="DevExpress.Printing.v14.1.Core" />
+    <Reference Include="DevExpress.Utils.v14.1" />
+    <Reference Include="DevExpress.XtraBars.v14.1" />
+    <Reference Include="DevExpress.Sparkline.v14.1.Core" />
+    <Reference Include="DevExpress.XtraEditors.v14.1" />
+    <Reference Include="DevExpress.XtraTreeList.v14.1, Version=14.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Form1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form1.Designer.cs">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Form1.resx">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\licenses.licx" />
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <None Include="app.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Images\Nav Tree\Checkmarks\check.png" />
+    <Content Include="Images\Nav Tree\Checkmarks\checkbox.png" />
+    <Content Include="Images\Nav Tree\Checkmarks\checkbox_unchecked.png" />
+    <Content Include="Images\Nav Tree\Checkmarks\checks.png" />
+    <Content Include="Images\Nav Tree\Checkmarks\document_check.png" />
+    <Content Include="Images\Nav Tree\Checkmarks\navigate_check.png" />
+    <Content Include="Images\Nav Tree\Drives\floppy_drive.png" />
+    <Content Include="Images\Nav Tree\Drives\hard_drive.png" />
+    <Content Include="Images\Nav Tree\Files\dictionary.png" />
+    <Content Include="Images\Nav Tree\Files\document.png" />
+    <Content Include="Images\Nav Tree\Files\document_music.png" />
+    <Content Include="Images\Nav Tree\Files\document_plain_blue.png" />
+    <Content Include="Images\Nav Tree\Files\document_plain_green.png" />
+    <Content Include="Images\Nav Tree\Files\document_plain_red.png" />
+    <Content Include="Images\Nav Tree\Files\document_plain_yellow.png" />
+    <Content Include="Images\Nav Tree\Files\document_text.png" />
+    <Content Include="Images\Nav Tree\Files\edit.png" />
+    <Content Include="Images\Nav Tree\Files\text_binary.png" />
+    <Content Include="Images\Nav Tree\Files\text_lock.png" />
+    <Content Include="Images\Nav Tree\Files\text_marked.png" />
+    <Content Include="Images\Nav Tree\Files\text_rich_colored.png" />
+    <Content Include="Images\Nav Tree\Files\text_rich_marked.png" />
+    <Content Include="Images\Nav Tree\Files\text_tree.png" />
+    <Content Include="Images\Nav Tree\Misc\01.png" />
+    <Content Include="Images\Nav Tree\Misc\02.png" />
+    <Content Include="Images\Nav Tree\Misc\03.png" />
+    <Content Include="Images\Nav Tree\Folders\folder.png" />
+    <Content Include="Images\Nav Tree\Folders\folder2.png" />
+    <Content Include="Images\Nav Tree\Folders\folder2_blue.png" />
+    <Content Include="Images\Nav Tree\Folders\folder2_green.png" />
+    <Content Include="Images\Nav Tree\Folders\folder2_red.png" />
+    <Content Include="Images\Nav Tree\Folders\folder2_yellow.png" />
+    <Content Include="Images\Nav Tree\Folders\folder3.png" />
+    <Content Include="Images\Nav Tree\Folders\folder3_document.png" />
+    <Content Include="Images\Nav Tree\Folders\folder3_mail.png" />
+    <Content Include="Images\Nav Tree\Folders\folder3_movie.png" />
+    <Content Include="Images\Nav Tree\Folders\folder3_music.png" />
+    <Content Include="Images\Nav Tree\Folders\folders.png" />
+    <Content Include="Images\Nav Tree\Folders\folder_add.png" />
+    <Content Include="Images\Nav Tree\Folders\folder_blue.png" />
+    <Content Include="Images\Nav Tree\Folders\folder_closed.png" />
+    <Content Include="Images\Nav Tree\Folders\folder_cubes.png" />
+    <Content Include="Images\Nav Tree\Folders\folder_delete.png" />
+    <Content Include="Images\Nav Tree\Folders\folder_document.png" />
+    <Content Include="Images\Nav Tree\Folders\folder_edit.png" />
+    <Content Include="Images\Nav Tree\Folders\folder_error.png" />
+    <Content Include="Images\Nav Tree\Folders\folder_forbidden.png" />
+    <Content Include="Images\Nav Tree\Folders\folder_gear.png" />
+    <Content Include="Images\Nav Tree\Folders\folder_green.png" />
+    <Content Include="Images\Nav Tree\Folders\folder_information.png" />
+    <Content Include="Images\Nav Tree\Folders\folder_into.png" />
+    <Content Include="Images\Nav Tree\Folders\folder_lock.png" />
+    <Content Include="Images\Nav Tree\Folders\folder_movie.png" />
+    <Content Include="Images\Nav Tree\Folders\folder_music.png" />
+    <Content Include="Images\Nav Tree\Folders\folder_network.png" />
+    <Content Include="Images\Nav Tree\Folders\folder_new.png" />
+    <Content Include="Images\Nav Tree\Folders\folder_ok.png" />
+    <Content Include="Images\Nav Tree\Folders\folder_out.png" />
+    <Content Include="Images\Nav Tree\Folders\folder_preferences.png" />
+    <Content Include="Images\Nav Tree\Folders\folder_red.png" />
+    <Content Include="Images\Nav Tree\Folders\folder_refresh.png" />
+    <Content Include="Images\Nav Tree\Folders\folder_time.png" />
+    <Content Include="Images\Nav Tree\Folders\folder_up.png" />
+    <Content Include="Images\Nav Tree\Folders\folder_view.png" />
+    <Content Include="Images\Nav Tree\Folders\folder_warning.png" />
+    <Content Include="Images\Nav Tree\Folders\folder_window.png" />
+    <Content Include="Images\Nav Tree\Folders\magazine_folder.png" />
+    <Content Include="Images\Nav Tree\Folders\magazine_folder_empty.png" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
